@@ -31,7 +31,7 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 @login_required
 def clear_avatar(request):
     user = request.user
-    user.avatar.delete()  # Delete the avatar file
-    user.save()  # Save the user instance
-    return redirect('my-account')  # Redirect back to the profile page
+    user.avatar.delete()  
+    user.save() 
+    return redirect('pages:my-account') 
     
