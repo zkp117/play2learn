@@ -100,7 +100,7 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 DATABASES = {
     'default': { # 
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'p2l_scores',
+        'NAME': 'games',
         'USER': 'postgres',
         'PASSWORD': 'Pandora117!',
         'HOST': 'localhost',
