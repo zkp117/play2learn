@@ -19,23 +19,16 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
     list_filter = ('is_staff', 'is_active')
     search_fields = ('username', 'email')
     ordering = ('username',)
-
-    # Fields for editing existing user.
     new_fields = ('dob', 'avatar')
-    # Add new fields to 'Personal info' section.
+
     append_fields(UserAdmin.fieldsets, 'Personal info', new_fields)
-    # Move email field from 'Personal info' section to unlabelled section
     move_fields(UserAdmin.fieldsets, 'Personal info', None, ('email',))
-    # Remove password field from 'Personal info'
     remove_fields(UserAdmin.fieldsets, None, ('password',))
     append_fields(UserAdmin.fieldsets, None, ('password_form',))
 
-    # Fields for adding new user.
     new_fields = ('email', )
-    # Add new fields to unlabelled section.
     add_fieldsets = append_fields(UserAdmin.add_fieldsets, None, new_fields)
 
-    # Add optional fields to new 'Optional Fields' section.
     optional_fields = ('first_name', 'last_name', 'dob')
     add_fieldsets = append_fields(UserAdmin.add_fieldsets, 'Optional Fields', optional_fields)
 
@@ -43,7 +36,6 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
         url = reverse('admin:auth_user_password_change', args=[obj.pk])
         return mark_safe(f'<a href="{url}">Change Password</a>')
 
-    # Add Save buttons to the top of the change user form
     def get_form(self, request, obj=None, **kwargs):
         self.save_on_top = obj is not None
         return super().get_form(request, obj, **kwargs)
