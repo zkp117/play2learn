@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -11,13 +12,18 @@ def validate_avatar(value):
         raise ValidationError('Avatar must be no bigger than 500x500 pixels.')
 
 class CustomUser(AbstractUser):
+
+    username = models.CharField(max_length=100, unique=True)
+    email = models.EmailField(('email address'), blank=True)
     dob = models.DateField(
         verbose_name="Date of Birth", null=True, blank=True
     )
     avatar = models.ImageField(upload_to='avatars/', 
     storage=PublicMediaStorage(), 
     blank=True, 
-    null=True)
+    null=True,
+    validators = [validate_avatar])
+    date_joined = models.DateTimeField(('date joined'), default=timezone.now)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} ({self.username})'
