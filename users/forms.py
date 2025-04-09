@@ -17,7 +17,8 @@ User = get_user_model()
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('email', 'username', 'first_name', 'last_name', 'dob', 'avatar')
+        fields = ('email', 'username', 'first_name', 'last_name', 'dob', 'avatar',
+                  'anagramhunt_scores', 'mathfacts_scores')
         widgets = {
             'dob': forms.SelectDateWidget(
                 attrs={

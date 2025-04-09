@@ -15,7 +15,7 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
     readonly_fields = ['password_form']
 
     list_display = UserAdmin.list_display + ('is_superuser',)
-    list_display_links = ('username', 'email', 'first_name', 'last_name',)
+    list_display_links = ('username', 'email', 'first_name', 'last_name', 'anagramhunt_scores, mathfacts_scores')
     list_filter = ('is_staff', 'is_active')
     search_fields = ('username', 'email')
     ordering = ('username',)
