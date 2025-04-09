@@ -7,20 +7,19 @@ from common.admin import Play2LearnAdmin
 from common.utils.admin import append_fields, move_fields, remove_fields
 
 CustomUser = get_user_model()
-
 @admin.register(CustomUser)
 class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
     model = CustomUser
 
     readonly_fields = ['password_form']
 
-    list_display = UserAdmin.list_display + ('is_superuser',)
-    list_display_links = ('username', 'email', 'first_name', 'last_name', 'anagramhunt_scores, mathfacts_scores')
+    list_display = UserAdmin.list_display + ('is_superuser','anagramhunt_scores','mathfacts_scores')
+    list_display_links = ('username', 'email', 'first_name', 'last_name', 'anagramhunt_scores', 'mathfacts_scores')
     list_filter = ('is_staff', 'is_active')
     search_fields = ('username', 'email')
     ordering = ('username',)
 
-    personal_fields = ('dob', 'avatar')
+    personal_fields = ('dob', 'avatar',)
     append_fields(UserAdmin.fieldsets, 'Personal info', personal_fields)
 
     move_fields(UserAdmin.fieldsets, 'Personal info', None, ('email',))
