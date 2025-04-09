@@ -19,15 +19,18 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
     list_filter = ('is_staff', 'is_active')
     search_fields = ('username', 'email')
     ordering = ('username',)
-    new_fields = ('dob', 'avatar')
 
-    append_fields(UserAdmin.fieldsets, 'Personal info', new_fields)
+    personal_fields = ('dob', 'avatar')
+    append_fields(UserAdmin.fieldsets, 'Personal info', personal_fields)
+
     move_fields(UserAdmin.fieldsets, 'Personal info', None, ('email',))
+
     remove_fields(UserAdmin.fieldsets, None, ('password',))
+
     append_fields(UserAdmin.fieldsets, None, ('password_form',))
 
-    new_fields = ('email', )
-    add_fieldsets = append_fields(UserAdmin.add_fieldsets, None, new_fields)
+    new_user_fields = ('email', )
+    add_fieldsets = append_fields(UserAdmin.add_fieldsets, None, new_user_fields)
 
     optional_fields = ('first_name', 'last_name', 'dob')
     add_fieldsets = append_fields(UserAdmin.add_fieldsets, 'Optional Fields', optional_fields)
