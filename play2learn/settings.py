@@ -25,8 +25,8 @@ INSTALLED_APPS = [
 
     # local apps
     'pages.apps.PagesConfig',
-    'users.apps.UsersConfig',
     'contact.apps.ContactConfig',
+   # 'users.apps.UsersConfig',
 
     # third-party apps
     'crispy_forms',
@@ -100,7 +100,7 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 DATABASES = {
     'default': { # 
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'games',
+        'NAME': 'scores',
         'USER': 'postgres',
         'PASSWORD': 'Pandora117!',
         'HOST': 'localhost',
