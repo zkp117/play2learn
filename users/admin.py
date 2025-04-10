@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 from common.admin import Play2LearnAdmin
+from .models import CustomUser
 from common.utils.admin import append_fields, move_fields, remove_fields
 
 CustomUser = get_user_model()
