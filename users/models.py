@@ -19,23 +19,22 @@ class CustomUser(AbstractUser):
         verbose_name="Date of Birth", null=True, blank=True
     )
     avatar = models.ImageField(upload_to='avatars/', 
-    storage=PublicMediaStorage(), 
-    blank=True, 
-    null=True,
-    validators = [validate_avatar])
+            storage=PublicMediaStorage(), 
+            blank=True, 
+            null=True,
+            validators = [validate_avatar])
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
 
-    def anagramhunt_scores(self):
-        return self.anagramhunt_scores.aggregate(models.Sum('score'))['score_sum'] or 0
+    def get_anagramhunt_scores(self):
+        return self.anagram_scores.aggregate(models.Sum('score'))['score_sum'] or 0
     
-    def mathfacts_scores(self):
-        return self.mathfacts_scores.aggregate(models.Sum('score'))['score_sum'] or 0
+    def get_mathfacts_scores(self):
+        return self.math_scores.aggregate(models.Sum('score'))['score_sum'] or 0
 
     def __str__(self):
-        anagram_score_count = self.anagram_scores.count()
-        math_score_count = self.math_scores.count()
-        return f'{self.first_name} {self.last_name} ({self.username}) - Anagram Scores: {anagram_score_count}, Math Scores: {math_score_count}'
-
+       anagram_score_count = self.anagram_scores.aggregate(models.Sum('score'))['score__sum'] or 0
+       math_score_count = self.math_scores.aggregate(models.Sum('score'))['score__sum'] or 0
+       return f'{self.first_name} {self.last_name} ({self.username}) - Anagram Scores: {anagram_score_count}, Math Scores: {math_score_count}'
 
     def get_absolute_url(self):
         return reverse('my-account')
