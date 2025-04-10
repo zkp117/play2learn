@@ -25,16 +25,20 @@ class CustomUser(AbstractUser):
             validators = [validate_avatar])
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
 
-    def get_anagramhunt_scores(self):
-        return self.anagram_scores.aggregate(models.Sum('score'))['score_sum'] or 0
-    
+    def get_anagramhunt_scores(self, obj):
+        scores = obj.anagram_scores.all()
+        total_score = sum(score.score for score in scores)
+        return total_score
+
     def get_mathfacts_scores(self):
         return self.math_scores.aggregate(models.Sum('score'))['score_sum'] or 0
 
     def __str__(self):
-       anagram_score_count = self.anagram_scores.aggregate(models.Sum('score'))['score__sum'] or 0
-       math_score_count = self.math_scores.aggregate(models.Sum('score'))['score__sum'] or 0
-       return f'{self.first_name} {self.last_name} ({self.username}) - Anagram Scores: {anagram_score_count}, Math Scores: {math_score_count}'
+    # Use the correct related name 'anagram_scores'
+        anagram_score_count = self.anagram_scores.aggregate(models.Sum('score'))['score__sum'] or 0
+        math_score_count = self.math_scores.aggregate(models.Sum('score'))['score__sum'] or 0
+        return f'{self.first_name} {self.last_name} ({self.username}) - Anagram Scores: {anagram_score_count}, Math Scores: {math_score_count}'
+
 
     def get_absolute_url(self):
         return reverse('my-account')

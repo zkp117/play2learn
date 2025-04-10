@@ -43,3 +43,14 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
         self.save_on_top = obj is not None
         return super().get_form(request, obj, **kwargs)
     
+    def get_anagramhunt_scores(self, obj):
+    # Ensure the related_name is correct
+        scores = obj.anagram_scores.all()  # This is accessing the related scores correctly
+        total_score = sum(score.score for score in scores)  # Calculate total score
+        return total_score
+    
+    def get_mathfacts_scores(self, obj):
+        # Accessing the related scores using the default related manager
+        scores = obj.mathfactsscore_set.all()
+        total_score = sum(score.score for score in scores)  # Calculate total score
+        return total_score
