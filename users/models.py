@@ -24,18 +24,13 @@ class CustomUser(AbstractUser):
     null=True,
     validators = [validate_avatar])
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
-    anagramhunt_scores = models.ForeignKey(AnagramHuntScores, 
-        on_delete=models.CASCADE, 
-        related_name='users', 
-        null=True)
-    mathfacts_scores = models.ForeignKey(MathFactsScores, 
-        on_delete=models.CASCADE, 
-        related_name='users', 
-        null=True)
-
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} ({self.username}) {self.anagramhunt_scores} {self.mathfacts_scores}'
 
     def get_absolute_url(self):
         return reverse('my-account')
+
+
+# user.anagramhuntscore_set.all()
+# user.mathfactsscore_set.all()

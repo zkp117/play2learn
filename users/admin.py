@@ -41,3 +41,4 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
     def get_form(self, request, obj=None, **kwargs):
         self.save_on_top = obj is not None
         return super().get_form(request, obj, **kwargs)
+    
