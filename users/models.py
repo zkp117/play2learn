@@ -25,6 +25,12 @@ class CustomUser(AbstractUser):
     validators = [validate_avatar])
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
 
+    def anagramhunt_scores(self):
+        return self.anagramhunt_scores.aggregate(models.Sum('score'))['score_sum'] or 0
+    
+    def mathfacts_scores(self):
+        return self.mathfacts_scores.aggregate(models.Sum('score'))['score_sum'] or 0
+
     def __str__(self):
         anagram_score_count = self.anagram_scores.count()
         math_score_count = self.math_scores.count()
