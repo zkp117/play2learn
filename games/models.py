@@ -32,7 +32,7 @@ class MathFactsScore(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
 class Scores(models.Model):
-    user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
+    user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, related_name='scores')
     game = models.CharField(max_length=100)
     score = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

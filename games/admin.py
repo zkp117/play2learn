@@ -3,7 +3,7 @@ from .models import Scores
 @admin.register(Scores)
 class ScoresAdmin(admin.ModelAdmin):
     model = Scores
-    list_display = ['scores', 'created', 'updated']
+    list_display = ['user', 'game', 'score', 'created_at']
 
     def get_readonly_fields(self, request, obj=None):
         if obj: # editing an existing object

@@ -50,7 +50,8 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
         return total_score
     
     def get_mathfacts_scores(self, obj):
-        # Accessing the related scores using the default related manager
-        scores = obj.mathfactsscore_set.all()
-        total_score = sum(score.score for score in scores)  # Calculate total score
-        return total_score
+        return obj.scores.filter(game='MathFacts').values_list('score', flat=True)
+
+    get_mathfacts_scores.short_description = 'MathFacts Scores'
+
+
