@@ -44,14 +44,24 @@ class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
         return super().get_form(request, obj, **kwargs)
     
     def get_anagramhunt_scores(self, obj):
-    # Ensure the related_name is correct
-        scores = obj.anagram_scores.all()  # This is accessing the related scores correctly
-        total_score = sum(score.score for score in scores)  # Calculate total score
-        return total_score
-    
+        scores = obj.anagram_scores.all()
+        total_score = sum(score.score for score in scores)
+        return total_score or 0  # Show 0 if there are no scores
+
+    get_anagramhunt_scores.short_description = 'AnagramHunt Scores'
+
+
     def get_mathfacts_scores(self, obj):
-        return obj.scores.filter(game='MathFacts').values_list('score', flat=True)
+        scores = obj.scores.filter(game='MathFacts')
+        total_score = sum(score.score for score in scores)
+        return total_score or 0  # Show 0 if there are no scores
 
     get_mathfacts_scores.short_description = 'MathFacts Scores'
+
+
+try:
+    admin.site.register(CustomUser, CustomUserAdmin)
+except admin.sites.AlreadyRegistered:
+    pass  # If already registered, do nothing
 
 
