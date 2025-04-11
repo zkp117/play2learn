@@ -6,8 +6,14 @@ from django.urls import reverse
 from common.admin import Play2LearnAdmin
 from .models import CustomUser
 from common.utils.admin import append_fields, move_fields, remove_fields
+from games.models import Scores
 
 CustomUser = get_user_model()
+class ScoresDisplayInline(admin.TabularInline):
+    model = Scores
+    extra = 1  # This will show 1 empty form by default for adding a score
+    fields = ('game', 'score')  # Fields you want to display for each score
+
 @admin.register(CustomUser)
 class CustomUserAdmin(Play2LearnAdmin, UserAdmin):
     model = CustomUser
