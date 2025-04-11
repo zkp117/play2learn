@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Scores
 @admin.register(Scores)
 class ScoresAdmin(admin.ModelAdmin):

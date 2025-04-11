@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
 from play2learn.storage_backends import PublicMediaStorage
+from django.apps import apps
 
 def validate_avatar(value):
     w, h = get_image_dimensions(value)
@@ -34,11 +35,11 @@ class CustomUser(AbstractUser):
         return self.math_scores.aggregate(models.Sum('score'))['score_sum'] or 0
 
     def __str__(self):
-    # Use the correct related name 'anagram_scores'
-        anagram_score_count = self.anagram_scores.aggregate(models.Sum('score'))['score__sum'] or 0
-        math_score_count = self.math_scores.aggregate(models.Sum('score'))['score__sum'] or 0
+        AnagramHuntScore = apps.get_model('games', 'AnagramHuntScore')
+        MathFactsScore = apps.get_model('games', 'MathFactsScore')
+        anagram_score_count = AnagramHuntScore.objects.filter(user=self).aggregate(models.Sum('score'))['score__sum'] or 0
+        math_score_count = MathFactsScore.objects.filter(user=self).aggregate(models.Sum('score'))['score__sum'] or 0
         return f'{self.first_name} {self.last_name} ({self.username}) - Anagram Scores: {anagram_score_count}, Math Scores: {math_score_count}'
-
 
     def get_absolute_url(self):
         return reverse('my-account')
