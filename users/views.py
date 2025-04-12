@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.core.cache import cache
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
@@ -23,10 +22,9 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return self.request.user
     
     def form_valid(self, form):
-            response = super().form_valid(form)
-            self.request.user.refresh_from_db()
-            cache.clear()
-            return response
+        response = super().form_valid(form)
+        self.request.user.refresh_from_db()
+        return response
     
 @login_required
 def clear_avatar(request):
