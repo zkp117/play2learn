@@ -1,5 +1,4 @@
 from django.urls import path
-
 from games.views import MathFactsView, AnagramHuntView
 
 app_name = 'games'

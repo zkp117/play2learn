@@ -29,8 +29,16 @@
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Games</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+              role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Games
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'math-facts' %}">MathFacts</a>
+              <a class="dropdown-item" href="{% url 'anagram-hunt' %}">AnagramHunt</a>
+              <div class="dropdown-divider"></div>
         </li>
 
         {% if user.is_authenticated %}
@@ -52,10 +60,10 @@
           </li>
         {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
+            <a class="nav-link" href="{% url 'account-login' %}">Log in</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+            <a class="nav-link" href="{% url 'account-signup' %}">Sign up</a>
           </li>
         {% endif %}
       </ul>
