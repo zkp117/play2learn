@@ -1,12 +1,15 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django.views.generic import UpdateView
-from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView
-from .forms import CustomUserChangeForm
-from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
+
+from django.urls import reverse_lazy
+
+from django.views.generic import UpdateView
+from .forms import CustomUserChangeForm
 
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):  # Renamed
     success_url = reverse_lazy('my-account')
