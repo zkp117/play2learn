@@ -7,4 +7,10 @@ class AboutUsView(TemplateView):
     template_name = 'pages/about_us.html'
 
 class MyAccountView(TemplateView):
-    template_name = "account/my_account.html" 
+    template_name = 'account/my_account.html'
+
+class AnagramHuntView(TemplateView):
+    template_name = 'games/anagram_hunt.html'
+
+class MathFactsView(TemplateView):
+    template_name = 'games/math_facts.html'
