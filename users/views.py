@@ -24,10 +24,6 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user
     
-    def post(self, request, *args, **kwargs):
-        print(f"POST request received")  # Debug line
-        return super().post(request, *args, **kwargs)
-    
     def form_valid(self, form):
         response = super().form_valid(form)
         self.request.user.refresh_from_db()
