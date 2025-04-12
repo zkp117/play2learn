@@ -6,18 +6,15 @@ from django.urls import reverse
 from .models import CustomUser
 
 CustomUser = get_user_model()
-
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
 
-    # Only allow password change, so we specify only those
     readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores']
 
     list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 'get_mathfacts_scores',)
     list_display_links = ('username', 'email', 'first_name', 'last_name')
 
-    # Keep the default user fields, but modify the game scores section
     fieldsets = UserAdmin.fieldsets + (
         ('Game Scores', {'fields': ('get_anagramhunt_scores', 'get_mathfacts_scores')}),
     )
@@ -27,15 +24,15 @@ class CustomUserAdmin(UserAdmin):
         return mark_safe(f'<a href="{url}">Change Password</a>')
 
     def get_anagramhunt_scores(self, obj):
-        scores = obj.scores.filter(game='Anagramhunt')
+        scores = obj.anagram_scores.all()
         total_score = sum(score.score for score in scores)
-        return total_score or 0  # Show 0 if there are no scores
+        return total_score or 0
 
-    get_anagramhunt_scores.short_description = 'Anagram Hunt Scores'
+    get_anagramhunt_scores.short_description = 'Anagram Hunt Total Score'
 
     def get_mathfacts_scores(self, obj):
-        scores = obj.scores.filter(game='MathFacts')
+        scores = obj.math_scores.all()
         total_score = sum(score.score for score in scores)
-        return total_score or 0  # Show 0 if there are no scores
+        return total_score or 0
 
-    get_mathfacts_scores.short_description = 'Math Facts Scores'
+    get_mathfacts_scores.short_description = 'Math Facts Total Score'
