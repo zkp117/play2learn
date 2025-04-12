@@ -11,11 +11,9 @@ class SignupForm(forms.Form):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
-
-User = get_user_model()
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('email', 'username', 'first_name', 'last_name', 'dob', 'avatar',)
         widgets = {
             'dob': forms.SelectDateWidget(

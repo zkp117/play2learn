@@ -24,6 +24,10 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user
     
+    def post(self, request, *args, **kwargs):
+        print(f"POST request received")  # Debug line
+        return super().post(request, *args, **kwargs)
+    
     def form_valid(self, form):
         response = super().form_valid(form)
         self.request.user.refresh_from_db()
@@ -35,4 +39,5 @@ def clear_avatar(request):
     user.avatar.delete()  # Delete the avatar file
     user.save()  # Save the user instance
     return redirect('my-account')  # Redirect back to the profile page
+
     
