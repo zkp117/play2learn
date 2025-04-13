@@ -36,9 +36,11 @@
               Games
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'math-facts' %}">MathFacts</a>
-              <a class="dropdown-item" href="{% url 'anagram-hunt' %}">AnagramHunt</a>
-              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'games:math-facts' %}">MathFacts</a>
+              <a class="dropdown-item" href="{% url 'games:anagram-hunt' %}">AnagramHunt</a>
+              <div class="dropdown-divider">
+                
+              </div>
         </li>
 
         {% if user.is_authenticated %}

@@ -10,7 +10,7 @@ class MyAccountView(TemplateView):
     template_name = 'account/my_account.html'
 
 class AnagramHuntView(TemplateView):
-    template_name = 'apps/AnagramHunt.vue'
+    template_name = 'games/anagram-hunt.html'
 
 class MathFactsView(TemplateView):
-    template_name = 'apps/MathFacts.vue'
+    template_name = 'games/math-facts.html'
