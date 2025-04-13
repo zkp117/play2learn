@@ -3,7 +3,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 
 import router from './router'; // import our router
-import App from "./App";
+import App from "./App.vue";
 
 // set default Django cookies and headers
 axios.defaults.xsrfCookieName = 'csrftoken';
