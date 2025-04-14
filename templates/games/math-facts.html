@@ -5,6 +5,7 @@
   <h1>Math Facts</h1>
   {{ block.super }}
   <div id="app">
-    <script type="module" src="/src/main.js"></script>
+    {% load static %}
+<script type="module" src="{% static 'dist/js/main.js' %}"></script>
   </div>
 {% endblock %}
