@@ -1,10 +1,10 @@
-{% extends "_base_vue.html" %}
+{% extends "_base.html" %}
 
 {% block title %}Math Facts{% endblock %}
 {% block main %}
   <h1>Math Facts</h1>
   {{ block.super }}
-  <div id="app">
+  <div id="AnagramHunt">
     {% load static %}
 <script type="module" src="{% static 'dist/js/main.js' %}"></script>
   </div>
