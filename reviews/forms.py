@@ -7,6 +7,7 @@ GAME_CHOICES = {
 class ReviewsForm(forms.Form):
     email = forms.EmailField()
     game_choices = [...]
+    prerequsent = [...]
     user_review = [...]
     review_viewability = [...]
 
