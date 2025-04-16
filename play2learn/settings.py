@@ -107,7 +107,7 @@ DATABASES = {
         'PASSWORD': 'Pandora117!',
         'HOST': 'localhost',
         'PORT': 6623
-    },
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [

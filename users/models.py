@@ -46,7 +46,3 @@ class CustomUser(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('my-account')
-
-
-# user.anagramhuntscore_set.all()
-# user.mathfactsscore_set.all()
