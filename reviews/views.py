@@ -12,7 +12,7 @@ class ReviewsAppView(FormView):
     def form_valid(self, form):
         data = form.cleaned_data
         to = 'neeneez2008@gmail.com'
-        subject = 'Application for Joke Writer'
+        subject = 'Play2Learn Game Review'
         content = f'''<p>Your {'game_choices'} review</p>
             <p>Game review received:</p>
             <ol>'''
