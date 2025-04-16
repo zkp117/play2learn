@@ -12,7 +12,7 @@ MATHLEVEL_REVIEW_CHOICES = [(i, str(i)) for i in range(1, 101)]
 
 class ReviewsForm(forms.Form):
     email = forms.EmailField()
-    game_choices = [...]
+    game_choices = forms.ChoiceField(choices=GAME_CHOICES)
     prerequsent = [...]
     user_review = [...]
     review_viewability = [...]

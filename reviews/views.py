@@ -5,7 +5,7 @@ from django.views.generic import FormView, TemplateView
 from common.utils.email_service import send_email
 from .forms import ReviewsForm
 class ReviewsAppView(FormView):
-    template_name = 'reviews/write_views.html'
+    template_name = 'reviews/write_review.html'
     form_class = ReviewsForm
     success_url = reverse_lazy('reviews:review_thanks')
 
