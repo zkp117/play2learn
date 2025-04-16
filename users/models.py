@@ -20,19 +20,22 @@ class CustomUser(AbstractUser):
         verbose_name="Date of Birth", null=True, blank=True
     )
     avatar = models.ImageField(upload_to='avatars/', 
-            storage=PublicMediaStorage(), 
-            blank=True, 
-            null=True,
-            validators = [validate_avatar])
+        storage=PublicMediaStorage(), 
+        blank=True, 
+        null=True,
+        validators = [validate_avatar])
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
 
+    # Score fields
     anagramhunt_score = models.IntegerField(default=0)
     mathfacts_score = models.IntegerField(default=0)
 
-    def get_anagramhunt_scores(self, obj):
-        scores = obj.anagram_scores.all()
-        total_score = sum(score.score for score in scores)
-        return total_score
+    # Reivew fields
+    anagramhunt_review = models.TextField(null=True, blank=True)
+    mathfacts_review = models.TextField(null=True, blank=True)
+
+    def get_anagramhunt_scores(self):
+        return self.anagram_scores.aggregate(models.Sum('score'))['score_sum'] or 0
 
     def get_mathfacts_scores(self):
         return self.math_scores.aggregate(models.Sum('score'))['score_sum'] or 0

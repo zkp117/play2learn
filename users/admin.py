@@ -11,14 +11,15 @@ class CustomUserAdmin(UserAdmin):
 
     model = CustomUser
 
-    readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores', 'avatar_display']
+    readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores', 'avatar_display', 'get_math_reviews', 'get_anagram_reviews']
 
-    list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 'get_mathfacts_scores',)
+    list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 'get_mathfacts_scores','get_math_reviews', 'get_anagram_reviews')
     list_display_links = ('username', 'email', 'first_name', 'last_name')
 
     fieldsets = UserAdmin.fieldsets + (
         ('Game Scores', {'fields': ('get_anagramhunt_scores', 'get_mathfacts_scores')}),
-        ('Personal Information', {'fields': ('dob', 'avatar')}),  # Added avatar and dob fields
+        ('Game Reviews', {'fields': ('get_anagram_reviews', 'get_math_reviews')}),
+        ('Personal Information', {'fields': ('dob', 'avatar')}), 
     )
 
     def password_form(self, obj):
@@ -29,20 +30,30 @@ class CustomUserAdmin(UserAdmin):
         if obj.avatar:
             return mark_safe(f'<img src="{obj.avatar.url}" width="50" height="50"/>')
         return "No Avatar"
-
     avatar_display.short_description = 'Avatar'
 
-
+    # setup display for AnagramHunt scores
     def get_anagramhunt_scores(self, obj):
         scores = obj.anagram_scores.all()
         total_score = sum(score.score for score in scores)
         return total_score or 0
-
     get_anagramhunt_scores.short_description = 'Anagram Hunt Total Score'
 
     def get_mathfacts_scores(self, obj):
         scores = obj.math_scores.all()
         total_score = sum(score.score for score in scores)
         return total_score or 0
-
     get_mathfacts_scores.short_description = 'Math Facts Total Score'
+
+    def get_math_reviews(self,obj):
+        reviews = obj.math_reviews.all()
+        collected_reviews = [review.review_text for review in reviews]
+        return collected_reviews or None
+    get_math_reviews.short_description = 'MathFacts Review(s)'
+    
+    def get_anagram_reviews(self, obj):
+        reviews = obj.anagram_views.all()
+        collected_reviews = [review.review_text for review in reviews]
+        return collected_reviews or None
+    get_anagram_reviews.short_description = 'AnagramHunts Review(s)'
+
