@@ -36,15 +36,16 @@ class ReviewsForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         selected_game = self.data.get('game') or self.initial.get('game')
+
         if selected_game == '2':
             self.fields['math_level'] = forms.ChoiceField(
-                choices=MATHLEVEL_REVIEW_CHOICES,
-                label="Select Math Level"
+                chocies=MATHLEVEL_REVIEW_CHOICES,
+                label="Which math level did you last play?",
+                required=True
             )
         elif selected_game == '3':
             self.fields['anagram_level'] = forms.ChoiceField(
                 choices=WORDLENGTH_REVIEW_CHOICES,
-                label="Select Word Length"
+                label="Which word level did you last play?",
+                required=True
             )
-
-
