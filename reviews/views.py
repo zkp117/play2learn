@@ -7,7 +7,7 @@ from .forms import ReviewsForm
 class ReviewsAppView(FormView):
     template_name = 'reviews/write_views.html'
     form_class = ReviewsForm
-    success_url = reverse_lazy('reviews:thanks')
+    success_url = reverse_lazy('reviews:review_thanks')
 
     def form_valid(self, form):
         data = form.cleaned_data
@@ -27,4 +27,4 @@ class ReviewsAppView(FormView):
         return super().form_valid(form)
 
 class ReviewsAppThanksView(TemplateView):
-    template_name = 'reviews/thanks.html'
+    template_name = 'reviews/review_thanks.html'

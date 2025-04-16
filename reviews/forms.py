@@ -5,16 +5,9 @@ GAME_CHOICES = {
     'Math Facts',
 }
 
-WORDLENGTH_REVIEW_CHOICES = {
-    '5',
-    '6',
-    '7',
-    '8',
-}
+WORDLENGTH_REVIEW_CHOICES = [(i, str(i)) for i in range(5,8)]
 
-MATHLEVEL_REVIEW_CHOICES = {
-    [1-100]
-}
+MATHLEVEL_REVIEW_CHOICES = [(i, str(i)) for i in range(1, 101)]
 
 
 class ReviewsForm(forms.Form):
@@ -23,5 +16,11 @@ class ReviewsForm(forms.Form):
     prerequsent = [...]
     user_review = [...]
     review_viewability = [...]
+
+    if game_choices == 'Math Facts':
+        math_level = forms.ChoiceField(choices=MATHLEVEL_REVIEW_CHOICES)
+
+    if game_choices == 'Anagram Hunt':
+        anagram_level = forms.ChoiceField(choices=WORDLENGTH_REVIEW_CHOICES)
 
 
