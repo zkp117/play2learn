@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'contact.apps.ContactConfig',
     'users.apps.UsersConfig',
+    'reviews.apps.ReviewsConfig',
 
     # third-party apps
     'crispy_forms',
