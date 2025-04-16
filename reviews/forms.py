@@ -39,7 +39,7 @@ class ReviewsForm(forms.Form):
 
         if selected_game == '2':
             self.fields['math_level'] = forms.ChoiceField(
-                chocies=MATHLEVEL_REVIEW_CHOICES,
+                choices=MATHLEVEL_REVIEW_CHOICES,
                 label="Which math level did you last play?",
                 required=True
             )
