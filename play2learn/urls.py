@@ -7,5 +7,5 @@ urlpatterns = [
     path('', include("games.urls")),
     path('',include("pages.urls")),
     path('', include('users.urls')),
-    path('',include('reviews.urls')),
+    path('reviews/',include('reviews.urls')),
 ]
