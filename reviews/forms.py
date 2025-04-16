@@ -35,6 +35,7 @@ class ReviewsForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
         selected_game = self.data.get('game') or self.initial.get('game')
 
         if selected_game == '2':
