@@ -1,10 +1,10 @@
 {% extends "_base.html" %}
 
+{% load static %}
+
 {% block title %}Math Facts{% endblock %}
 {% block main %}
   <h1>Math Facts</h1>
-  <div id="app">
-    {% load static %}
-<script type="module" src="{% static 'dist/js/main.js' %}"></script>
-  </div>
+  <div id="app"></div>
+  <script type="module" src="{% static 'dist/js/main.js' %}"></script>
 {% endblock %}

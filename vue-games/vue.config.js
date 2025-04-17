@@ -3,10 +3,10 @@
 //   transpileDependencies: true
 // })
 module.exports = {
-  publicPath: 's3://play2learn-bucket/static/', // The base URL where your app will be deployed 
-  outputDir: '../static/dist', // The path for where files will be output when the app is built
-  indexPath: '../../templates/_base_vue.html', // The path for the generated index file
-
+  filenameHashing: false,
+  publicPath: 'https://play2learn-bucket.s3.amazonaws.com/static/',
+  outputDir: '../static/dist',
+  indexPath: '../../templates/_base_vue.html',
   configureWebpack: {
     devServer: {
       devMiddleware: {
@@ -14,4 +14,4 @@ module.exports = {
       }
     }
   }
-};
+}
