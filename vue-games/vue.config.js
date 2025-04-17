@@ -3,7 +3,7 @@
 //   transpileDependencies: true
 // })
 module.exports = {
-  publicPath: 'http://127.0.0.1:8000/math-facts/', // The base URL where your app will be deployed 
+  publicPath: 's3://play2learn-bucket/static/', // The base URL where your app will be deployed 
   outputDir: '../static/dist', // The path for where files will be output when the app is built
   indexPath: '../../templates/_base_vue.html', // The path for the generated index file
 
