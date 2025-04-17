@@ -3,9 +3,8 @@
 {% block title %}Math Facts{% endblock %}
 {% block main %}
   <h1>Math Facts</h1>
-  {{ block.super }}
-  <div id="AnagramHunt">
+  <div id="math-app">
     {% load static %}
-<script type="module" src="{% static 'dist/js/anagram.js' %}"></script>
+<script type="module" src="{% static 'dist/js/math.js' %}"></script>
   </div>
 {% endblock %}
