@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHashHistory, createRouter } from "vue-router";
 
 import AnagramHunt from "./apps/AnagramHunt";
 import MathFacts from "./apps/MathFacts";
@@ -15,9 +15,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: routes,
 });
-
 
 export default router;
