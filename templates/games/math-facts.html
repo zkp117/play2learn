@@ -1,11 +1,17 @@
 {% extends "_base.html" %}
-
 {% load static %}
 
 {% block title %}Math Facts{% endblock %}
+
 {% block main %}
   <h1>Math Facts</h1>
   <div id="app"></div>
-  <script type="module" src="{% static 'dist/js/main.js' %}"></script>
+
+  <!-- External stylesheet from S3 -->
+  <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/static/dist/css/main.css">
+
+  <!-- JS from S3 -->
+  <script src="https://play2learn-bucket.s3.amazonaws.com/static/dist/js/chunk-vendors.5335a1d.js"></script>
+  <script src="https://play2learn-bucket.s3.amazonaws.com/static/dist/js/app.77685e89.js"></script>
 
 {% endblock %}
