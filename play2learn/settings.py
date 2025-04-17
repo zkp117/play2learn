@@ -103,7 +103,7 @@ DATABASES = {
     'default': { # the database is labeled as 'default' bc of django rules  
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'user_info',
-        'USER': 'postgres',
+        'USER': 'zoeparigian',
         'PASSWORD': 'Pandora117!',
         'HOST': 'localhost',
         'PORT': 6623
