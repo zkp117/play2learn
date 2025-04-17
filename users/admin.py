@@ -52,7 +52,7 @@ class CustomUserAdmin(UserAdmin):
     get_math_reviews.short_description = 'MathFacts Review(s)'
     
     def get_anagram_reviews(self, obj):
-        reviews = obj.anagram_views.all()
+        reviews = obj.anagram_reviews.all()
         collected_reviews = [review.review_text for review in reviews]
         return collected_reviews or None
     get_anagram_reviews.short_description = 'AnagramHunts Review(s)'
