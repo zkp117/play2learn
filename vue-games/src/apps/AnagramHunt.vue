@@ -1,4 +1,5 @@
 <template>
+  <router-view></router-view> 
     <div class="container" style="width: 500px">
       <!-- Start Screen -->
       <div v-if="screen=='start'" class="container">
