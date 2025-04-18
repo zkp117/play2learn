@@ -1,18 +1,13 @@
 {% extends "_base.html" %}
-{% load static %}
 
 {% block title %}Math Facts{% endblock %}
-
 {% block main %}
-
   <h1>Math Facts</h1>
-  <div id="app"></div>
+  {{ block.super }}
 
-  <!-- External stylesheet from S3 -->
-  <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/vue-games/static/dist/css/main.css">
+  <div id="MathFacts"></div>
 
-  <!-- JS from S3 -->
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/static/dist/js/chunk-vendors.5335a1d.js"></script>
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/static/dist/js/app.77685e89.js"></script>
-
+  <!-- Math Facts Assets from S3 -->
+  <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/main.css">
+  <script type="module" src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.js"></script>
 {% endblock %}
