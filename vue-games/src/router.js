@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
-
-import AnagramHunt from "./apps/AnagramHunt";
-import MathFacts from "./apps/MathFacts";
+import AnagramHunt from './apps/AnagramHunt.vue';
+import MathFacts from './apps/MathFacts.vue';
 
 const routes = [
   {
