@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 from .forms import CustomAuthForm
+from django.contrib.auth.views import LoginView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView

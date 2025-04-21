@@ -14,3 +14,6 @@ class AnagramHuntView(TemplateView):
 
 class MathFactsView(TemplateView):
     template_name = 'games/math-facts.html'
+
+class CustomLoginView(TemplateView):
+    template_name = 'account/login.html'
