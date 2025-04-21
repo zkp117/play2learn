@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
-from .forms import CustomAuthForm
+from .forms import CustomAuthenticationForm
 from django.contrib.auth.views import LoginView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -39,7 +39,7 @@ def clear_avatar(request):
     return redirect('my-account')  # Redirect back to the profile page
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
-    authentication_form = CustomAuthForm
+    authentication_form = CustomAuthenticationForm
 
     def get_success_url(self):
         return reverse_lazy('my-account')
