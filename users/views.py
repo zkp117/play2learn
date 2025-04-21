@@ -15,6 +15,7 @@ from django.views.generic import UpdateView
 from .forms import CustomUserChangeForm
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):  # Renamed
     success_url = reverse_lazy('my-account')
+    
 class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     model = get_user_model()
