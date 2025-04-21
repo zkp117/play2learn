@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import CustomAuthenticationForm
 from django.contrib.auth.views import LoginView
+from .forms import CustomAuthenticationForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView

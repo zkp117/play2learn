@@ -40,3 +40,10 @@ class CustomAuthenticationForm(AuthenticationForm):
         label='Password',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')})
     )
+
+class CustomPasswordInput(forms.PasswordInput):
+    def __init__(self, *args, **kwargs):
+        kwargs['attrs'] = kwargs.get('attrs', {})
+        kwargs['attrs']['class'] = 'password-eye form-control'
+        kwargs['attrs']['placeholder'] = 'Password'
+        super().__init__(*args, **kwargs)
