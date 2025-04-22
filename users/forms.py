@@ -30,7 +30,7 @@ class CustomUserChangeForm(forms.ModelForm):
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Username')}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
         label='Username'
     )
     password = PasswordEye(

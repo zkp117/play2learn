@@ -1,7 +1,6 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-
 {% block title %}Log in{% endblock %}
 
 {% block main %}
@@ -10,16 +9,31 @@
   <div class="card-body">
     <form method="post" class="m-auto">
       {% csrf_token %}
-      {{ form|crispy }}
-      <button class="form-control btn btn-primary">LOG IN</button>
+      
+      <!-- Render Username field explicitly -->
+      <div class="form-group">
+        <label for="id_username">Username</label>
+        {{ form.username|crispy }}
+      </div>
+
+      <!-- Render Password field explicitly -->
+      <div class="form-group">
+        <label for="id_password">Password</label>
+        {{ form.password|crispy }}
+      </div>
+
+      <!-- Remember Me checkbox -->
+      <div class="form-check">
+        {{ form.remember|crispy }}
+      </div>
+
+      <button type="submit" class="form-control btn btn-primary mt-3">LOG IN</button>
     </form>
   </div>
-  <div class="card-footer">
+  <div class="card-footer text-center">
     <p>
-      Need an account?
-      <a href="{% url 'account_signup' %}">Register</a>.<br>
-      Lost your password?
-      <a href="{% url 'account_reset_password' %}">Reset it</a>.
+      Need an account? <a href="{% url 'account_signup' %}">Register</a><br>
+      Lost your password? <a href="{% url 'account_reset_password' %}">Reset it</a>.
     </p>
   </div>
 </div>
