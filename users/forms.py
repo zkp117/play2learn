@@ -35,5 +35,5 @@ class CustomAuthenticationForm(AuthenticationForm):
     )
     password = PasswordEye(
         label='Password',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')})
+        widget=forms.PasswordInput(attrs={'class': 'form-control password-eye', 'placeholder': _('Password')})
     )
