@@ -4,22 +4,25 @@
 {% block title %}Log in{% endblock %}
 
 {% block main %}
-<div class="card border-primary m-auto mb-3" style="max-width: 30rem">
+<div class="card border-primary m-auto mb-3" style="max-width: 30rem;">
   <div class="card-header text-center">Log in</div>
   <div class="card-body">
     <form method="post" class="m-auto">
       {% csrf_token %}
       
-      <!-- Render Username field explicitly -->
       <div class="form-group">
         <label for="id_username">Username</label>
-        {{ form.username|crispy }}
+        <input type="text" name="username" class="form-control" id="id_username" value="{{ form.username.value }}" required>
       </div>
 
-      <!-- Render Password field explicitly -->
-      <div class="form-group">
+      <div class="form-group" id="show_hide_password">
         <label for="id_password">Password</label>
-        {{ form.password|crispy }}
+        <div class="input-group">
+          <input type="password" name="password" class="form-control" id="id_password" required>
+          <div class="input-group-addon">
+            <i class="fa fa-eye" aria-hidden="true" style="position: absolute; top:15px; left:445px"></i>
+          </div>
+        </div>
       </div>
 
       <!-- Remember Me checkbox -->
