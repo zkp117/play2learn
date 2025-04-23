@@ -37,3 +37,7 @@ class CustomAuthenticationForm(AuthenticationForm):
         label='Password',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')})
     )
+
+    def clean(self):
+        # This is critical — it triggers Django's authentication logic
+        return super().clean()
