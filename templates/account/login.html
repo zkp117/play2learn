@@ -1,47 +1,42 @@
-{% extends '_base.html' %}
-{% load crispy_forms_tags %}
-{% load static %}
-{% block title %}Log in{% endblock %}
+<form method="post" class="m-auto">
+  {% csrf_token %}
 
-{% block main %}
-<div class="card border-primary m-auto mb-3" style="max-width: 30rem;">
-  <div class="card-header text-center">Log in</div>
-  <div class="card-body">
-    <form method="post" class="m-auto">
-      {% csrf_token %}
-      
-      <div class="form-group">
-        <label for="id_username">Username</label>
-        <input type="text" name="username" class="form-control" id="id_username" value="{{ form.username.value }}" required>
-      </div>
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
 
-      <div class="form-group" id="show_hide_password">
-        <label for="id_password">Password</label>
-        <div class="input-group">
-          <input type="password" name="password" class="form-control" id="id_password" required>
-          <div class="input-group-addon">
-            <i class="fa fa-eye" aria-hidden="true" style="position: absolute; top:15px; left:445px"></i>
-          </div>
-        </div>
-      </div>
-
-      <!-- Remember Me checkbox -->
-      <div class="form-check">
-        {{ form.remember|crispy }}
-      </div>
-
-      <button type="submit" class="form-control btn btn-primary mt-3">LOG IN</button>
-    </form>
+  <div class="form-group">
+    <label for="id_username">Username</label>
+    <input type="text" name="username" class="form-control" id="id_username" value="{{ form.username.value|default_if_none:'' }}" required>
+    {% if form.username.errors %}
+      <div class="text-danger small">{{ form.username.errors.0 }}</div>
+    {% endif %}
   </div>
-  <div class="card-footer text-center">
-    <p>
-      Need an account? <a href="{% url 'account_signup' %}">Register</a><br>
-      Lost your password? <a href="{% url 'account_reset_password' %}">Reset it</a>.
-    </p>
-  </div>
-</div>
-{% endblock %}
 
-{% block extra_js %}
-<script src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/django_password_eye/js/django_password_eye.js" defer></script>
-{% endblock %}
+  <div class="form-group" id="show_hide_password">
+    <label for="id_password">Password</label>
+    <div class="input-group">
+      <input type="password" name="password" class="form-control" id="id_password" required>
+      <div class="input-group-addon">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </div>
+    </div>
+    {% if form.password.errors %}
+      <div class="text-danger small">{{ form.password.errors.0 }}</div>
+    {% endif %}
+  </div>
+
+  <div class="form-check">
+    {{ form.remember }}
+    {% if form.remember.errors %}
+      <div class="text-danger small">{{ form.remember.errors.0 }}</div>
+    {% endif %}
+  </div>
+  
+
+  <button type="submit" class="form-control btn btn-primary mt-3">LOG IN</button>
+</form>
