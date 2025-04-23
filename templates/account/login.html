@@ -25,35 +25,37 @@
 
 {% block extra_js %}
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const userPassword = document.querySelector('input[type="password"]');
-  if (userPassword) {
-    const storage = document.createElement('div');
-    storage.style.position = 'relative';
-
-    const viewableEye = document.createElement('i');
-    viewableEye.classList.add('fa', 'fa-eye', 'toggle-password');
-    viewableEye.style.position = 'absolute';
-    viewableEye.style.right = '10px';
-    viewableEye.style.top = '50%';
-    viewableEye.style.transform = 'translateY(-50%)';
-
-    userPassword.parentNode.insertBefore(storage,  userPassword);
-    storage.appendChild(userPassword);
-    storage.appendChild(viewableEye);
-
-    storage.addEventListener('click', function () {
-      if (userPassword === 'password') {
-        userPassword.type = 'text';
-        viewableEye.classList.remove('fa-eye');
-        viewableEye.classList.add('fa-eye-slash');
-      } else {
-        userPassword.type = 'password';
-        viewableEye.classList.remove('fa-eye-slash');
-        viewableEye.classList.add('fa-eye');
-      }
-    });
-  }
-});
-</script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const userPswrd = document.querySelector('input[type="password"]');
+    if (userPswrd) {
+      const storagePswrd = document.createElement('div');
+      storagePswrd.style.position = 'relative';
+  
+      const eyePswrd = document.createElement('i');
+      eyePswrd.setAttribute('title', 'Show/Hide Password');
+      eyePswrd.classList.add('fa', 'fa-eye', 'password-toggle-icon');
+      
+      Object.assign(eyePswrd.style,{
+        position: 'absolute',
+        right: '10px',
+        top:'50%',
+        transform: 'translateY(-50%)',
+        cursor: 'pointer',
+        paddingRight: '30px'
+      })
+  
+      userPswrd.parentNode.insertBefore(storagePswrd, userPswrd);
+      storagePswrd.appendChild(userPswrd);
+      storagePswrd.appendChild(eyePswrd);
+  
+      eyePswrd.addEventListener('click', function () {
+        const isHidden = userPswrd.type === 'password';
+        userPswrd.type = isHidden ? 'text' : 'password';
+        eyePswrd.classList.toggle('fa-eye-slash', isHidden);
+        eyePswrd.classList.toggle('fa-eye', !isHidden);
+      });
+    }
+  });
+  </script>
+  
 {% endblock %}
