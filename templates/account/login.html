@@ -25,6 +25,12 @@
 
 {% block extra_js %}
 <script>
+
+  /** this script is for a viewable password field
+   * I had it in my 2nd project and I wanted to 
+   * add it again 
+  */
+
   document.addEventListener('DOMContentLoaded', function () {
     const userPswrd = document.querySelector('input[type="password"]');
     if (userPswrd) {
@@ -41,9 +47,7 @@
         top:'50%',
         transform: 'translateY(-50%)',
         cursor: 'pointer',
-        paddingRight: '30px'
       })
-  
       userPswrd.parentNode.insertBefore(storagePswrd, userPswrd);
       storagePswrd.appendChild(userPswrd);
       storagePswrd.appendChild(eyePswrd);
