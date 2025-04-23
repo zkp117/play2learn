@@ -11,8 +11,7 @@
     <form method="post" class="m-auto">
       {% csrf_token %}
       {{ form|crispy }}
-
-      <button class="form-control btn btn-primary mt-3">LOG IN</button>
+      <button type="submit" class="form-control btn btn-primary mt-3">LOG IN</button>
     </form>
   </div>
   <div class="card-footer">
@@ -27,32 +26,31 @@
 {% block extra_js %}
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const passwordInput = document.querySelector('input[type="password"]');
-  if (passwordInput) {
-    const wrapper = document.createElement('div');
-    wrapper.style.position = 'relative';
+  const userPassword = document.querySelector('input[type="password"]');
+  if (userPassword) {
+    const storage = document.createElement('div');
+    storage.style.position = 'relative';
 
-    const eyeIcon = document.createElement('i');
-    eyeIcon.classList.add('fa', 'fa-eye', 'toggle-password');
-    eyeIcon.style.position = 'absolute';
-    eyeIcon.style.right = '10px';
-    eyeIcon.style.top = '50%';
-    eyeIcon.style.transform = 'translateY(-50%)';
-    eyeIcon.style.cursor = 'pointer';
+    const viewableEye = document.createElement('i');
+    viewableEye.classList.add('fa', 'fa-eye', 'toggle-password');
+    viewableEye.style.position = 'absolute';
+    viewableEye.style.right = '10px';
+    viewableEye.style.top = '50%';
+    viewableEye.style.transform = 'translateY(-50%)';
 
-    passwordInput.parentNode.insertBefore(wrapper, passwordInput);
-    wrapper.appendChild(passwordInput);
-    wrapper.appendChild(eyeIcon);
+    userPassword.parentNode.insertBefore(storage,  userPassword);
+    storage.appendChild(userPassword);
+    storage.appendChild(viewableEye);
 
-    eyeIcon.addEventListener('click', function () {
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        eyeIcon.classList.remove('fa-eye');
-        eyeIcon.classList.add('fa-eye-slash');
+    storage.addEventListener('click', function () {
+      if (userPassword === 'password') {
+        userPassword.type = 'text';
+        viewableEye.classList.remove('fa-eye');
+        viewableEye.classList.add('fa-eye-slash');
       } else {
-        passwordInput.type = 'password';
-        eyeIcon.classList.remove('fa-eye-slash');
-        eyeIcon.classList.add('fa-eye');
+        userPassword.type = 'password';
+        viewableEye.classList.remove('fa-eye-slash');
+        viewableEye.classList.add('fa-eye');
       }
     });
   }
