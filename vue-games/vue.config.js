@@ -2,25 +2,16 @@
 // module.exports = defineConfig({
 //   transpileDependencies: true
 // })
+// vue-games/vue.config.js
 module.exports = {
-  // This will set the base URL for the assets. 
-  // You can modify this depending on your production deployment URL.
-  publicPath: '/vue-games/',  // Base URL for both games
+  // Set the base path for the built files
+  publicPath: '/static/vue-games/',  // Ensure that the compiled assets are placed correctly when referenced
 
-  // You can specify different output directories for each game.
-  // Ensure they are placed in separate subdirectories under 'vue-games'
-  pages: {
-    mathFacts: {
-      entry: 'src/main.js',  // Adjust if your entry file is different
-      outputDir: '../static/vue-games/math-facts/js',  // Path for math-facts build
-      indexPath: '../../templates/_base_vue.html',  // Path for HTML file (you can adjust this as needed)
-    },
-    anagramHunt: {
-      entry: 'src/main.js',  // Adjust if your entry file is different
-      outputDir: '../static/vue-games/anagramhunt/js',  // Path for anagramhunt build
-      indexPath: '../../templates/_base_vue.html',  // Path for HTML file (you can adjust this as needed)
-    }
-  },
+  // Define where the build output should be placed
+  outputDir: '../static/vue-games/',  // This ensures build files go into static/vue-games
+
+  // Optional: Customize the index.html output location (if you want it placed in templates folder)
+  indexPath: '../../templates/vue-games/index.html', // This ensures the index.html file is placed in your templates directory
 
   configureWebpack: {
     devServer: {
