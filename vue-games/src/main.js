@@ -9,6 +9,10 @@ import App from "./App";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 
+const el = document.getElementById('math-game-root');
+if (el){
+  createApp(MathFacts).mount(el);
+}
 const app = createApp(App); // create our app instance
 
 app.use(router); // tell our app to use our router

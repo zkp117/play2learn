@@ -106,7 +106,6 @@
       <div class="row d-flex flex-col text-center">
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
-        <button class="btn btn-info w-100 m-1" href="/templates/reviews/write_review_math.html">Write a Review</button>
       </div>
     </div>
   </div>
@@ -212,6 +211,13 @@ export default {
         this.timeLeft = 60;
         this.screen = "end";
         this.recordScore(); // call to record score
+
+        this.$nextTick(() => {
+          const el = document.getElementById('math-game-root');
+          if (el && el.dataset.writeReviewUrl){
+            this.mathReviewUrl = el.dataset.writeReviewUrl;
+          }
+        });
       }
     }
   }
