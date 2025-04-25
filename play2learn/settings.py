@@ -189,7 +189,6 @@ PRIVATE_MEDIA_STORAGE = 'media/private'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',          # general static files in your Django app
-    BASE_DIR / 'static/vue/dist', # Vue.js build files
 ]
 
 STATIC_ROOT = None
