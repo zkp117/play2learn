@@ -3,9 +3,9 @@
 //   transpileDependencies: true
 // })
 module.exports = {
-  publicPath: '/static/vue/', // The base URL where your app will be deployed 
-  outputDir: '../static/dist', // The path for where files will be output when the app is built
-  indexPath: '../../templates/_base_vue.html', // The path for the generated index file
+  publicPath: '/static/vue/',  // Base URL for assets
+  outputDir: '../static/vue-games/math-facts/js',  // Ensure files are output in the correct path
+  indexPath: '../../templates/_base_vue.html', // The path for the index file
 
   configureWebpack: {
     devServer: {

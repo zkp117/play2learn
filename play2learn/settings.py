@@ -185,6 +185,13 @@ MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/public/'
 PUBLIC_MEDIA_LOCATION = 'media/public'
 PRIVATE_MEDIA_STORAGE = 'media/private'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',          # general static files in your Django app
+    BASE_DIR / 'static/vue/dist', # Vue.js build files
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
