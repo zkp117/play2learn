@@ -25,6 +25,9 @@
           <li>How many questions can you get in a minute?</li>
         </ol>
       </div>
+      <a 
+        class="btn btn-info btn-link w-100 m-1"
+        :href=""
       <button class="btn btn-primary w-100" @click="play">Play!</button>
     </div>
     <!-- Play Screen -->

@@ -4,14 +4,14 @@ from django.views.generic import FormView, TemplateView
 from django.shortcuts import render
 
 from common.utils.email_service import send_email
-from .forms import ReviewsForm
-class ReviewsAppView(FormView):
+from .forms import ReviewsMathForm, ReviewsAnagramForm
+class ReviewsMathAppView(FormView):
     template_name = 'reviews/write_review.html'
-    form_class = ReviewsForm
+    form_class = ReviewsMathForm
     success_url = reverse_lazy('reviews:review_thanks')
 
     def user_review_view(request):
-        form = ReviewsForm(request.POST or None)
+        form = ReviewsMathForm(request.POST or None)
         selected_game = request.POST.get('game') if request.method == 'POST' else None
 
         if selected_game == '2':
@@ -23,7 +23,7 @@ class ReviewsAppView(FormView):
         else:
             pass
 
-        return render(request, 'reviews/write_review.html', {'form': form})
+        return render(request, 'reviews/write_review/math.html', {'form': form})
 
     def form_valid(self, form):
         data = form.cleaned_data
