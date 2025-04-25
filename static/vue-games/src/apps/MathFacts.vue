@@ -143,93 +143,39 @@ export default {
     }
   },
   methods: {
-    play() {
-      this.screen = "play";
-      this.getNewQuestion();
-      this.interval = setInterval(() => {
-        this.timeLeft--;
-      }, 1000)
-    },
-    getNewQuestion() {
-      let num1 = getRandomInteger(0, this.maxNumber + 1);
-      let num2 = getRandomInteger(0, this.maxNumber + 1);
-      if (this.operation == "-") {
-        this.number1 = Math.max(num1, num2);
-        this.number2 = Math.min(num1, num2);
-      }
-      else if (this.operation == "/") {
-        this.number1 = num1 * num2;
-        this.number2 = num2;
-      }
-      else {
-        this.number1 = num1;
-        this.number2 = num2;
-      }
-    },
-    async recordScore() {
-      // TODO: when Math Facts finishes, make an Ajax call with axios (this.axios)
-      // to record the score on the backend
+  play() {
+    this.screen = "play";
+    this.getNewQuestion();
+    this.interval = setInterval(() => {
+      this.timeLeft--;
+    }, 1000)
+  },
+  getNewQuestion() {
+    let num1 = getRandomInteger(0, this.maxNumber + 1);
+    let num2 = getRandomInteger(0, this.maxNumber + 1);
+    if (this.operation == "-") {
+      this.number1 = Math.max(num1, num2);
+      this.number2 = Math.min(num1, num2);
+    }
+    else if (this.operation == "/") {
+      this.number1 = num1 * num2;
+      this.number2 = num2;
+    }
+    else {
+      this.number1 = num1;
+      this.number2 = num2;
     }
   },
-  computed: {
-    correctAnswer() {
-      if (this.userInput.trim() == "") {
-        return false;
-      }
-
-      const input = parseInt(this.userInput);
-      if (this.operation == "+") {
-        return input === this.number1 + this.number2;
-      }
-
-      if (this.operation == "-") {
-        return input === this.number1 - this.number2;
-      }
-
-      if (this.operation == "x") {
-        return input === this.number1 * this.number2;
-      }
-
-      if (this.operation == "/") {
-        return input === this.number1 / this.number2;
-      }
-
-      return false;
-    },
+  async recordScore() {
+    // TODO: when Math Facts finishes, make an Ajax call with axios (this.axios)
+    // to record the score on the backend
   },
-  watch: {
-    userInput() {
-      if (this.correctAnswer) {
-        this.score++; 
-        this.getNewQuestion();
-        this.userInput = "";
-      }
-    },
-    timeLeft(newTime) {
-      if (newTime === 0) {
-        clearInterval(this.interval);
-        this.timeLeft = 60;
-        this.screen = "end";
-        this.recordScore(); // call to record score
-
-        this.$nextTick(() => {
-          const el = document.getElementById('math-game-root');
-          if (el && el.dataset.writeReviewUrl){
-            this.mathReviewUrl = el.dataset.writeReviewUrl;
-          }
-        });
-      }
+  setReviewUrl() {
+    const el = document.getElementById('math-game-root');
+    if (el && el.dataset.writeReviewUrl) {
+      this.mathReviewUrl = el.dataset.writeReviewUrl;
     }
   }
-  ,mounted() {
-  this.$nextTick(() => {
-    setTimeout(() => {
-      const el = document.getElementById('math-game-root');
-      if (el && el.dataset.writeReviewUrl) {
-        this.mathReviewUrl = el.dataset.writeReviewUrl;
-      }
-    }, 0);
-  });
 }
 
 }
