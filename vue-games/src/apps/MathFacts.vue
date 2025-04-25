@@ -7,7 +7,7 @@
           <div class="row">
             <label for="operation" class="form-label col-3">Operation</label>
             <select id="operation" class="form-select col" v-model="operation">
-              <option v-for="symbol, operation in operations" :key="operation" :value="symbol">
+              <option v-for="(symbol, operation) in operations" :key="operation" :value="symbol">
                 {{ operation }}
               </option>
             </select>
@@ -25,13 +25,6 @@
           <li>How many questions can you get in a minute?</li>
         </ol>
       </div>
-      <a
-      class="btn btn-info btn-link w-100 m-1"
-      :href="mathReviewUrl"
-      v-if="mathReviewUrl"
-      >
-      Write a Review
-      </a>
       <button class="btn btn-primary w-100" @click="play">Play!</button>
     </div>
     <!-- Play Screen -->
@@ -106,6 +99,9 @@
       <div class="row d-flex flex-col text-center">
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
+        <!-- Use mathReviewUrl dynamically -->
+        <a v-if="mathReviewUrl" :href="mathReviewUrl" class="btn btn-info w-100 m-1">Write a Review</a>
+        <p v-else>Loading review URL...</p>
       </div>
     </div>
   </div>
@@ -142,42 +138,43 @@ export default {
       mathReviewUrl: null,
     }
   },
+  mounted() {
+    this.setReviewUrl(); // Make sure the review URL is set when the component is mounted
+  },
   methods: {
-  play() {
-    this.screen = "play";
-    this.getNewQuestion();
-    this.interval = setInterval(() => {
-      this.timeLeft--;
-    }, 1000)
-  },
-  getNewQuestion() {
-    let num1 = getRandomInteger(0, this.maxNumber + 1);
-    let num2 = getRandomInteger(0, this.maxNumber + 1);
-    if (this.operation == "-") {
-      this.number1 = Math.max(num1, num2);
-      this.number2 = Math.min(num1, num2);
-    }
-    else if (this.operation == "/") {
-      this.number1 = num1 * num2;
-      this.number2 = num2;
-    }
-    else {
-      this.number1 = num1;
-      this.number2 = num2;
-    }
-  },
-  async recordScore() {
-    // TODO: when Math Facts finishes, make an Ajax call with axios (this.axios)
-    // to record the score on the backend
-  },
-  setReviewUrl() {
-    const el = document.getElementById('math-game-root');
-    if (el && el.dataset.writeReviewUrl) {
-      this.mathReviewUrl = el.dataset.writeReviewUrl;
+    play() {
+      this.screen = "play";
+      this.getNewQuestion();
+      this.interval = setInterval(() => {
+        this.timeLeft--;
+      }, 1000)
+    },
+    getNewQuestion() {
+      let num1 = getRandomInteger(0, this.maxNumber + 1);
+      let num2 = getRandomInteger(0, this.maxNumber + 1);
+      if (this.operation == "-") {
+        this.number1 = Math.max(num1, num2);
+        this.number2 = Math.min(num1, num2);
+      }
+      else if (this.operation == "/") {
+        this.number1 = num1 * num2;
+        this.number2 = num2;
+      }
+      else {
+        this.number1 = num1;
+        this.number2 = num2;
+      }
+    },
+    async recordScore() {
+      // TODO: when Math Facts finishes, make an Ajax call with axios (this.axios)
+      // to record the score on the backend
+    },
+    setReviewUrl() {
+      const el = document.getElementById('math-game-root');
+      if (el && el.dataset.writeReviewUrl) {
+        this.mathReviewUrl = el.dataset.writeReviewUrl;
+      }
     }
   }
 }
-
-}
-
 </script>
