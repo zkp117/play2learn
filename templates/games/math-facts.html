@@ -5,6 +5,11 @@
 {% block main %}
   <h1>Math Facts</h1>
   {{ block.super }}
+
+  <!-- Add this BEFORE the Vue app mount point -->
+  <div id="math-game-root" data-write-review-url="{% url 'reviews:write_review' %}"></div>
+
+  <!-- Vue app gets mounted here -->
   <div id="app"></div>
 
   <!-- External stylesheet from S3 -->

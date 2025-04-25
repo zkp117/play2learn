@@ -25,9 +25,13 @@
           <li>How many questions can you get in a minute?</li>
         </ol>
       </div>
-      <a 
-        class="btn btn-info btn-link w-100 m-1"
-        :href=""
+      <a
+      class="btn btn-info btn-link w-100 m-1"
+      :href="mathReviewUrl"
+      v-if="mathReviewUrl"
+      >
+      Write a Review
+      </a>
       <button class="btn btn-primary w-100" @click="play">Play!</button>
     </div>
     <!-- Play Screen -->
@@ -102,7 +106,7 @@
       <div class="row d-flex flex-col text-center">
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
-        <a class="btn btn-info btn-link w-100 m-2" href="{% url 'write_review' %}">Write a Review</a>
+        <div id="math-game-root" data-write-review-url="{% url 'write_review' %}"></div>
       </div>
     </div>
   </div>
@@ -136,6 +140,7 @@ export default {
       userInput: "",
       interval: null,
       timeLeft: 60,
+      mathReviewUrl: null,
     }
   },
   methods: {
@@ -210,5 +215,12 @@ export default {
       }
     }
   }
+  ,mounted() {
+  const el = document.getElementById('math-game-root');
+  if (el && el.dataset.writeReviewUrl) {
+    this.mathReviewUrl = el.dataset.writeReviewUrl;
+  }
+}
+
 }
 </script>
