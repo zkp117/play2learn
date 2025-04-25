@@ -1,22 +1,16 @@
 import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import router from './router';
+import App from './App.vue'; // <- make sure this is your main App wrapper
 
-import router from './router'; // import our router
-import App from "./App";
-
-// set default Django cookies and headers
+// CSRF setup for Django
 axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
 
-const el = document.getElementById('math-game-root');
-if (el){
-  createApp(MathFacts).mount(el);
-}
-const app = createApp(App); // create our app instance
+const app = createApp(App);
 
-app.use(router); // tell our app to use our router
+app.use(router);
+app.use(VueAxios, axios);
 
-app.use(VueAxios, axios); // tell our app to use axios
-
-app.mount("#app"); // mount our app on the div#app element in our template
+app.mount('#app');
