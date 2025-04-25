@@ -162,6 +162,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+# AWS settings
+
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'play2learn-bucket'
@@ -175,7 +177,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_S3_REGION_NAME = 'us-east-2' 
 
-STATICFILES_STORAGE = 'play2learn.storage_backends.StaticStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'play2learn.storage_backends.PublicMediaStorage'
 PRIVATE_FILE_STORAGE = 'play2learn.storage_backends.PrivateMediaStorage'
 
@@ -190,7 +192,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static/vue/dist', # Vue.js build files
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = None
 
 STORAGES = {
     "default": {
