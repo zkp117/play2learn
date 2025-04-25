@@ -27,6 +27,7 @@
       </div>
       <button class="btn btn-primary w-100" @click="play">Play!</button>
     </div>
+
     <!-- Play Screen -->
     <div v-else-if="screen == 'play'" class="container">
       <div class="row">
@@ -86,6 +87,7 @@
         </div>
       </div>
     </div>
+
     <!-- End Screen -->
     <div v-else-if="screen == 'end'" class="container">
       <div class="row">
