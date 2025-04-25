@@ -1,3 +1,5 @@
+{% load static %}
+
 {% extends "_base.html" %}
 
 {% block title %}Math Facts{% endblock %}
@@ -6,16 +8,14 @@
   <h1>Math Facts</h1>
   {{ block.super }}
 
-  <!-- Add this BEFORE the Vue app mount point -->
+  <!-- Write review data -->
   <div id="math-game-root" data-write-review-url="{% url 'reviews:write_review_math' %}"></div>
 
-  <!-- Vue app gets mounted here -->
+  <!-- Vue app mount point -->
   <div id="app"></div>
 
-  <!-- External stylesheet from S3 -->
-  <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.92256985.css">
-
-  <!-- JS from S3 -->
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.fe524f45.js"></script>
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.fd3eb577.js"></script>
+  <!-- Local static files -->
+  <link rel="stylesheet" href="{% static 'vue-games/math-facts/css/app.92256985.css' %}">
+  <script src="{% static 'vue-games/math-facts/js/chunk-vendors.fe524f45.js' %}"></script>
+  <script src="{% static 'vue-games/math-facts/js/app.fd3eb577.js' %}"></script>
 {% endblock %}
