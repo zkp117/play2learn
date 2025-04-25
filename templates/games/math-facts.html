@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Math Facts{% endblock %}
+
+{% block main %}
+  <h1>Math Facts</h1>
+  {{ block.super }}
+
+  <!-- Write review data -->
+  <div id="math-game-root" data-write-review-url="{% url 'reviews:write_review_math' %}"></div>
+
+  <!-- Vue app mount point -->
+  <div id="app"></div>
+
+  <!-- Local static files -->
+  <link rel="stylesheet" href="{% static 'vue-games/math-facts/css/app.92256985.css' %}">
+  <script src="{% static 'vue-games/math-facts/js/chunk-vendors.fe524f45.js' %}"></script>
+  <script src="{% static 'vue-games/math-facts/js/app.fd3eb577.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block title %}Anagram Hunt{% endblock %}
+
+{% block main %}
+  <h1>Anagram Hunt</h1>
+  {{ block.super }}
+  <div id="app"></div>
+
+  <!-- External stylesheet from S3 -->
+  <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/css/app.92256985.css">
+
+  <!-- JS from S3 -->
+  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/js/chunk-vendors.fe524f45.js"></script>
+  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/js/app.fd3eb577.js"></script>
+{% endblock %}
