@@ -222,11 +222,16 @@ export default {
     }
   }
   ,mounted() {
-  const el = document.getElementById('math-game-root');
-  if (el && el.dataset.writeReviewUrl) {
-    this.mathReviewUrl = el.dataset.writeReviewUrl;
-  }
+  this.$nextTick(() => {
+    setTimeout(() => {
+      const el = document.getElementById('math-game-root');
+      if (el && el.dataset.writeReviewUrl) {
+        this.mathReviewUrl = el.dataset.writeReviewUrl;
+      }
+    }, 0);
+  });
 }
 
 }
+
 </script>
