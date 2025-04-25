@@ -7,7 +7,7 @@
   {{ block.super }}
 
   <!-- Add this BEFORE the Vue app mount point -->
-  <div id="math-game-root" data-write-review-url="{% url 'reviews:write_review' %}"></div>
+  <div id="math-game-root" data-write-review-url="{% url 'reviews:write_review_math' %}"></div>
 
   <!-- Vue app gets mounted here -->
   <div id="app"></div>

@@ -106,7 +106,7 @@
       <div class="row d-flex flex-col text-center">
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
-        <div id="math-game-root" data-write-review-url="{% url 'write_review' %}"></div>
+        <div id="math-game-root" data-write-review-url="{% url 'write_review_math' %}"></div>
       </div>
     </div>
   </div>
