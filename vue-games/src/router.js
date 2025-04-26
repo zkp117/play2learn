@@ -1,23 +1,23 @@
-import { createWebHistory, createRouter } from "vue-router";
-
-import AnagramHunt from "./apps/AnagramHunt";
-import MathFacts from "./apps/MathFacts";
+import { createRouter, createWebHistory } from 'vue-router'
+import MathFacts from './apps/MathFacts.vue'
+import AnagramHunt from './apps/AnagramHunt.vue'
 
 const routes = [
   {
-    path: '/anagram-hunt',
-    component: AnagramHunt
-  },
-  {
     path: '/math-facts',
+    name: 'MathFacts',
     component: MathFacts
   },
-];
+  {
+    path: '/anagram-hunt',
+    name: 'AnagramHunt',
+    component: AnagramHunt
+  }
+]
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes: routes,
-});
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
 
-
-export default router;
+export default router
