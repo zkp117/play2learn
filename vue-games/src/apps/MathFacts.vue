@@ -104,9 +104,9 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 div {
-  margin-bottom: 0.75rem; /* space between divs */
+  margin-bottom: 0.75rem;
 }
 
 label {
