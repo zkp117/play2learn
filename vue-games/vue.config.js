@@ -1,25 +1,11 @@
-// const { defineConfig } = require('@vue/cli-service')
-// module.exports = defineConfig({
-//   transpileDependencies: true
-// })
-// vue-games/vue.config.js
 module.exports = {
-  publicPath: '/static/vue-games/',
-  outputDir: '../static/vue-games/',
-  indexPath: '../../templates/vue-games/index.html',
-
-  pages: {
-    mathfacts: {
-      entry: 'src/main.js',      // << Your entry point!
-      template: 'public/index.html',
-      filename: 'index.html'     // this still maps to templates/vue-games/index.html
-    }
-  },
+  publicPath: '/static/vue-games/math-facts/',  // This is where assets will be served from
+  outputDir: 'dist/vue-games/math-facts/',     // This ensures the build files go here
 
   configureWebpack: {
     devServer: {
       devMiddleware: {
-        writeToDisk: true
+        writeToDisk: true  // This ensures that the build files are written to disk
       }
     }
   }
