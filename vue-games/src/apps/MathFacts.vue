@@ -177,6 +177,26 @@ export default {
         this.mathReviewUrl = el.dataset.writeReviewUrl;
       }
     }
+  },
+  watch: {
+    userInput(newInput) {
+      let correctAnswer;
+      if (this.operation == "+") {
+        correctAnswer = this.number1 + this.number2;
+      } else if (this.operation == "-") {
+        correctAnswer = this.number1 - this.number2;
+      } else if (this.operation == "x") {
+        correctAnswer = this.number1 * this.number2;
+      } else if (this.operation == "/") {
+        correctAnswer = this.number1 / this.number2;
+      }
+
+      if (parseFloat(newInput) === correctAnswer) {
+        this.score++;
+        this.userInput = "";
+        this.getNewQuestion();
+      }
+    }
   }
 }
 </script>
