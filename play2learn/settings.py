@@ -1,5 +1,9 @@
 import os
 from pathlib import Path
+from django.conf import settings
+
+def global_debug(request):
+    return{'debug': settings.DEBUG}
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -74,6 +78,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'play2learn.settings.global_debug',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
