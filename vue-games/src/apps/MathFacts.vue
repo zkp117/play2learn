@@ -105,7 +105,7 @@
 </template>
 
 <style scoped>
-  div, label {
+  label {
     padding: 0.2rem;
   }
 </style>

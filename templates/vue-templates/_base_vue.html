@@ -1,19 +1,18 @@
 {% extends "_base.html" %}
-{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block title %}Math Facts Game | Play2Learn{% endblock %}
+
+{% block extra_head %}
   <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.92256985.css" rel="stylesheet">
-  <title>Math Facts Game | Play2Learn</title>
-</head>
-<body>
-  <div id="app"></div> <!-- Vue.js will mount here -->
+{% endblock %}
 
+{% block main %}
+  <div id="app"></div>  <!-- Vue.js will mount here -->
+{% endblock %}
+
+{% block extra_js %}
   <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.fe524f45.js"></script>
   <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.fd99c6d4.js"></script>
-</body>
-</html>
+{% endblock %}
+
 
