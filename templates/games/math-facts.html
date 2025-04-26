@@ -1,16 +1,13 @@
-{% extends "_base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Math Facts{% endblock %}
-
-{% block main %}
+{% block content %}
   <h1>Math Facts</h1>
   {{ block.super }}
 
-  <!-- Vue app mount point -->
+  <div id="math-game-root" data-write-review-url="{% url 'write_review' 'math-facts' %}"></div>
   <div id="app"></div>
 
-  <!-- Static files served via S3 -->
   <link rel="stylesheet" href="{% static 'vue-games/math-facts/css/app.92256985.css' %}">
   <script src="{% static 'vue-games/math-facts/js/chunk-vendors.fe524f45.js' %}"></script>
   <script src="{% static 'vue-games/math-facts/js/app.fd3eb577.js' %}"></script>
