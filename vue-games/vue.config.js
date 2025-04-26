@@ -1,11 +1,12 @@
+// vue.config.js
 module.exports = {
-  publicPath: '/static/vue-games/math-facts/',  // This is where assets will be served from
-  outputDir: 'dist/vue-games/math-facts/',     // This ensures the build files go here
+  publicPath: 'https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/',
+  outputDir: 'dist/vue-games/math-facts/',
 
   configureWebpack: {
     devServer: {
       devMiddleware: {
-        writeToDisk: true  // This ensures that the build files are written to disk
+        writeToDisk: true
       }
     }
   }
