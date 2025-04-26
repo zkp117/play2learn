@@ -27,7 +27,6 @@
       </div>
       <button class="btn btn-primary w-100" @click="play">Play!</button>
     </div>
-
     <!-- Play Screen -->
     <div v-else-if="screen == 'play'" class="container">
       <div class="row">
@@ -87,7 +86,6 @@
         </div>
       </div>
     </div>
-
     <!-- End Screen -->
     <div v-else-if="screen == 'end'" class="container">
       <div class="row">
@@ -175,26 +173,6 @@ export default {
       const el = document.getElementById('math-game-root');
       if (el && el.dataset.writeReviewUrl) {
         this.mathReviewUrl = el.dataset.writeReviewUrl;
-      }
-    }
-  },
-  watch: {
-    userInput(newInput) {
-      let correctAnswer;
-      if (this.operation == "+") {
-        correctAnswer = this.number1 + this.number2;
-      } else if (this.operation == "-") {
-        correctAnswer = this.number1 - this.number2;
-      } else if (this.operation == "x") {
-        correctAnswer = this.number1 * this.number2;
-      } else if (this.operation == "/") {
-        correctAnswer = this.number1 / this.number2;
-      }
-
-      if (parseFloat(newInput) === correctAnswer) {
-        this.score++;
-        this.userInput = "";
-        this.getNewQuestion();
       }
     }
   }
