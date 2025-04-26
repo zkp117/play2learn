@@ -45,43 +45,43 @@
       <div class="row m-auto" style="width: 300px">
         <div class="row gx-1">
           <div class="col-4">
-            <button @click="userInput += '1'" class="btn btn-primary w-100">1</button>
+            <button @click="userInput += '1'" class="btn btn-primary btn-space w-100">1</button>
           </div>
           <div class="col-4">
-            <button @click="userInput += '2'" class="btn btn-primary w-100">2</button>
+            <button @click="userInput += '2'" class="btn btn-primary btn-space w-100">2</button>
           </div>
           <div class="col-4">
-            <button @click="userInput += '3'" class="btn btn-primary w-100">3</button>
-          </div>
-        </div>
-        <div class="row gx-1">
-          <div class="col-4">
-            <button @click="userInput += '4'" class="btn btn-primary w-100">4</button>
-          </div>
-          <div class="col-4">
-            <button @click="userInput += '5'" class="btn btn-primary w-100">5</button>
-          </div>
-          <div class="col-4">
-            <button @click="userInput += '6'" class="btn btn-primary w-100">6</button>
+            <button @click="userInput += '3'" class="btn btn-primary btn-space w-100">3</button>
           </div>
         </div>
         <div class="row gx-1">
           <div class="col-4">
-            <button @click="userInput += '7'" class="btn btn-primary w-100">7</button>
+            <button @click="userInput += '4'" class="btn btn-primary btn-space w-100">4</button>
           </div>
           <div class="col-4">
-            <button @click="userInput += '8'" class="btn btn-primary w-100">8</button>
+            <button @click="userInput += '5'" class="btn btn-primary btn-space w-100">5</button>
           </div>
           <div class="col-4">
-            <button @click="userInput += '9'" class="btn btn-primary w-100">9</button>
+            <button @click="userInput += '6'" class="btn btn-primary btn-space w-100">6</button>
           </div>
         </div>
         <div class="row gx-1">
           <div class="col-4">
-            <button @click="userInput += '0'" class="btn btn-primary w-100">0</button>
+            <button @click="userInput += '7'" class="btn btn-primary btn-space w-100">7</button>
+          </div>
+          <div class="col-4">
+            <button @click="userInput += '8'" class="btn btn-primary btn-space w-100">8</button>
+          </div>
+          <div class="col-4">
+            <button @click="userInput += '9'" class="btn btn-primary btn-space w-100">9</button>
+          </div>
+        </div>
+        <div class="row gx-1">
+          <div class="col-4">
+            <button @click="userInput += '0'" class="btn btn-primary btn-space w-100">0</button>
           </div>
           <div class="col-8">
-            <button @click="userInput = ''" class="btn btn-primary w-100">Clear</button>
+            <button @click="userInput = ''" class="btn btn-primary btn-space w-100">Clear</button>
           </div>
         </div>
       </div>
@@ -106,11 +106,16 @@
 
 <style>
 div {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; 
 }
 
 label {
   padding: 0.2rem;
+}
+
+.btn-space{
+  padding: 15px;
+  margin: 5px;
 }
 </style>
 
