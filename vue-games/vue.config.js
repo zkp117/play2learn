@@ -1,11 +1,8 @@
-// const { defineConfig } = require('@vue/cli-service')
-// module.exports = defineConfig({
-//   transpileDependencies: true
-// })
 module.exports = {
-  publicPath: 'http://localhost:8080', // The base URL where your app will be deployed 
-  outputDir: '../static/dist', // The path for where files will be output when the app is built
-  indexPath: '../../templates/_base_vue.html', // The path for the generated index file
+  publicPath: '/', // Or use '/vue-games/' if deploying in a subdirectory
+  outputDir: 'dist', // Direct output to the 'dist' folder within vue-games
+  // Remove or adjust indexPath to avoid generating _base_vue.html
+  indexPath: 'templates/index.html', // or adjust this path as needed
 
   configureWebpack: {
     devServer: {
