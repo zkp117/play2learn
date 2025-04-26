@@ -4,10 +4,17 @@
 
 {% block main %}
   <h1>Math Facts</h1>
-  {{ block.super }}
+
+  <!-- Render the Vue.js app here -->
   <div id="app"></div>
 
+  <!-- Add Vue.js related CSS and JS here -->
   <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.d9d5b537.css">
+
+  <!-- Update JS paths to the S3 bucket -->
   <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.fe524f45.js"></script>
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.28a2b80a.js"></script>  
+  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.28a2b80a.js"></script>
+
+  <!-- Render any additional content from the parent block if needed -->
+  {{ block.super }}
 {% endblock %}
