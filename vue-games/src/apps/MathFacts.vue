@@ -105,9 +105,13 @@
 </template>
 
 <style scoped>
-  label {
-    padding: 0.2rem;
-  }
+div {
+  margin-bottom: 0.75rem; /* space between divs */
+}
+
+label {
+  padding: 0.2rem;
+}
 </style>
 
 <script>
