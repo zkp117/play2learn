@@ -69,8 +69,8 @@
 </style>
 
 <script>
-import anagrams from "@/helpers/anagrams";
-import {getRandomInteger} from "@/helpers/helpers";
+import anagrams from "@/apps/anagram-hunt/anagrams";
+import {getRandomInteger} from "@/apps/math-facts/helpers";
 
 export default {
   name: 'AnagramGame',

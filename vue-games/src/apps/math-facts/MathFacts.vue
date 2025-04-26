@@ -111,7 +111,7 @@
 </style>
 
 <script>
-import { getRandomInteger } from '@/helpers/helpers';
+import { getRandomInteger } from '@/apps/math-facts/helpers';
 
 export default {
   name: 'MathGame',
