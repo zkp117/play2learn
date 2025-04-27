@@ -8,7 +8,7 @@ from .forms import ReviewsMathForm, ReviewsAnagramForm
 class ReviewsMathAppView(FormView):
     template_name = 'vue-reviews/reviewing_math.html'
     form_class = ReviewsMathForm
-    success_url = reverse_lazy('reviews:review_thanks')
+    success_url = reverse_lazy('vue-reviews:review_thanks')
 
     def form_valid(self, form):
         data = form.cleaned_data
@@ -30,7 +30,7 @@ class ReviewsMathAppView(FormView):
 class ReviewsAnagramAppView(FormView):
     template_name = 'vue-reviews/reviewing_anagram.html'
     form_class = ReviewsAnagramForm
-    success_url = reverse_lazy('reviews:review_thanks')
+    success_url = reverse_lazy('vue-reviews:review_thanks')
 
     def form_valid(self, form):
         data = form.cleaned_data
@@ -51,4 +51,4 @@ class ReviewsAnagramAppView(FormView):
 
 
 class ReviewsAppThanksView(TemplateView):
-    template_name = 'reviews/review_thanks.html'
+    template_name = 'vue-reviews/review_thanks.html'
