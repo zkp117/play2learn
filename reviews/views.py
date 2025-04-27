@@ -6,7 +6,7 @@ from django.shortcuts import render
 from common.utils.email_service import send_email
 from .forms import ReviewsMathForm, ReviewsAnagramForm
 class ReviewsMathAppView(FormView):
-    template_name = 'reviews/write_review.html'
+    template_name = 'reviews/write_review_math.html'
     form_class = ReviewsMathForm
     success_url = reverse_lazy('reviews:review_thanks')
 

@@ -3,7 +3,7 @@ from .views import ReviewsAnagramAppView, ReviewsMathAppView, ReviewsAppThanksVi
 
 app_name = 'reviews'
 urlpatterns = [
-    path('write-anagram/', ReviewsAnagramAppView.as_view(), name='write_review_anagram'),
-    path('write-math/', ReviewsMathAppView.as_view(), name='write_review_math'),  # Corrected the path and name
+    path('reviews/write_review_anagram/', ReviewsAnagramAppView.as_view(), name='write_review_anagram'),
+    path('reviews/write_review_math/', ReviewsMathAppView.as_view(), name='write_review_math'),  # Corrected the path and name
     path('reviews/review_thanks/', ReviewsAppThanksView.as_view(), name='review_thanks'),
 ]
