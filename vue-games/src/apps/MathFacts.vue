@@ -99,7 +99,7 @@
       <div class="row d-flex flex-col text-center">
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
-        <a href="{% url 'reviews:write_review_math' %}" class="btn btn-info w-100 m-1" role="button">Write MathFacts Review</a>
+        <a href="{% url 'reviews:write_review_math' %}" class="btn btn-info w-100 m-1">Write MathFacts Review</a>
       </div>
     </div>
   </div>
