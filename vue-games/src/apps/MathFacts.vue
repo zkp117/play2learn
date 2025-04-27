@@ -99,7 +99,8 @@
       <div class="row d-flex flex-col text-center">
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
-        <button @click="reviewMath" class="btn btn-info w-100 m-1">Write MathFacts Review</button>
+        <button onclick="window.location.href='/reviewing_math/'" class="btn btn-info w-100 m-1">Write MathFacts Review</button>
+
       </div>
     </div>
   </div>
@@ -164,9 +165,6 @@ export default {
         this.number1 = num1;
         this.number2 = num2;
       }
-    },
-    reviewMath(){
-      this.$router.push({name: 'vue-reviews:reviewing_math'});
     },
     async recordScore() {
       // TODO: when Math Facts finishes, make an Ajax call with axios (this.axios)
