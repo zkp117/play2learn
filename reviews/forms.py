@@ -18,6 +18,9 @@ class ReviewsMathForm(forms.Form):
         label="Write you review here!")
 
 class ReviewsAnagramForm(forms.Form):
+
+    transfered_score = [...]  # the score from the game just completed
+
     email = forms.EmailField(
         label="Your email address"
     )
