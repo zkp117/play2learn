@@ -1,7 +1,6 @@
 import html
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
-from django.shortcuts import render
 
 from common.utils.email_service import send_email
 from .forms import ReviewsMathForm, ReviewsAnagramForm
