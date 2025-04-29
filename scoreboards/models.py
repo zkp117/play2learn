@@ -1,3 +1,4 @@
 from django.db import models
-
-# Create your models here.
+class MathFactsScoreBoard(models.Model):
+    username = models.CharField(max_length=100, unique=True)
+    mathfacts_score = [...]
