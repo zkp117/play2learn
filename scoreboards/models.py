@@ -11,3 +11,6 @@ class AnagramHuntScoreBoard(models.Model):
     username = users.models.AbstractUser.username
     anagramhunt_score = users.models.CustomUser.anagramhunt_score
     date_added = models.DateTimeField(('date added'), default=timezone.now)
+
+class ScoreBoardsSummary(models.Model):
+    [...]
