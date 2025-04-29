@@ -6,7 +6,6 @@ class MathFactsScoreBoard(models.Model):
     username = users.models.AbstractUser.username
     mathfacts_score = users.models.CustomUser.mathfacts_score
     date_added = models.DateTimeField(('date added'), default=timezone.now)
-
 class AnagramHuntScoreBoard(models.Model):
     avatar = users.models.CustomUser.avatar
     username = users.models.AbstractUser.username

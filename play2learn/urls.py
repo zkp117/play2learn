@@ -8,4 +8,5 @@ urlpatterns = [
     path('',include("pages.urls")),
     path('', include('users.urls')),
     path('',include('reviews.urls')),
+    path('',include('scoreboards.urls'))
 ]
