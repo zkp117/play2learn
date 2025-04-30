@@ -1,18 +1,23 @@
 {% extends "_base.html" %}
 
-{% block title %}Math Facts Game | Play2Learn{% endblock %}
+{% block title %}Play2Learn{% endblock %}
 
 {% block extra_head %}
-  <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.92256985.css" rel="stylesheet">
+<!-- css for games -->
+  <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.css" rel="stylesheet">
+  <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/css/app.css" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
-  <div id="app"></div>  <!-- Vue.js will mount here -->
+  <div id="app"></div> 
 {% endblock %}
 
 {% block extra_js %}
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.fe524f45.js"></script>
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.fd99c6d4.js"></script>
+<!-- chunk-vendors.js and app.js for games -->
+  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.js"></script>
+  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.js"></script>
+  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/js/chunk-vendors.js"></script>
+  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/js/app.js"></script>
 {% endblock %}
 
 
