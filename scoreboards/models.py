@@ -1,16 +1,11 @@
 from django.db import models
 from django.utils import timezone
-import users.models
+from users.models import CustomUser
 class MathFactsScoreBoard(models.Model):
-    avatar = users.models.CustomUser.avatar
-    username = users.models.AbstractUser.username
-    mathfacts_score = users.models.CustomUser.mathfacts_score
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
     date_added = models.DateTimeField(('date added'), default=timezone.now)
 class AnagramHuntScoreBoard(models.Model):
-    avatar = users.models.CustomUser.avatar
-    username = users.models.AbstractUser.username
-    anagramhunt_score = users.models.CustomUser.anagramhunt_score
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
     date_added = models.DateTimeField(('date added'), default=timezone.now)
-
-class ScoreBoardsSummary(models.Model):
-    [...]
