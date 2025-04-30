@@ -3,9 +3,7 @@
 {% block title %}Play2Learn{% endblock %}
 
 {% block extra_head %}
-<!-- css for games -->
-  <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.css" rel="stylesheet">
-  <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/css/app.css" rel="stylesheet">
+
 {% endblock %}
 
 {% block main %}
@@ -13,6 +11,11 @@
 {% endblock %}
 
 {% block extra_js %}
+
+<!-- css for games -->
+<link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.css" rel="stylesheet">
+<link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/css/app.css" rel="stylesheet">
+
 <!-- chunk-vendors.js and app.js for games -->
   <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.js"></script>
   <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.js"></script>
