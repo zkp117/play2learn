@@ -1,16 +1,14 @@
 {% extends "_base_vue.html" %}
 
-{% load static %}  <!-- Add this line to load the static tag -->
-
 {% block title %}Math Facts | Play2Learn{% endblock %}
 
 {% block main %}
-  <!-- Vue App Mount Point -->
-  <div id="app"></div>
 
-  <!-- Add your compiled Vue.js app scripts here -->
-  <script src="{% static 'vue-games/math-facts/js/chunk-vendors.js' %}"></script>
-  <script src="{% static 'vue-games/math-facts/js/app.js' %}"></script>
-  <link href="{% static 'vue-games/math-facts/css/app.css' %}" rel="stylesheet">
+<h1>Math Facts</h1>
+  {{ block.super }}
 
 {% endblock %}
+
+<script src="{% static 'vue-games/math-facts/js/chunk-vendors.js' %}"></script>
+<script src="{% static 'vue-games/math-facts/js/app.js' %}"></script>
+<link href="{% static 'vue-games/math-facts/css/app.css' %}" rel="stylesheet">
