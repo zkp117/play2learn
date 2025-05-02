@@ -1,8 +1,9 @@
 from django.urls import path
 from .views import ScoreBoards
 
-app_name = 'templates'
+app_name = 'vue-scoreboards'
+
 urlpatterns = [
-    path('scoreboards/',ScoreBoards.as_view(), name='scoreboards')
+    path('scoreboards/',ScoreBoards.as_view(), name='scoreboards-summary')
 
 ]

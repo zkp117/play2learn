@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'storages',
     'games',
+    'scoreboards',
 ]
 
 SITE_ID = 1
