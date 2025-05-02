@@ -4,6 +4,6 @@ from .views import ScoreBoards
 app_name = 'scoreboards'
 
 urlpatterns = [
-    path('scoreboards/',ScoreBoards.as_view(), name='scoreboards')
+    path('',ScoreBoards.as_view(), name='scoreboards')
 
 ]
