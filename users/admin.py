@@ -34,16 +34,14 @@ class CustomUserAdmin(UserAdmin):
 
     # setup display for AnagramHunt scores
     def get_anagramhunt_scores(self, obj):
-        scores = obj.anagram_scores.all()
-        total_score = sum(score.score for score in scores)
-        return total_score or 0
-    get_anagramhunt_scores.short_description = 'Anagram Hunt Total Score'
+        top_score = obj.math_scores.order_by('-score').first()
+        return top_score.score if top_score else 0
+    get_anagramhunt_scores.short_description = "Highest AnagramHunt Score"
 
     def get_mathfacts_scores(self, obj):
-        scores = obj.math_scores.all()
-        total_score = sum(score.score for score in scores)
-        return total_score or 0
-    get_mathfacts_scores.short_description = 'Math Facts Total Score'
+        top_score = obj.anagram_scores.order_by('-score').first()
+        return top_score.score if top_score else 0
+    get_mathfacts_scores.short_description = "Highest MathFacts Score"
 
     def get_math_reviews(self,obj):
         reviews = obj.math_reviews.all()
