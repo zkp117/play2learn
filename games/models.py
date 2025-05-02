@@ -25,13 +25,16 @@ class AnagramHuntScore(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='anagram_scores')
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} - AnagramHunt : {self.score}"
 class MathFactsScore(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='math_scores')
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user} - {self.game}: {self.score}"
+        return f"{self.user} - MathFacts : {self.score}"
 class AnagramReview(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='anagram_reviews')
     review_text = models.TextField()

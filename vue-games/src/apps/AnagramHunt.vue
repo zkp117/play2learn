@@ -73,6 +73,7 @@
 <script>
 import anagrams from "@/helpers/anagrams";
 import {getRandomInteger} from "@/helpers/helpers";
+import { Axios } from "axios";
 
 export default {
   name: 'AnagramGame',
@@ -131,6 +132,8 @@ export default {
     async recordScore() {
       // TODO: when Anagram Hunt finishes, make an Ajax call with axios (this.axios)
       // to record the score on the backend
+
+      response = requests.get()
     }
   },
   watch: {
