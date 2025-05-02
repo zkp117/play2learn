@@ -110,7 +110,7 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 # DATABASES SECTION 
 
 DATABASES = {
-    'default': { # the database is labeled as 'default' bc of django rules  
+    'default': {   
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'user_info',
         'USER': 'zoeparigian',

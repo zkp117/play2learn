@@ -9,9 +9,9 @@ class MathFactsScoresAdmin(admin.ModelAdmin):
 
     # Prevent editing of fields when editing an existing record
     def get_readonly_fields(self, request, obj=None):
-        if obj:  # If it's an existing object, make the fields read-only
+        if obj: 
             return ('user', 'score', 'date')
-        return ()  # Fields are editable when creating new records
+        return () 
 
 # AnagramHunt Scores Admin
 @admin.register(AnagramHuntScore)

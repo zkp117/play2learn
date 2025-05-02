@@ -11,7 +11,7 @@ class Category(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse('jokes:category', args=[self.slug])
+        return reverse('scores:category', args=[self.slug])
 
     def save(self, *args, **kwargs):
         if not self.slug:
