@@ -27,7 +27,7 @@
 
         {% if mathfacts_latest %}
         <h4>Math Facts:</h4>
-        <p> Latest Score: {{ mathfacts_newest.score }}</p>
+        <p> Latest Score: {{ mathfacts_newest.score.date }}</p>
         <p> Highest Score: {{ mathfacts_highest.score }}</p>
         {% else %}
         <p>None yet.</p>

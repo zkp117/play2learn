@@ -32,11 +32,11 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        anagram_scores = AnagramHuntScore.object.filter(user=user)
+        anagram_scores = AnagramHuntScore.objects.filter(user=user)
         context['anagramhunt_newest'] = anagram_scores.order_by('-date').first()
         context['anagramhunt_highest'] = anagram_scores.order_by('-score').first()
 
-        mathfacts_scores = MathFactsScore.object.filter(user=user)
+        mathfacts_scores = MathFactsScore.objects.filter(user=user)
         context['mathfacts_newest'] = mathfacts_scores.order_by('-date').first()
         context['mathfacts_highest'] = mathfacts_scores.order_by('-score').first()
 
