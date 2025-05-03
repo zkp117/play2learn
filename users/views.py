@@ -3,17 +3,17 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 from .forms import CustomAuthenticationForm
-from django.contrib.auth.views import LoginView
-from .forms import CustomAuthenticationForm
+from .forms import CustomUserChangeForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView
+from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.urls import reverse_lazy
 
 from django.views.generic import UpdateView
-from .forms import CustomUserChangeForm
+
+from games.models import AnagramHuntScore, MathFactsScore
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):  # Renamed
     success_url = reverse_lazy('my-account')
     
@@ -28,10 +28,25 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        anagram_scores = AnagramHuntScore.object.filter(user=user)
+        context['anagramhunt_newest'] = anagram_scores.order_by('-date').first()
+        context['anagramhunt_highest'] = anagram_scores.order_by('-score').first()
+
+        mathfacts_scores = MathFactsScore.object.filter(user=user)
+        context['mathfacts_newest'] = mathfacts_scores.order_by('-date').first()
+        context['mathfacts_highest'] = mathfacts_scores.order_by('-score').first()
+
+        return context
+    
     def form_valid(self, form):
         response = super().form_valid(form)
         self.request.user.refresh_from_db()
         return response
+
     
 @login_required
 def clear_avatar(request):

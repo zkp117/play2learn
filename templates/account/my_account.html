@@ -16,8 +16,22 @@
     <div class="card border-primary m-auto mb-3" style="max-width: 30rem">
       <div class="card-header text-center">Game Scores</div>
       <div class="card-body text-center">
-        <p><strong>Anagram Hunt Total Score:</strong> {{ user.get_anagram_scores }}</p>
-        <p><strong>Math Facts Total Score:</strong> {{ user.get_math_scores }}</p>
+        {% if anagramhunt_latest %}
+        <h4>Anagram Hunt:</h4>
+        <p> Latest Score: {{ anagramhunt_newest.score }}</p>
+        <p> Highest Score: {{ anagrahunt_highest.score }}</p>
+
+        {% else %}
+        <p>None yet.</p>
+        {% endif %}
+
+        {% if mathfacts_latest %}
+        <h4>Math Facts:</h4>
+        <p> Latest Score: {{ mathfacts_newest.score }}</p>
+        <p> Highest Score: {{ mathfacts_highest.score }}</p>
+        {% else %}
+        <p>None yet.</p>
+        {% endif %}
       </div>
     </div>
 <div class="card border-primary m-auto mb-3" style="max-width: 30rem">
