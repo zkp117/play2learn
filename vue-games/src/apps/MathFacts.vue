@@ -173,7 +173,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('/api/record-score/mathfacts', userData);
+        const response = await axios.post('/games/api/record-score/mathfacts', userData);
         console.log("Score saved successfully", response.data);
       } catch (error) {
         console.error("Error saving score", error);
