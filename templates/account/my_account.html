@@ -19,16 +19,16 @@
 
         <h4>Anagram Hunt:</h4>
         {% if anagramhunt_newest %}
-        <p> Latest Score: {{ anagramhunt_newest.score }}</p>
-        <p> Highest Score: {{ anagramhunt_highest.score }}</p>
+        <p><strong>Latest Score: {{ anagramhunt_newest.score }}</strong></p>
+        <p><strong>Highest Score: {{ anagramhunt_highest.score }}</strong></p>
         {% else %}
         <p>None yet.</p>
         {% endif %}
 
         <h4>Math Facts:</h4>
         {% if mathfacts_newest %}
-        <p> Latest Score: {{ mathfacts_newest.score }}</p>
-        <p> Highest Score: {{ mathfacts_highest.score }}</p>
+        <p><strong>Latest Score: {{ mathfacts_newest.score }}</strong></p>
+        <p><strong>Highest Score: {{ mathfacts_highest.score }}</strong></p>
         {% else %}
         <p>None yet.</p>
         {% endif %}
