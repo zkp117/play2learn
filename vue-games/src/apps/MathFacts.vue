@@ -121,6 +121,8 @@ label {
 <script>
 
 import { getRandomInteger } from '@/helpers/helpers';
+import { toHandlers } from 'vue';
+import axios from 'axios';
 
 export default {
   name: 'MathGame',
@@ -168,8 +170,17 @@ export default {
       }
     },
     async recordScore() {
-      // TODO: when Math Facts finishes, make an Ajax call with axios (this.axios)
-      // to record the score on the backend
+      
+      const recordScore = {
+        score: this.score
+      };
+
+      try {
+        const response = await this.axios.post('/api/record-score/', userData);
+        console.log("Score saved successfully", response.data);
+      } catch (error) {
+        console.error("Error saving score", error);
+      }
     }
   },
   computed: {

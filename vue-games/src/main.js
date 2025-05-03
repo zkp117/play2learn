@@ -8,6 +8,7 @@ import App from "./App";
 // set default Django cookies and headers
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.withCredentials = true;
 
 const app = createApp(App); // create our app instance
 
