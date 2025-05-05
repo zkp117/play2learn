@@ -1,3 +1,5 @@
+app_name = 'games'
+
 from django.urls import path
 from .views import MathFactsView, AnagramHuntView, EnterMathFactsScore
 

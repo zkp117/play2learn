@@ -6,7 +6,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     # Ensure this path includes Vue app routes
-    path('games/', include(('games.urls', 'games'), namespace='games')),
+    path('games/', include(('games.urls'), namespace='games')),
+    path('vue-games/', include('games_vue.urls', namespace='vue-games')),
 
     # Include other apps with their respective paths
     path('', include("pages.urls")),
