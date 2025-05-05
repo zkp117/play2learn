@@ -218,6 +218,7 @@ STORAGES = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",  # your Vue app URL
+    "http://localhost:8000",
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
@@ -7,11 +9,11 @@ urlpatterns = [
 
     # Ensure this path includes Vue app routes
     path('games/', include(('games.urls'), namespace='games')),
-    path('vue-games/', include('games_vue.urls', namespace='vue-games')),
+    path('vue-games/', include('vue-games.urls', namespace='vue-games')),
 
     # Include other apps with their respective paths
     path('', include("pages.urls")),
     path('', include('users.urls')),
     path('', include('reviews.urls')),
     path('scoreboards/', include('scoreboards.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
