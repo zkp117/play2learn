@@ -9,7 +9,7 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.withCredentials = true;
 
-const app = createApp(App); // Create app instance
+const app = Vue.createApp(App); // Create app instance
 
 app.use(router); // Use the router
 app.use(VueAxios, axios); // Use axios
