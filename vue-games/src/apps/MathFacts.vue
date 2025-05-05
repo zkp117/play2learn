@@ -120,6 +120,7 @@ label {
 
 <script>
 import { getRandomInteger } from '@/helpers/helpers';
+import Axios from 'axios';
 
 export default {
   name: 'MathGame',
@@ -173,7 +174,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('/games/api/record-score/mathfacts', userData);
+        const response = await Axios.post('/games/api/record-score/mathfacts', userData);
         console.log("Score saved successfully", response.data);
       } catch (error) {
         console.error("Error saving score", error);

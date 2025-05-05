@@ -130,10 +130,17 @@ export default {
       this.correctGuesses = [];
     },
     async recordScore() {
-      // TODO: when Anagram Hunt finishes, make an Ajax call with axios (this.axios)
-      // to record the score on the backend
 
-      response = requests.get()
+      const userData = {
+        score: this.score
+      };
+
+      try {
+        const response = await Axios.post('/games/api/record-score/anagramhunt', userData);
+        console.log("Score saved successfully", response.data);
+      } catch (error) {
+        console.error("Error saving score", error);
+      }
     }
   },
   watch: {
