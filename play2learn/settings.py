@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'storages',
     'games',
     'scoreboards',
+    'corsheaders'
 ]
 
 SITE_ID = 1
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.admindocs.middleware.XViewMiddleware',
     'django.middleware.cache.CacheMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'play2learn.urls'
@@ -190,8 +192,8 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'play2learn.storage_backends.PublicMediaStorage'
 PRIVATE_FILE_STORAGE = 'play2learn.storage_backends.PrivateMediaStorage'
 
-STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
-MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/public/'
+STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/static/'
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/media/public/'
 
 PUBLIC_MEDIA_LOCATION = 'media/public'
 PRIVATE_MEDIA_STORAGE = 'media/private'
@@ -213,6 +215,10 @@ STORAGES = {
         "BACKEND": "play2learn.storage_backends.PrivateMediaStorage",
     },
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",  # your Vue app URL
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
