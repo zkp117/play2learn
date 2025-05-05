@@ -1,19 +1,17 @@
-import { createApp } from 'vue';
+import { createApp } from 'vue'; // Vue 3 syntax
+import App from './App.vue';
+import router from './router';  // Import the router
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-import router from './router'; // import our router
-import App from "./App";
-
-// set default Django cookies and headers
+// Set default Django cookies and headers
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.withCredentials = true;
 
-const app = createApp(App); // create our app instance
+const app = createApp(App); // Create app instance
 
-app.use(router); // tell our app to use our router
+app.use(router); // Use the router
+app.use(VueAxios, axios); // Use axios
 
-app.use(VueAxios, axios); // tell our app to use axios
-
-app.mount("#app"); // mount our app on the div#app element in our template
+app.mount('#app'); // Mount the app to the DOM
