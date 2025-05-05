@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views import View
+from django.shortcuts import render
 import json
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
@@ -32,3 +33,6 @@ class EnterAnagramHuntScore(View):
             AnagramHuntScore.objects.create(user=request.user, score=score)
             return JsonResponse({'status': 'success', 'score': score})
         return JsonResponse({'status': 'error', 'message': 'No score provided'}, status=400)
+    
+def view_game(request):
+    return render(request, 'templates/index.html')
