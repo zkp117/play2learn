@@ -172,11 +172,16 @@ export default {
       const userData = {
         score: this.score
       };
-
+      
       try {
-        const response = await Axios.post('/games/api/record-score/mathfacts', userData);
+        const response = await Axios.post('/games/api/record-score/mathfacts', userData, {
+          headers: { 
+          'Content-Type': 'application/json'
+          }
+        });
         console.log("Score saved successfully", response.data);
-      } catch (error) {
+      }
+      catch (error) {
         console.error("Error saving score", error);
       }
     }

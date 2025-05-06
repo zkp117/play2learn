@@ -41,9 +41,11 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         AnagramHuntScore = apps.get_model('games', 'AnagramHuntScore')
-        MathFactsScore = apps.get_model('games', 'MathFactsScore')
         anagram_score_count = AnagramHuntScore.objects.filter(user=self).aggregate(models.Sum('score'))['score__sum'] or 0
+        
+        MathFactsScore = apps.get_model('games', 'MathFactsScore')
         math_score_count = MathFactsScore.objects.filter(user=self).aggregate(models.Sum('score'))['score__sum'] or 0
+        
         return f'{self.first_name} {self.last_name} ({self.username}) - Anagram Scores: {anagram_score_count}, Math Scores: {math_score_count}'
 
     def get_absolute_url(self):
