@@ -118,7 +118,8 @@ label {
 
 </style>
 
-<script>
+<script type="text/javascript">
+const csrfToken = "{{ csrf_token }}"
 import { getRandomInteger } from '@/helpers/helpers';
 import Axios from 'axios';
 
@@ -168,20 +169,20 @@ export default {
       }
     },
     async recordScore() {
-      
+      console.log("Recording score: ", this.score);
       const userData = {
         score: this.score
       };
-      
+
       try {
         const response = await Axios.post('/games/api/record-score/mathfacts', userData, {
-          headers: { 
-          'Content-Type': 'application/json'
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
           }
         });
         console.log("Score saved successfully", response.data);
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Error saving score", error);
       }
     }
