@@ -5,31 +5,38 @@
 {% block main %}
 
 <h2 class="mb-4">Leaderboards</h2>
-<div class="col-md-6">
-  <h3>Math Facts</h3>
-  <ul class="list-group">
-    {% for score in mathfacts_scores %}
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{ score.user.username }}
-      <span class="badge bg-primary rounded-pill">{{ score.score }}</span>
-    </li>
-    {% empty %}
-    <li class="list-group-item">No scores yet.</li>
-    {% endfor %}
-  </ul>
-</div>
 
-<div class="col-md-6">
-  <h3>Anagram Hunt</h3>
-  <ul class="list-group">
-    {% for score in anagramhunt_scores %}
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{ score.user.username }}
-      <span class="badge bg-success rounded-pill">{{ score.score }}</span>
-    </li>
-    {% empty %}
-    <li class="list-group-item">No scores yet.</li>
-    {% endfor %}
-  </ul>
-</div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <div class="col-md-6">
+        <h3>Math Facts</h3>
+        <ul class="list-group">
+          {% for score in mathfacts_scores %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ score.user.username }}
+            <span class="badge bg-primary rounded-pill">{{ score.score }}</span>
+          </li>
+          {% empty %}
+          <li class="list-group-item">No scores yet.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-md-6">
+        <h3>Anagram Hunt</h3>
+        <ul class="list-group">
+          {% for score in anagramhunt_scores %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ score.user.username }}
+            <span class="badge bg-success rounded-pill">{{ score.score }}</span>
+          </li>
+          {% empty %}
+          <li class="list-group-item">No scores yet.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
 {% endblock %}

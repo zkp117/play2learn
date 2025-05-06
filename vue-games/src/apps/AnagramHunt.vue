@@ -70,10 +70,9 @@
   }
 </style>
 
-<script type="text/javascript">
-const csrfToken = "{{ csrf_token }}"
+<script>
 import anagrams from "@/helpers/anagrams";
-import {getRandomInteger} from "@/helpers/helpers";
+import { getRandomInteger } from "@/helpers/helpers";
 import Axios from "axios";
 
 export default {
@@ -91,6 +90,7 @@ export default {
       correctGuesses: [],
       userInput: "",
       interval: null,
+      csrfToken: document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
     }
   },
   computed: {
@@ -103,19 +103,18 @@ export default {
       this.score = 0;
       this.screen = "play";
       this.newAnagramList();
-      
       this.interval = setInterval(() => {
         this.timeLeft -= 1;
-      }, 1000)
+      }, 1000);
     },
     checkAnswer() {
-      const input = this.userInput.toLowerCase()
+      const input = this.userInput.toLowerCase();
       if (this.anagramList.includes(input) && !this.correctGuesses.includes(input) && this.currentWord !== input) {
         this.correctGuesses.push(input);
         this.userInput = "";
         this.score += 1;
 
-        if (this.correctGuesses.length == this.anagramList.length - 1) {
+        if (this.correctGuesses.length === this.anagramList.length - 1) {
           this.newAnagramList();
         }
       }
@@ -123,23 +122,20 @@ export default {
     newAnagramList() {
       const currentAnagramList = [...this.anagramList];
       const potentialAnagramLists = this.anagrams[this.wordLength];
-      this.anagramList = [...potentialAnagramLists[getRandomInteger(0, potentialAnagramLists.length)]];
-      while (this.anagramList[0] === currentAnagramList[0]) {
+      do {
         this.anagramList = [...potentialAnagramLists[getRandomInteger(0, potentialAnagramLists.length)]];
-      }
+      } while (this.anagramList[0] === currentAnagramList[0]);
       this.currentWord = this.anagramList[getRandomInteger(0, this.anagramList.length)];
       this.correctGuesses = [];
     },
     async recordScore() {
-      console.log("Recording score: ", this.score);
-      const userData = {
-        score: this.score
-      };
       try {
-        const response = await Axios.post('/games/api/record-score/anagramhunt/', userData, {
+        const response = await Axios.post('/games/api/record-score/anagramhunt/', {
+          score: this.score
+        }, {
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
+            'X-CSRFToken': this.csrfToken
           },
           withCredentials: true
         });
@@ -147,21 +143,20 @@ export default {
       } catch (error) {
         console.error("Error saving score", error);
       }
-    },
-
+    }
+  },
   watch: {
     userInput() {
-      this.checkAnswer()
+      this.checkAnswer();
     },
     async timeLeft(newValue) {
-      if (newValue == 0) {
+      if (newValue === 0) {
         clearInterval(this.interval);
-        this.timeLeft = 60;
         await this.recordScore();
+        this.timeLeft = 60;
         this.screen = "end";
       }
     }
   }
-}
 }
 </script>
