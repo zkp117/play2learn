@@ -100,7 +100,7 @@
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
         <button onclick="window.location.href='/reviewing_math/'" class="btn btn-info w-100 m-1">Write MathFacts Review</button>
-        <button onclick="window.location.href='[...]'" class="btn btn-light w-100 m-1">Check the Scoreboard</button>
+        <button onclick="window.location.href='/scoreboards/'" class="btn btn-light w-100 m-1">Check the Scoreboard</button>
 
       </div>
     </div>
@@ -175,11 +175,12 @@ export default {
       };
 
       try {
-        const response = await Axios.post('/games/api/record-score/mathfacts', userData, {
+        const response = await Axios.post('/games/api/record-score/mathfacts/', userData, {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken
-          }
+          },
+          withCredentials: true
         });
         console.log("Score saved successfully", response.data);
       } catch (error) {
@@ -221,12 +222,13 @@ export default {
         this.userInput = "";
       }
     },
-    timeLeft(newTime) {
+    async timeLeft(newTime) {
       if (newTime === 0) {
         clearInterval(this.interval);
         this.timeLeft = 60;
+        await this.recordScore();
         this.screen = "end";
-        this.recordScore(); // call to record score
+        console.log("Time's up! Your score is added");
       }
     }
   }
