@@ -70,10 +70,11 @@
   }
 </style>
 
-<script>
+<script type="text/javascript">
+const csrfToken = "{{ csrf_token }}"
 import anagrams from "@/helpers/anagrams";
 import {getRandomInteger} from "@/helpers/helpers";
-import { Axios } from "axios";
+import Axios from "axios";
 
 export default {
   name: 'AnagramGame',
@@ -130,32 +131,37 @@ export default {
       this.correctGuesses = [];
     },
     async recordScore() {
-
+      console.log("Recording score: ", this.score);
       const userData = {
         score: this.score
       };
-
       try {
-        const response = await Axios.post('/games/api/record-score/anagramhunt', userData);
+        const response = await Axios.post('/games/api/record-score/anagramhunt/', userData, {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+          },
+          withCredentials: true
+        });
         console.log("Score saved successfully", response.data);
       } catch (error) {
         console.error("Error saving score", error);
       }
-    }
-  },
+    },
+
   watch: {
     userInput() {
-      // check answer when user input changes
       this.checkAnswer()
     },
-    timeLeft(newValue) {
+    async timeLeft(newValue) {
       if (newValue == 0) {
-        this.screen = "end";
-        this.timeLeft = 60;
         clearInterval(this.interval);
-        this.recordScore(); // calls recordScore
+        this.timeLeft = 60;
+        await this.recordScore();
+        this.screen = "end";
       }
     }
   }
+}
 }
 </script>
