@@ -16,10 +16,12 @@ from django.views.generic import UpdateView
 from games.models import AnagramHuntScore, MathFactsScore
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):  # Renamed
     success_url = reverse_lazy('my-account')
+    login_url = reverse_lazy('account_login')
     
 class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     model = get_user_model()
+    login_url = reverse_lazy('account_login')
     form_class = CustomUserChangeForm
     success_message = 'Update Successful'
     success_url = reverse_lazy('my-account')

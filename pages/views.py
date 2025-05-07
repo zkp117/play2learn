@@ -18,8 +18,8 @@ class MathFactsView(TemplateView):
 class CustomLoginView(TemplateView):
     template_name = 'account/login.html'
 
-class ScoreBoardsSummary(TemplateView):
-    template_name = 'vue-scoreboards/scoreboards_summary.html'
-
 class SettingsView(TemplateView):
     template_name = 'account/settings.html'
+
+class ScoreBoardsView(TemplateView):
+    template_name = 'templates/scoreboards.html'

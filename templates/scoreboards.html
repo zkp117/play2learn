@@ -11,11 +11,14 @@
     <div class="col h-100 d-flex align-items-center justify-content-center">
       <div class="col-md-6">
         <h3>Math Facts</h3>
-        <ul class="list-group">
+        <ul class="list-group overflow-auto" style="max-height: 500px;">
           {% for score in mathfacts_scores %}
           <li class="list-group-item">
             <div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center">
-              <div class="text-start">
+              <div class="text-start" style="font-size:large;">
+                <strong class="">
+                  {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
+                </strong>
                 {{ score.user.username }}<br>
                 <small class="text-muted">{{ score.date|date:"M d Y h:ia" }}</small>
               </div>
@@ -49,6 +52,6 @@
       </div>
     </div>
   </div>
-</div>
+ </div>
 
 {% endblock %}

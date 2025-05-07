@@ -1,7 +1,5 @@
 from django.views.generic import TemplateView
-from django.http import HttpResponse
 from games.models import MathFactsScore, AnagramHuntScore
-
 class ScoreBoards(TemplateView):
     template_name = 'scoreboards.html'
 
