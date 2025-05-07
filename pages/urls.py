@@ -8,6 +8,6 @@ urlpatterns = [
     path('', HomePageView.as_view(), name='homepage'),
     path('about-us/', AboutUsView.as_view(), name='about-us'),
     path('anagram-hunt/', AnagramHuntView.as_view(), name='anagram-hunt'),
-    path('settings/', SettingsView.as_view(), name='my-play2learn'),
+    path('settings/', SettingsView.as_view(), name='settings'),
     path('math-facts/', MathFactsView.as_view(), name='math-facts')
 ]
