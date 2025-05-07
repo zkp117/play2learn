@@ -1,3 +1,9 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}My Play2Learn{% endblock title %}
+
+{% block main %}
 <div class="card border-primary m-auto mb-3" style="max-width: 30rem">
     <div class="card-header text-center">Game Scores</div>
     <div class="card-body text-center">
@@ -19,3 +25,4 @@
       {% endif %}
     </div>
   </div>
+  {% endblock %}
