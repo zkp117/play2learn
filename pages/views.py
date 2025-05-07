@@ -21,5 +21,5 @@ class CustomLoginView(TemplateView):
 class ScoreBoardsSummary(TemplateView):
     template_name = 'vue-scoreboards/scoreboards_summary.html'
 
-class MyPlay2LearnView(TemplateView):
-    template_name = 'account/my-play2learn.html'
+class SettingsView(TemplateView):
+    template_name = 'account/settings.html'
