@@ -4,25 +4,5 @@
 {% block title %}My Play2Learn{% endblock title %}
 
 {% block main %}
-<div class="card border-primary m-auto mb-3" style="max-width: 30rem">
-    <div class="card-header text-center">Game Scores</div>
-    <div class="card-body text-center">
 
-      <h4>Anagram Hunt:</h4>
-      {% if anagramhunt_newest %}
-      <p><strong>Latest Score: {{ anagramhunt_newest.score }}</strong></p>
-      <p><strong>Highest Score: {{ anagramhunt_highest.score }}</strong></p>
-      {% else %}
-      <p>None yet.</p>
-      {% endif %}
-
-      <h4>Math Facts:</h4>
-      {% if mathfacts_newest %}
-      <p><strong>Latest Score: {{ mathfacts_newest.score }}</strong></p>
-      <p><strong>Highest Score: {{ mathfacts_highest.score }}</strong></p>
-      {% else %}
-      <p>None yet.</p>
-      {% endif %}
-    </div>
-  </div>
   {% endblock %}
