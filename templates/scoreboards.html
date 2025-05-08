@@ -15,14 +15,14 @@
           {% for score in mathfacts_scores %}
           <li class="list-group-item">
             <div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center">
-              <div class="text-start" style="font-size:large;">
-                <strong class="">
+              <div class="text-start" style="font-size:larger;">
+                <strong>
                   {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
                 </strong>
                 {{ score.user.username }}<br>
                 <small class="text-muted">{{ score.date|date:"M d Y h:ia" }}</small>
               </div>
-              <span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span>
+              <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
             </div>
           </li>
           {% empty %}
@@ -38,11 +38,14 @@
           {% for score in anagramhunt_scores %}
           <li class="list-group-item">
             <div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center">
-              <div class="text-start">
+              <div class="text-start" style="font-size:large;">
+                <strong>
+                  {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
+                </strong>
                 {{ score.user.username }}<br>
                 <small class="text-muted">{{ score.date|date:"M d Y h:ia" }}</small>
               </div>
-              <span class="badge bg-success rounded-pill mt-2 mt-md-0">{{ score.score }}</span>
+              <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
             </div>
           </li>
           {% empty %}
