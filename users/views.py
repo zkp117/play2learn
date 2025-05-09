@@ -45,14 +45,13 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return context
     
     def form_valid(self, form):
-        user = form.save(commit=False)
+        response = super().form_valid(form)
         if 'avatar' in self.request.FILES:
-            user.avatar = self.request.FILES['avatar']
-        user.save()
-        self.request.user.refresh_from_db()
-        return super().from_valid(form)
+            self.request.user.avatar = self.request.FILES['avatar']
+            self.request.user.save()
+            self.request.user.refresh_from_db()
+        return response
 
-    
 @login_required
 def clear_avatar(request):
     user = request.user

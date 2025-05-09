@@ -1,4 +1,4 @@
-{% extends '_base.html' %}
+]{% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
 {% block title %}My Account{% endblock %}
@@ -7,33 +7,20 @@
 <div class="container mt-3">
   <div class="row justify-content-center align-items-start" style="max-width: 1000px; margin: 0 auto;">
 
-    <!-- Left Column: Avatar & Scores -->
+    <!-- Left Column: Avatar Preview & Game Scores -->
     <div class="col-md-5 mb-4">
 
       <div class="card border-primary mb-3">
         <div class="card-header text-center">Your Avatar</div>
         <div class="card-body text-center">
-
           {% if user.avatar %}
             <img src="{{ user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2" style="max-height: 300px;">
             <form method="POST" action="{% url 'clear_avatar' %}">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger mb-2">Clear Avatar</button>
             </form>
           {% else %}
             <p>No avatar set.</p>
           {% endif %}
-
-          <!-- Upload Avatar Form (only in this section) -->
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="mb-2 text-start">
-              <label for="id_avatar" class="form-label"><strong>Add Avatar:</strong></label>
-              {{ form.avatar }}
-            </div>
-            <div class="text-end">
-            </div>            
-          </form>
         </div>
       </div>
 
@@ -63,7 +50,7 @@
       </div>
     </div>
 
-    <!-- Right Column: Profile Form -->
+    <!-- Right Column: Profile Form including Avatar Upload -->
     <div class="col-md-5 mb-4">
       <div class="card border-primary h-100">
         <div class="card-header text-center">Update Profile</div>
