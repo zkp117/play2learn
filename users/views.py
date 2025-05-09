@@ -48,6 +48,7 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         response = super().form_valid(form)
         self.request.user.refresh_from_db()
         return response
+
     
 @login_required
 def clear_avatar(request):
