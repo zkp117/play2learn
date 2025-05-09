@@ -45,17 +45,20 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return context
     
     def form_valid(self, form):
-        response = super().form_valid(form)
+        user = form.save(commit=False)
+        if 'avatar' in self.request.FILES:
+            user.avatar = self.request.FILES['avatar']
+        user.save()
         self.request.user.refresh_from_db()
-        return response
+        return super().from_valid(form)
 
     
 @login_required
 def clear_avatar(request):
     user = request.user
-    user.avatar.delete()  # Delete the avatar file
-    user.save()  # Save the user instance
-    return redirect('my-account')  # Redirect back to the profile page
+    user.avatar.delete()
+    user.save()
+    return redirect('my-account') 
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
     authentication_form = CustomAuthenticationForm

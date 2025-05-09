@@ -7,9 +7,9 @@
 <div class="container mt-3">
   <div class="row justify-content-center align-items-start" style="max-width: 1000px; margin: 0 auto;">
 
+    <!-- Left Column: Avatar & Scores -->
     <div class="col-md-5 mb-4">
 
-      <!-- Avatar & Game Scores Card -->
       <div class="card border-primary mb-3">
         <div class="card-header text-center">Your Avatar</div>
         <div class="card-body text-center">
@@ -24,10 +24,20 @@
             <p>No avatar set.</p>
           {% endif %}
 
+          <!-- Upload Avatar Form -->
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-2 text-start">
+              <label for="id_avatar" class="form-label"><strong>Add Avatar:</strong></label>
+              {{ form.avatar }}
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-success">Upload Avatar</button>
+            </div>            
+          </form>
         </div>
       </div>
 
-      <!-- Game Scores -->
       <div class="card border-primary text-center">
         <div class="card-header">Game Scores</div>
         <div class="card-body" style="max-height: 300px; overflow-y: auto;">
@@ -54,16 +64,14 @@
       </div>
     </div>
 
-    <!-- Update Profile (avatar + fields) -->
+    <!-- Right Column: Profile Form -->
     <div class="col-md-5 mb-4">
       <div class="card border-primary h-100">
         <div class="card-header text-center">Update Profile</div>
         <div class="card-body">
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {% for field in form %}
-              {{ field|as_crispy_field }}
-            {% endfor %}
+            {{ form|crispy }}
             <button type="submit" class="form-control btn btn-primary mt-3">Save Changes</button>
           </form>
         </div>
