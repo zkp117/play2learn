@@ -89,10 +89,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.tz',
             ],
         },
     },
 ]
+
+USE_TZ = True
+
+TIME_ZONE = 'America/New_York'
+
 
 WSGI_APPLICATION = 'play2learn.wsgi.application'
 

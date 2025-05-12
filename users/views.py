@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from .forms import CustomAuthenticationForm
 from .forms import CustomUserChangeForm
@@ -14,12 +15,12 @@ from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
 from games.models import AnagramHuntScore, MathFactsScore
-class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):  # Renamed
+
+class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):
     success_url = reverse_lazy('my-account')
     login_url = reverse_lazy('account_login')
     
-class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
-
+class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = get_user_model()
     login_url = reverse_lazy('account_login')
     form_class = CustomUserChangeForm
@@ -29,18 +30,27 @@ class MyAccountPageView( SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     def get_object(self):
         return self.request.user
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
+        # Fetch AnagramHunt and MathFacts scores
         anagram_scores = AnagramHuntScore.objects.filter(user=user)
+        mathfacts_scores = MathFactsScore.objects.filter(user=user)
+
+        # Add the newest and highest scores to context
         context['anagramhunt_newest'] = anagram_scores.order_by('-date').first()
         context['anagramhunt_highest'] = anagram_scores.order_by('-score').first()
 
-        mathfacts_scores = MathFactsScore.objects.filter(user=user)
         context['mathfacts_newest'] = mathfacts_scores.order_by('-date').first()
         context['mathfacts_highest'] = mathfacts_scores.order_by('-score').first()
+
+        # Convert all times to local time before passing to template
+        if context['anagramhunt_newest']:
+            context['anagramhunt_newest'].date_added = timezone.localtime(context['anagramhunt_newest'].date_added)
+        if context['mathfacts_newest']:
+            context['mathfacts_newest'].date_added = timezone.localtime(context['mathfacts_newest'].date_added)
 
         return context
     
@@ -58,12 +68,10 @@ def clear_avatar(request):
     user.avatar.delete()
     user.save()
     return redirect('my-account') 
+
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
     authentication_form = CustomAuthenticationForm
 
     def get_success_url(self):
         return reverse_lazy('my-account')
-
-
-    
