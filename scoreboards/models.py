@@ -5,9 +5,12 @@ class MathFactsScoreBoard(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     operation = models.CharField()
-    max_number = models.IntegerField()
+    max_number = models.IntegerField(max_length=20)
     time_left = models.DurationField()
     date_added = models.DateTimeField(('date added'), default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.score}"
 
 class AnagramHuntScoreBoard(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -15,3 +18,6 @@ class AnagramHuntScoreBoard(models.Model):
     word_length = models.IntegerField()
     time_left = models.DurationField()
     date_added = models.DateTimeField(('date added'), default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.score}"
