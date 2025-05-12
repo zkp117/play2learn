@@ -1,34 +1,30 @@
 from django import forms
+from users.models import CustomUser
 
-PREREQUISITE_QUESTION = [
-    ('1', 'No'),
-    ('2', 'Yes'),
-]
-class ReviewsMathForm(forms.Form):
-    email = forms.EmailField(
-        label="Your email address"
-    )
-    
-    prerequisite = forms.ChoiceField(
-        choices=PREREQUISITE_QUESTION,
-        label="Have you reviewed this game before?")
-    
-    user_review = forms.CharField(
-        widget=forms.Textarea,
-        label="Write you review here!")
+class ReviewsMathForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['mathfacts_review']
 
-class ReviewsAnagramForm(forms.Form):
+        labels = {
+            'mathfacts_review': 'Write your review here!',
+        }
 
-    transfered_score = [...]  # the score from the game just completed
+        widgets = {
+            'mathfacts_review': forms.Textarea(
+                attrs={'placeholder': 'If you want, you can say what number level you chose and what your score was.'}),
+        }
 
-    email = forms.EmailField(
-        label="Your email address"
-    )
-    
-    prerequisite = forms.ChoiceField(
-        choices=PREREQUISITE_QUESTION,
-        label="Have you reviewed this game before?")
-    
-    user_review = forms.CharField(
-        widget=forms.Textarea,
-        label="Write you review here!")
+class ReviewsAnagramForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['anagramhunt_review']
+
+        labels = {
+            'anagramhunt_review': 'Write your review here!',
+        }
+
+        widgets = {
+            'anagramhunt_review': forms.Textarea(
+                attrs={'placeholder': 'If you want, you can say which word letter length you chose and what your score was.'}),
+        }

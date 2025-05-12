@@ -8,20 +8,6 @@
   <div class="row justify-content-center align-items-start gx-2" style="max-width: 1000px; margin: 0 auto;">
 
     <div class="col-md-5 mb-4">
-      <div class="card border-primary mb-3">
-        <div class="card-header text-center">Your Avatar</div>
-        <div class="card-body text-center">
-          {% if user.avatar %}
-            <img src="{{ user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2">
-            <form method="POST" action="{% url 'clear_avatar' %}">
-              {% csrf_token %}
-            </form>
-          {% else %}
-            <p>No avatar set.</p>
-          {% endif %}
-        </div>
-      </div>
-
       <div class="card border-primary text-center">
         <div class="card-header">Game Scores</div>
         <div class="card-body">
@@ -48,11 +34,49 @@
       </div>
     </div>
 
+    <div class="col-md-5 mb-4">
+      <div class="card border-primary h-100">
+        <div class="card-header text-center">Game Reviews</div>
+        <div class="card-body">
+          <h4 class="mt-3">Anagram Hunt</h4>
+          {% if anagramreview_newest %}
+          <strong>Latest Review:</strong>
+          <p>{{ anagramreview_newest }}</p><br>
+          <strong>Highest Rated Review</strong>
+          <p>{{ anagramreview_leading }}</p>
+          {% else %}
+          <p>None yet.</p>
+          {% endif %}
+
+          <h4 class="mt-3">Math Facts</h4>
+          {% if mathreview_newest %}
+          <strong>Latest Review:</strong>
+          <p>{{ mathreview_newest }}</p><br>
+          <strong>Highest Rated Review</strong>
+          <p>{{ mathreview_leading }}</p>
+          {% else %}
+          <p>None yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
     <!-- Right Column: Profile Form including Avatar Upload -->
     <div class="col-md-5 mb-4">
       <div class="card border-primary h-100">
         <div class="card-header text-center">Update Profile</div>
         <div class="card-body">
+          <div class="text-center">Your Avatar</div>
+        <div class="card-body text-center">
+          {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2">
+            <form method="POST" action="{% url 'clear_avatar' %}">
+              {% csrf_token %}
+            </form>
+          {% else %}
+            <p>No avatar set.</p>
+          {% endif %}
+        </div>
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
