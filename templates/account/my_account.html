@@ -1,14 +1,14 @@
-]{% extends '_base.html' %}
+{% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
 {% block title %}My Account{% endblock %}
 
 {% block main %}
 <div class="container mt-3">
-  <div class="row justify-content-center align-items-start" style="max-width: 1000px; margin: 0 auto;">
+  <div class="row justify-content-center align-items-start gx-2" style="max-width: 1000px; margin: 0 auto;">
 
     <div class="col-md-5 mb-4">
-      <div class="card border-primary mb-3 w-50">
+      <div class="card border-primary mb-3">
         <div class="card-header text-center">Your Avatar</div>
         <div class="card-body text-center">
           {% if user.avatar %}
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="card border-primary text-center w-50">
+      <div class="card border-primary text-center">
         <div class="card-header">Game Scores</div>
         <div class="card-body">
           <h4>Anagram Hunt:</h4>
