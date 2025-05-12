@@ -27,6 +27,12 @@ class CustomUserChangeForm(forms.ModelForm):
                 years=BIRTH_YEAR_CHOICES
             )
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['email', 'username', 'dob'].disabled = True
+
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,
