@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
 
 from .forms import CustomAuthenticationForm
 from .forms import CustomUserChangeForm
@@ -45,12 +44,6 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
         context['mathfacts_newest'] = mathfacts_scores.order_by('-date').first()
         context['mathfacts_highest'] = mathfacts_scores.order_by('-score').first()
-
-        # Convert all times to local time before passing to template
-        if context['anagramhunt_newest']:
-            context['anagramhunt_newest'].date_added = timezone.localtime(context['anagramhunt_newest'].date_added)
-        if context['mathfacts_newest']:
-            context['mathfacts_newest'].date_added = timezone.localtime(context['mathfacts_newest'].date_added)
 
         return context
     

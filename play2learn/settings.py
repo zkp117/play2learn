@@ -95,10 +95,6 @@ TEMPLATES = [
     },
 ]
 
-USE_TZ = True
-
-TIME_ZONE = 'America/New_York'
-
 
 WSGI_APPLICATION = 'play2learn.wsgi.application'
 

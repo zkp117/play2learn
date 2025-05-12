@@ -21,7 +21,7 @@
                   {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
                 </strong>
                 {{ score.user.username }}<br>
-                <small class="text-muted">{{ score.date_added|localtime|date:"M d Y h:ia" }}</small>
+                <small class="text-muted">{{ score.date_added|date:"M d Y h:ia" }}</small>
               </div>
               <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
               <p> Operation: {{ score.operation }} </p>
@@ -47,7 +47,7 @@
                   {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
                 </strong>
                 {{ score.user.username }}<br>
-                <small class="text-muted">{{ score.date_added|localtime|date:"M d Y h:ia" }}</small>
+                <small class="text-muted">{{ score.date_added|date:"M d Y h:ia" }}</small>
               </div>
               <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
             </div>
