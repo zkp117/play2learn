@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from users.models import CustomUser
 from common.utils.text import unique_slug
+import datetime
+from datetime import timedelta
 class Category(models.Model):
     category = models.CharField(max_length=50)
     slug = models.SlugField(
@@ -15,7 +17,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            value = str(self)
+            value = self.category
             self.slug = unique_slug(value, type(self))
         super().save(*args, **kwargs)
 
@@ -25,25 +27,23 @@ class AnagramHuntScore(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='anagram_scores')
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
-    first = [...]
-    second = [...]
-    third = [...]
-    rest = [...]
+    word_length = models.IntegerField(null=True, blank=True)
+    time_left = models.DurationField(default=datetime.timedelta(seconds=0))
 
     def __str__(self):
         return f"{self.user} - AnagramHunt : {self.score}"
     
     @property
     def leading_score(self):
-        AnagramHuntScore.objects.filter(user=self.user).order_by('-score').first()
+        return AnagramHuntScore.objects.filter(user=self.user).order_by('-score').first()
 class MathFactsScore(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='math_scores')
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
-    first = [...]
-    second = [...]
-    third = [...]
-    rest = [...]
+    operation = models.CharField(max_length=20, blank=True)
+    max_number = models.IntegerField(null=True, blank=True)
+    time_left = models.DurationField(default=datetime.timedelta(seconds=0))
+
 
     def __str__(self):
         return f"{self.user} - MathFacts : {self.score}"
