@@ -31,7 +31,9 @@ class CustomUserChangeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['email', 'username', 'dob'].disabled = True
+        self.fields['email'].disabled = True
+        self.fields['username'].disabled = True
+        self.fields['dob'].disabled = True
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(

@@ -13,7 +13,8 @@ def validate_avatar(value):
         raise ValidationError('Avatar must be no bigger than 500x500 pixels.')
 
 class CustomUser(AbstractUser):
-    username = models.CharField(max_length=100, unique=True)
+    username = models.CharField(max_length=100, unique=True,
+        help_text="If you want to change your username, please [...]")
     email = models.EmailField(('email address'), blank=True)
     dob = models.DateField(
         verbose_name="Date of Birth", null=True, blank=True
