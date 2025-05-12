@@ -4,8 +4,14 @@ from users.models import CustomUser
 class MathFactsScoreBoard(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
+    operation = models.CharField()
+    max_number = models.IntegerField()
+    time_left = models.DurationField()
     date_added = models.DateTimeField(('date added'), default=timezone.now)
+
 class AnagramHuntScoreBoard(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
+    word_length = models.IntegerField()
+    time_left = models.DurationField()
     date_added = models.DateTimeField(('date added'), default=timezone.now)

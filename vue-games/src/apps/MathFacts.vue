@@ -169,9 +169,11 @@ export default {
       }
     },
     async recordScore() {
-      console.log("Recording score: ", this.score);
       const userData = {
-        score: this.score
+        score: this.score,
+        operation: this.operation,
+        maxNumber: this.maxNumber,
+        timeLeft: this.timeLeft
       };
 
       try {
@@ -182,9 +184,9 @@ export default {
           },
           withCredentials: true
         });
-        console.log("Score saved successfully", response.data);
+        console.log("Saved successfully", response.data);
       } catch (error) {
-        console.error("Error saving score", error);
+        console.error("Error saving", error);
       }
     }
   },
