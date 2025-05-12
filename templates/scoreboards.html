@@ -9,7 +9,7 @@
 <div class="container text-center">
   <div class="row">
     <div class="col h-100 d-flex align-items-center justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-10">
         <h3>Math Facts</h3>
         <ul class="list-group overflow-auto" style="max-height: 500px;">
           {% for score in mathfacts_scores %}
@@ -19,10 +19,13 @@
                 <strong>
                   {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
                 </strong>
-                {{ score.user.username }} - {{ score.score }}<br>
-                <small class="text-muted">{{ score.date|date:"M d Y h:ia" }}</small>
+                {{ score.user.username }}<br>
+                <small class="text-muted">{{ score.date_added|date:"M d Y h:ia" }}</small>
               </div>
               <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
+              <p> Operation: {{ score.operation }} </p>
+              <p> Time Left: {{score.seconds_left}} seconds</p>
+              <p> Max Number: {{ score.max_number }}</p>
             </div>
           </li>
           {% empty %}
@@ -42,8 +45,8 @@
                 <strong>
                   {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
                 </strong>
-                {{ score.user.username }} - {{ score.score }}<br>
-                <small class="text-muted">{{ score.date|date:"M d Y h:ia" }}</small>
+                {{ score.user.username }}<br>
+                <small class="text-muted">{{ score.date_added|date:"M d Y h:ia" }}</small>
               </div>
               <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
             </div>

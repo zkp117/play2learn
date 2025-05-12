@@ -5,9 +5,13 @@ class MathFactsScoreBoard(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     operation = models.CharField()
-    max_number = models.IntegerField(max_length=20)
+    max_number = models.IntegerField() 
     time_left = models.DurationField()
     date_added = models.DateTimeField(('date added'), default=timezone.now)
+
+    @property
+    def seconds_left(self):
+        return int(self.time_left.total_seconds())
 
     def __str__(self):
         return f"{self.user.username} - {self.score}"
