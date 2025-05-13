@@ -1,5 +1,4 @@
 {% extends "_base.html" %}
-{% load tz %}
 
 {% block title %}LeaderBoards{% endblock %}
 
@@ -9,10 +8,11 @@
 
 <div class="text-center">
   <table class="table table-striped text-center">
+    <h2>Math Facts</h2>
     <thead>
       <tr>
         <th>Ranking</th>
-        <th>Username</th>
+        <th>User</th>
         <th>Date</th>
         <th>Score</th>
         <th>Operation</th>
@@ -23,18 +23,15 @@
     <tbody>
       {% for score in mathfacts_scores %}
       <tr>
-        <td>
-          {% if forloop.counter == 1 %}
-            <span class="h1">🥇</span>
-          {% elif forloop.counter == 2 %}
-            <span class="h1">🥈</span>
-          {% elif forloop.counter == 3 %}
-            <span class="h1">🥉</span>
+        <td class="h3">
+          {% if forloop.counter == 1 %}🥇
+          {% elif forloop.counter == 2 %}🥈
+          {% elif forloop.counter == 3 %}🥉
           {% else %}
             {{ forloop.counter }}.
           {% endif %}
         </td>
-        <td>{{ score.user.username }}</td>
+        <td>{{ score.user.username}}</td>
         <td>{{ score.date_added|date:"M d Y h:ia" }}</td>
         <td>{{ score.score }}</td>
         <td>{{ score.operation }}</td>
@@ -48,8 +45,9 @@
       {% endfor %}
     </tbody>
   </table>
-
+<br>
   <table class="table table-striped text-center">
+    <h2>Anagram Hunt</h2>
     <thead>
       <tr>
         <th>Ranking</th>
@@ -63,13 +61,10 @@
     <tbody>
       {% for score in anagramhunt_scores %}
       <tr>
-        <td>
-          {% if forloop.counter == 1 %}
-            <span class="h1">🥇</span>
-          {% elif forloop.counter == 2 %}
-            <span class="h1">🥈</span>
-          {% elif forloop.counter == 3 %}
-            <span class="h1">🥉</span>
+        <td class="h3">
+          {% if forloop.counter == 1 %}🥇
+          {% elif forloop.counter == 2 %}🥈
+          {% elif forloop.counter == 3 %}🥉
           {% else %}
             {{ forloop.counter }}.
           {% endif %}
