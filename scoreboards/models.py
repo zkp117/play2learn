@@ -14,7 +14,7 @@ class MathFactsScoreBoard(models.Model):
         return int(self.time_left.total_seconds())
 
     def __str__(self):
-        return f"{self.user.username} - {self.score}"
+        return self.user.username
 
 class AnagramHuntScoreBoard(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -23,5 +23,9 @@ class AnagramHuntScoreBoard(models.Model):
     time_left = models.DurationField()
     date_added = models.DateTimeField(('date added'), default=timezone.now)
 
+    @property
+    def seconds_left(self):
+        return int(self.time_left.total_seconds())
+
     def __str__(self):
-        return f"{self.user.username} - {self.score}"
+        return self.user.username

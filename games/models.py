@@ -3,7 +3,6 @@ from django.urls import reverse
 from users.models import CustomUser
 from common.utils.text import unique_slug
 import datetime
-from datetime import timedelta
 class Category(models.Model):
     category = models.CharField(max_length=50)
     slug = models.SlugField(
