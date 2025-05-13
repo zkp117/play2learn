@@ -58,7 +58,7 @@
         <button @click="play" class="btn btn-primary w-100 m-1">Play Again</button>
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
         <button onclick="window.location.href='/reviewing_anagram/'" class="btn btn-info w-100 m-1">Write AnagramHunt Review</button>
-        <button onclick="window.location.href='[...]'" class="btn btn-light w-100 m-1">Check the Scoreboard</button>
+        <button onclick="window.location.href='/scoreboards/'" class="btn btn-light w-100 m-1">Check the Scoreboard</button>
       </div>
     </div>
   </div>

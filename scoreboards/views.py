@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from scoreboards.models import MathFactsScoreBoard, AnagramHuntScoreBoard
+from .models import MathFactsScoreBoard, AnagramHuntScoreBoard
 class ScoreBoards(TemplateView):
     template_name = 'scoreboards.html'
 

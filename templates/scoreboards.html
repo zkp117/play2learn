@@ -7,58 +7,87 @@
 
 <h2 class="mb-4">Leaderboards</h2>
 
-<div class="container text-center">
-  <div class="row">
-    <div class="col h-100 d-flex align-items-center justify-content-center">
-      <div class="col-md-10">
-        <h3>Math Facts</h3>
-        <ul class="list-group overflow-auto" style="max-height: 500px;">
-          {% for score in mathfacts_scores %}
-          <li class="list-group-item">
-            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center">
-              <div class="text-start" style="font-size:larger;">
-                <strong>
-                  {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
-                </strong>
-                {{ score.user.username }}<br>
-                <small class="text-muted">{{ score.date_added|date:"M d Y h:ia" }}</small>
-              </div>
-              <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
-              <p> Operation: {{ score.operation }} </p>
-              <p> Time Left: {{score.seconds_left}} seconds</p>
-              <p> Max Number: {{ score.max_number }}</p>
-            </div>
-          </li>
-          {% empty %}
-          <li class="list-group-item">No scores yet.</li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-    <div class="col h-100 d-flex align-items-center justify-content-center">
-      <div class="col-md-6">
-        <h3>Anagram Hunt</h3>
-        <ul class="list-group">
-          {% for score in anagramhunt_scores %}
-          <li class="list-group-item">
-            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center">
-              <div class="text-start" style="font-size:large;">
-                <strong>
-                  {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}{{ forloop.counter }}.{% endif %}
-                </strong>
-                {{ score.user.username }}<br>
-                <small class="text-muted">{{ score.date_added|date:"M d Y h:ia" }}</small>
-              </div>
-              <h4><span class="badge bg-primary rounded-pill mt-2 mt-md-0">{{ score.score }}</span></h4>
-            </div>
-          </li>
-          {% empty %}
-          <li class="list-group-item">No scores yet.</li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
- </div>
+<div class="text-center">
+  <table class="table table-striped text-center">
+    <thead>
+      <tr>
+        <th>Ranking</th>
+        <th>Username</th>
+        <th>Date</th>
+        <th>Score</th>
+        <th>Operation</th>
+        <th>Time</th>
+        <th>Max Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for score in mathfacts_scores %}
+      <tr>
+        <td>
+          {% if forloop.counter == 1 %}
+            <span class="h1">🥇</span>
+          {% elif forloop.counter == 2 %}
+            <span class="h1">🥈</span>
+          {% elif forloop.counter == 3 %}
+            <span class="h1">🥉</span>
+          {% else %}
+            {{ forloop.counter }}.
+          {% endif %}
+        </td>
+        <td>{{ score.user.username }}</td>
+        <td>{{ score.date_added|date:"M d Y h:ia" }}</td>
+        <td>{{ score.score }}</td>
+        <td>{{ score.operation }}</td>
+        <td>{{ score.time_left.total_seconds|floatformat:0 }}</td>
+        <td>{{ score.max_number }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="7">No scores yet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="table table-striped text-center">
+    <thead>
+      <tr>
+        <th>Ranking</th>
+        <th>Username</th>
+        <th>Date</th>
+        <th>Score</th>
+        <th>Word Length</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for score in anagramhunt_scores %}
+      <tr>
+        <td>
+          {% if forloop.counter == 1 %}
+            <span class="h1">🥇</span>
+          {% elif forloop.counter == 2 %}
+            <span class="h1">🥈</span>
+          {% elif forloop.counter == 3 %}
+            <span class="h1">🥉</span>
+          {% else %}
+            {{ forloop.counter }}.
+          {% endif %}
+        </td>
+        <td>{{ score.user.username }}</td>
+        <td>{{ score.date_added|date:"M d Y h:ia" }}</td>
+        <td>{{ score.score }}</td>
+        <td>{{ score.word_length }}</td>
+        <td>{{ score.time_left.total_seconds|floatformat:0 }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="7">No scores yet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 
 {% endblock %}
