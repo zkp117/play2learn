@@ -23,7 +23,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 class AnagramHuntScore(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='anagram_scores')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='game_anagram_scores')
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     word_length = models.IntegerField(null=True, blank=True)
@@ -36,7 +36,7 @@ class AnagramHuntScore(models.Model):
     def leading_score(self):
         return AnagramHuntScore.objects.filter(user=self.user).order_by('-score').first()
 class MathFactsScore(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='math_scores')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='game_math_scores')
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     operation = models.CharField(max_length=20, blank=True)

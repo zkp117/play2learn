@@ -2,7 +2,10 @@ from django.db import models
 from django.utils import timezone
 from users.models import CustomUser
 class MathFactsScoreBoard(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='math_scores')
     score = models.IntegerField(default=0)
     operation = models.CharField()
     max_number = models.IntegerField() 
@@ -17,7 +20,10 @@ class MathFactsScoreBoard(models.Model):
         return self.user.username
 
 class AnagramHuntScoreBoard(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        CustomUser, 
+        on_delete=models.CASCADE,
+        related_name='anagram_scores')
     score = models.IntegerField(default=0)
     word_length = models.IntegerField()
     time_left = models.DurationField()
