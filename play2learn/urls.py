@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from allauth.socialaccount.models import SocialToken, SocialAccount, SocialApp
 
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
@@ -17,3 +18,7 @@ urlpatterns = [
     path('', include('reviews.urls')),
     path('scoreboards/', include('scoreboards.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+admin.site.unregister(SocialToken)
+admin.site.unregister(SocialAccount)
+admin.site.unregister(SocialApp)

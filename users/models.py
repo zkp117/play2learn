@@ -40,14 +40,9 @@ class CustomUser(AbstractUser):
     def get_mathfacts_scores(self):
         return self.math_scores.aggregate(models.Sum('score'))['score_sum'] or 0
 
+    # shows only username in 'user' section in 'scoreboards' section in admin
     def __str__(self):
-        AnagramHuntScore = apps.get_model('games', 'AnagramHuntScore')
-        anagram_score_count = AnagramHuntScore.objects.filter(user=self).aggregate(models.Sum('score'))['score__sum'] or 0
-        
-        MathFactsScore = apps.get_model('games', 'MathFactsScore')
-        math_score_count = MathFactsScore.objects.filter(user=self).aggregate(models.Sum('score'))['score__sum'] or 0
-        
-        return f'{self.first_name} {self.last_name} ({self.username}) - Anagram Scores: {anagram_score_count}, Math Scores: {math_score_count}'
+        return self.username
 
     def get_absolute_url(self):
         return reverse('my-account')
