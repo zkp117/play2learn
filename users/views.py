@@ -13,8 +13,7 @@ from django.urls import reverse_lazy
 
 from django.views.generic import UpdateView
 
-from games.models import AnagramHuntScore, MathFactsScore
-
+from scoreboards.models import AnagramHuntScoreBoard, MathFactsScoreBoard
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):
     success_url = reverse_lazy('my-account')
     login_url = reverse_lazy('account_login')
@@ -35,14 +34,14 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         user = self.request.user
 
         # Fetch AnagramHunt and MathFacts scores
-        anagram_scores = AnagramHuntScore.objects.filter(user=user)
-        mathfacts_scores = MathFactsScore.objects.filter(user=user)
+        anagram_scores = AnagramHuntScoreBoard.objects.filter(user=user)
+        mathfacts_scores = MathFactsScoreBoard.objects.filter(user=user)
 
         # Add the newest and highest scores to context
-        context['anagramhunt_newest'] = anagram_scores.order_by('-date').first()
+        context['anagramhunt_newest'] = anagram_scores.order_by('-date_added').first()
         context['anagramhunt_highest'] = anagram_scores.order_by('-score').first()
 
-        context['mathfacts_newest'] = mathfacts_scores.order_by('-date').first()
+        context['mathfacts_newest'] = mathfacts_scores.order_by('-date_added').first()
         context['mathfacts_highest'] = mathfacts_scores.order_by('-score').first()
 
         return context

@@ -95,6 +95,9 @@ TEMPLATES = [
     },
 ]
 
+# Time zone is one hour behind without this (I'm not sure why)
+TIME_ZONE = 'America/New_York'
+USE_TZ = True
 
 WSGI_APPLICATION = 'play2learn.wsgi.application'
 
@@ -164,8 +167,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
