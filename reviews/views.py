@@ -3,6 +3,7 @@ from .forms import ReviewsMathForm, ReviewsAnagramForm
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import GameReviews
 
 from common.utils.email_service import send_email
 from .forms import ReviewsMathForm, ReviewsAnagramForm
@@ -12,9 +13,12 @@ class ReviewsMathAppView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('vue-reviews:review_thanks')
 
     def form_valid(self, form):
-        user = self.request.user
-        user.mathfacts_review = form.cleaned_data['mathfacts_review']
-        user.save()
+        GameReviews.objects.create(
+            user = self.request.user,
+            game = 'mathfacts',
+            review = form.cleaned_data['mathfacts_review']
+        )
+
 
         data = form.cleaned_data
         to = 'neeneez2008@gmail.com'
@@ -39,9 +43,11 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('vue-reviews:review_thanks')
 
     def form_valid(self, form):
-        user = self.request.user
-        user.anagramhunt_review = form.cleaned_data['anagramhunt_review']
-        user.save()
+        GameReviews.objects.create(
+            user = self.request.user,
+            game = 'anagramhunt',
+            review = form.cleaned_data['anagramhunt_review']
+        )
 
         data = form.cleaned_data
         to = 'neeneez2008@gmail.com'
