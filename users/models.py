@@ -14,10 +14,12 @@ def validate_avatar(value):
 
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=100, unique=True,
+        verbose_name= 'Username',
         help_text="If you want to change your username, please [...]")
     email = models.EmailField(('email address'), blank=True)
     dob = models.DateField(
-        verbose_name="Date of Birth", null=True, blank=True
+        verbose_name="Date of Birth", null=True, blank=True,
+        help_text="If you fill your birthday wrong, please contact staff"
     )
     avatar = models.ImageField(upload_to='avatars/', 
         storage=PublicMediaStorage(), 

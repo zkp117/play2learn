@@ -33,7 +33,12 @@ class CustomUserChangeForm(forms.ModelForm):
 
         self.fields['email'].disabled = True
         self.fields['username'].disabled = True
-        self.fields['dob'].disabled = True
+
+        if self.instance.dob:
+            self.fields['dob'].disabled = True
+        else:
+            self.fields['dob'].disabled = False
+        
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
