@@ -9,8 +9,8 @@ from django.apps import apps
 
 def validate_avatar(value):
     w, h = get_image_dimensions(value)
-    if w > 500 or h > 500:
-        raise ValidationError('Avatar must be no bigger than 500x500 pixels.')
+    if w > 200 or h > 200:
+        raise ValidationError('Avatar must be no bigger than 200x200 pixels.')
 
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=100, unique=True,

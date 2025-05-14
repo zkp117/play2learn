@@ -2,8 +2,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
-from .forms import CustomAuthenticationForm
-from .forms import CustomUserChangeForm
+from .forms import CustomAuthenticationForm, CustomUserChangeForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView
@@ -49,9 +48,12 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         response = super().form_valid(form)
         if 'avatar' in self.request.FILES:
-            self.request.user.avatar = self.request.FILES['avatar']
-            self.request.user.save()
-            self.request.user.refresh_from_db()
+            avatar = self.request.FILES['avatar']  
+
+        self.request.user.avatar = avatar
+        self.request.user.save()
+        self.request.user.refresh_from_db()
+        
         return response
 
 @login_required
