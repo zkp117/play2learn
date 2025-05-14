@@ -11,14 +11,14 @@ class CustomUserAdmin(UserAdmin):
 
     model = CustomUser
 
-    readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores', 'avatar_display', 'get_math_reviews', 'get_anagram_reviews']
+    readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores', 'avatar_display', 'mathfacts_review', 'anagramhunt_review',]
 
     list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 'get_mathfacts_scores','get_math_reviews', 'get_anagram_reviews')
     list_display_links = ('username', 'email', 'first_name', 'last_name')
 
     fieldsets = UserAdmin.fieldsets + (
         ('Game Scores', {'fields': ('get_anagramhunt_scores', 'get_mathfacts_scores')}),
-        ('Game Reviews', {'fields': ('get_anagram_reviews', 'get_math_reviews')}),
+        ('Game Reviews', {'fields': ('mathfacts_review', 'anagramhunt_review')}),
         ('Personal Information', {'fields': ('dob', 'avatar')}), 
     )
 
@@ -43,15 +43,12 @@ class CustomUserAdmin(UserAdmin):
         return top_score.score if top_score else 0
     get_mathfacts_scores.short_description = "Highest MathFacts Score"
 
-    def get_math_reviews(self,obj):
-        reviews = obj.math_reviews.all()
-        collected_reviews = [review.review_text for review in reviews]
-        return collected_reviews or None
-    get_math_reviews.short_description = 'MathFacts Review(s)'
-    
+    def get_math_reviews(self, obj):
+        return obj.mathfacts_review or "No review submitted"
+    get_math_reviews.short_description = 'MathFacts Review'
+
     def get_anagram_reviews(self, obj):
-        reviews = obj.anagram_reviews.all()
-        collected_reviews = [review.review_text for review in reviews]
-        return collected_reviews or None
-    get_anagram_reviews.short_description = 'AnagramHunts Review(s)'
+        return obj.anagramhunt_review or "No review submitted"
+    get_anagram_reviews.short_description = 'AnagramHunt Review'
+
 
