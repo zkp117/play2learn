@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class GameReviews(models.Model):
+
     GAME_CHOICES = [
         ('mathfacts', 'MathFacts'),
         ('anagramhunt', 'AnagramHunt'),
@@ -12,5 +13,9 @@ class GameReviews(models.Model):
     review = models.TextField()
     submitted = models.DateTimeField(auto_now_add=True)
 
-    def __st__(self):
+    def __str__(self):
         return f"{self.user.username} - {self.get_game_display()}"
+    
+    class Meta:
+        verbose_name = 'Game Review'
+        verbose_name_plural = 'Game Reviews'
