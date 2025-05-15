@@ -13,7 +13,7 @@ class ReviewsMathAppView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('vue-reviews:review_thanks')
 
     def form_valid(self, form):
-        review_text = form.cleaned_data['mathfacts_review']
+        review_text = form.cleaned_data['mathfacts_reviews']
 
         GameReviews.objects.create(
             user=self.request.user,
@@ -21,7 +21,7 @@ class ReviewsMathAppView(LoginRequiredMixin, FormView):
             review=review_text
         )
 
-        self.request.user.mathfacts_review = review_text
+        self.request.user.mathfacts_reviews = review_text
         self.request.user.save()
 
         # Send email
@@ -47,7 +47,7 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('vue-reviews:review_thanks')
 
     def form_valid(self, form):
-        review_text = form.cleaned_data['anagramhunt_review']
+        review_text = form.cleaned_data['anagramhunt_reviews']
 
         # Save to GameReviews
         GameReviews.objects.create(
@@ -56,7 +56,7 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
             review=review_text
         )
 
-        self.request.user.anagramhunt_review = review_text
+        self.request.user.anagramhunt_reviews = review_text
         self.request.user.save()
 
         # Send email

@@ -31,10 +31,6 @@ class CustomUser(AbstractUser):
     anagramhunt_score = models.IntegerField(default=0)
     mathfacts_score = models.IntegerField(default=0)
 
-    # Reivew fields
-    anagramhunt_reviews = models.TextField(null=True, blank=True)
-    mathfacts_reviews = models.TextField(null=True, blank=True)
-
     def get_anagramhunt_scores(self):
         return self.anagram_scores.aggregate(models.Sum('score'))['score_sum'] or 0
 
