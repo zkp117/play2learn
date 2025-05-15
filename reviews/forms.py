@@ -3,22 +3,22 @@ from users.models import CustomUser
 class ReviewsMathForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['mathfacts_review']
+        fields = ['math_reviews']
         labels = {
-            'mathfacts_review': 'Write your review here!',
+            'math_reviews': 'Write your review here!',
         }
         widgets = {
-            'mathfacts_review': forms.Textarea(
+            'math_reviews': forms.Textarea(
                 attrs={'placeholder': 'If you want, you can say what number level you chose and what your score was.'}),
         }
 class ReviewsAnagramForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['anagramhunt_review']
+        fields = ['anagram_reviews']
         labels = {
-            'anagramhunt_review': 'Write your review here!',
+            'anagram_reviews': 'Write your review here!',
         }
         widgets = {
-            'anagramhunt_review': forms.Textarea(
+            'anagram_reviews': forms.Textarea(
                 attrs={'placeholder': 'If you want, you can say which word letter length you chose and what your score was.'}),
         }

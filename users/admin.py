@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 from .models import CustomUser
+from reviews.models import GameReviews
 
 CustomUser = get_user_model()
 @admin.register(CustomUser)
@@ -44,11 +45,11 @@ class CustomUserAdmin(UserAdmin):
     get_mathfacts_scores.short_description = "Highest MathFacts Score"
 
     def get_math_reviews(self, obj):
-        return obj.mathfacts_review or "No review submitted"
-    get_math_reviews.short_description = 'MathFacts Review'
+        review = GameReviews.objects.filter(user = obj, game='mathfacts').order_by('-submitted').first()
+        return review.review if review else "No review submitted"
+    get_math_reviews.short_description = 'MathFacts Reviews'
 
     def get_anagram_reviews(self, obj):
-        return obj.anagramhunt_review or "No review submitted"
-    get_anagram_reviews.short_description = 'AnagramHunt Review'
-
-
+        review = GameReviews.objects.filter(user = obj, game='anagramhunt').order_by('-submitted').first()
+        return review.review if review else 'No review submitted'
+    get_anagram_reviews.short_description = 'AnagramHunt Reviews'

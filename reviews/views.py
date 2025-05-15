@@ -15,14 +15,12 @@ class ReviewsMathAppView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         review_text = form.cleaned_data['mathfacts_review']
 
-        # Save to GameReviews
         GameReviews.objects.create(
             user=self.request.user,
             game='mathfacts',
             review=review_text
         )
 
-        # Update user's profile field
         self.request.user.mathfacts_review = review_text
         self.request.user.save()
 
@@ -43,8 +41,6 @@ class ReviewsMathAppView(LoginRequiredMixin, FormView):
         send_email(to, subject, content)
 
         return super().form_valid(form)
-
-
 class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
     template_name = 'vue-reviews/reviewing_anagram.html'
     form_class = ReviewsAnagramForm
@@ -60,7 +56,6 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
             review=review_text
         )
 
-        # Update user's profile field
         self.request.user.anagramhunt_review = review_text
         self.request.user.save()
 
