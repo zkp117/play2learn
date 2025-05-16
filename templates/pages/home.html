@@ -7,13 +7,14 @@
 {% for review in random_reviews %}
 <div class="carousel-item {% if forloop.first %}active{% endif %}">
   <blockquote class="blockquote text-center">
-    <p class="mb-0">{{ review|linebreaksbr|truncatechars:200 }}</p>
+    <p class="mb-0">{{ review.review|linebreaksbr|truncatechars:200 }}</p>
     <footer class="blockquote-footer">
       {{ review.user.username }} ({{ review.get_game_display }})
     </footer>
   </blockquote>
 </div>
 
+{% endfor %}
 {% endblock %}
 
 {% block main %}
