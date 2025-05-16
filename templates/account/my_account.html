@@ -41,17 +41,14 @@
           <h4 class="mt-3">Anagram Hunt</h4>
           {% if anagramreview_newest %}
           <strong>Latest Review:</strong>
-          <p>{{ anagramreview_newest }}</p><br>
+          <p>{{ anagramreview_newest.review }}</p><br>
           {% else %}
           <p>None yet.</p>
           {% endif %}
-
           <h4 class="mt-3">Math Facts</h4>
-          {% if mathreview_newest %}
+          {% if mathreviews_newest %}
           <strong>Latest Review:</strong>
-          <p>{{ mathreview_newest }}</p><br>
-          <strong>Highest Rated Review</strong>
-          <p>{{ mathreview_leading }}</p>
+          <p>{{ mathreviews_newest.review }}</p><br>
           {% else %}
           <p>None yet.</p>
           {% endif %}

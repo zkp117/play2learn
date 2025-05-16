@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 from .forms import CustomAuthenticationForm, CustomUserChangeForm
+from reviews.models import GameReviews
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView
@@ -36,12 +37,16 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         anagram_scores = AnagramHuntScoreBoard.objects.filter(user=user)
         mathfacts_scores = MathFactsScoreBoard.objects.filter(user=user)
 
-        # Add the newest and highest scores to context
+        # AnagramHunt scores (newest + highest)
         context['anagramhunt_newest'] = anagram_scores.order_by('-date_added').first()
         context['anagramhunt_highest'] = anagram_scores.order_by('-score').first()
 
+        # MathFacts scores (newest + highest)
         context['mathfacts_newest'] = mathfacts_scores.order_by('-date_added').first()
         context['mathfacts_highest'] = mathfacts_scores.order_by('-score').first()
+
+        context['anagramreview_newest'] = GameReviews.objects.filter(user=user, game='anagramhunt').order_by('-submitted').first()
+        context['mathreview_newest'] = GameReviews.objects.filter(user=user, game='mathfacts').order_by('-submitted').first()
 
         return context
     

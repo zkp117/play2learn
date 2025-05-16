@@ -31,17 +31,15 @@ class CustomUser(AbstractUser):
     anagramhunt_score = models.IntegerField(default=0)
     mathfacts_score = models.IntegerField(default=0)
 
+    # Reivew fields
+    anagramhunt_reviews = models.TextField(null=True, blank=True)
+    mathfacts_reviews = models.TextField(null=True, blank=True)
+
     def get_anagramhunt_scores(self):
         return self.anagram_scores.aggregate(models.Sum('score'))['score_sum'] or 0
 
     def get_mathfacts_scores(self):
         return self.math_scores.aggregate(models.Sum('score'))['score_sum'] or 0
-    
-    def get_math_reviews(self):
-        return self.math_reviews
-    
-    def get_anagram_reviews(self):
-        return self.anagram_reviews
     
     # shows only username in 'user' section in 'scoreboards' section in admin
     def __str__(self):

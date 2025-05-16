@@ -12,7 +12,7 @@ class CustomUserAdmin(UserAdmin):
 
     model = CustomUser
 
-    readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores', 'avatar_display', 'mathfacts_review', 'anagramhunt_review',]
+    readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores', 'avatar_display', 'mathfacts_reviews', 'anagramhunt_reviews',]
 
     list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 'get_mathfacts_scores','get_math_reviews', 'get_anagram_reviews')
     list_display_links = ('username', 'email', 'first_name', 'last_name')
