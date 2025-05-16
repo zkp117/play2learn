@@ -3,10 +3,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from allauth.socialaccount.models import SocialToken, SocialAccount, SocialApp
+from users.views import homepage_view
 
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
+    path('', homepage_view, name='home'),
 
     # Ensure this path includes Vue app routes
     path('games/', include(('games.urls'), namespace='games')),

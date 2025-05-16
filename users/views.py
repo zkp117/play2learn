@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
 from .forms import CustomAuthenticationForm, CustomUserChangeForm
@@ -10,6 +10,7 @@ from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChange
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.urls import reverse_lazy
+import random
 
 from django.views.generic import UpdateView
 
@@ -84,3 +85,8 @@ def render_to_response(self, context, **response_kwargs):
         response['Expires'] = '0'
 
         return response
+
+def homepage_view(request):
+    reviews = list(GameReviews.objects.all())
+    homepage_reviews = random.sample(reviews, min(3, len(reviews)))
+    return render(request, 'home.html', {'homepage_reviews': homepage_reviews})
