@@ -28,18 +28,6 @@ class CustomUserChangeForm(forms.ModelForm):
             )
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.fields['email'].disabled = True
-        self.fields['username'].disabled = True
-
-        if self.instance.dob:
-            self.fields['dob'].disabled = True
-        else:
-            self.fields['dob'].disabled = False
-        
-
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,
