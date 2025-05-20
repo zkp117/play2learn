@@ -3,18 +3,37 @@
 {% block title %}Home{% endblock %}
 
 {% block homepage_carousel %}
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    {% for review in random_reviews %}
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}"
+        class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}"
+        aria-label="Slide {{ forloop.counter }}"></button>
+    {% endfor %}
+  </div>
 
-{% for review in random_reviews %}
-<div class="carousel-item {% if forloop.first %}active{% endif %}">
-  <blockquote class="blockquote text-center">
-    <p class="mb-0">{{ review.review|linebreaksbr|truncatechars:200 }}</p>
-    <footer class="blockquote-footer">
-      {{ review.user.username }} ({{ review.get_game_display }})
-    </footer>
-  </blockquote>
+  <div class="carousel-inner">
+    {% for review in random_reviews %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <blockquote class="blockquote text-center p-4">
+          <p class="mb-0">{{ review.review|linebreaksbr|truncatechars:200 }}</p>
+          <footer class="blockquote-footer mt-2">
+            {{ review.user.username }} ({{ review.get_game_display }})
+          </footer>
+        </blockquote>
+      </div>
+    {% endfor %}
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
-
-{% endfor %}
 {% endblock %}
 
 {% block main %}

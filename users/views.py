@@ -88,5 +88,6 @@ def render_to_response(self, context, **response_kwargs):
 
 def homepage_view(request):
     reviews = list(GameReviews.objects.all())
-    homepage_reviews = random.sample(reviews, min(3, len(reviews)))
-    return render(request, 'pages/home.html', {'random_reviews': homepage_reviews})
+    random_reviews = random.sample(reviews, min(3, len(reviews)))
+    return render(request, 'pages/home.html', {'random_reviews': random_reviews})
+

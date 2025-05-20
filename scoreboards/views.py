@@ -1,8 +1,5 @@
 from django.views.generic import TemplateView
 from .models import MathFactsScoreBoard, AnagramHuntScoreBoard
-from django.views.generic.edit import FormView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
 class ScoreBoards(TemplateView):
     template_name = 'scoreboards.html'
 
