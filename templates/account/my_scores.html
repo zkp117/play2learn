@@ -9,7 +9,6 @@
 <table class="table table-striped text-center">
     <thead>
         <tr>
-        <th>Game</th>
         <th>Date</th>
         <th>Score</th>
         <th>Operation</th>
@@ -18,22 +17,22 @@
         </tr>
     </thead>
     <tbody>
-        {% if mathfacts_scores %}
+        {% if mathfacts_userscores %}
       <tr>
         <td class="h3">
 
-        <td>{{ user.score.date_added|date:"M d Y h:ia" }}</td>
-        <td>{{ user.score.score }}</td>
-        <td>{{ user.score.operation }}</td>
-        <td>{{ user.score.time_left.total_seconds|floatformat:0 }}</td>
-        <td>{{ user.score.max_number }}</td>
+        <td>{{ mathfacts_userscore.date_added|date:"M d Y h:ia" }}</td>
+        <td>{{ score.score }}</td>
+        <td>{{ score.operation }}</td>
+        <td>{{ score.time_left.total_seconds|floatformat:0 }}</td>
+        <td>{{ score.max_number }}</td>
           </td>
           {% else %}
            <tr>
         <td colspan="7">No scores yet.</td>
       </tr>
-      {% endif %}
           </tr>
+          {% endif %}
     </tbody>
 </table>
 

@@ -17,8 +17,8 @@ class UserScores(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['mathfacts_scores'] = MathFactsUserScores.objects.order_by('-date_added')
-        context['anagramhunt_scores'] = AnagramHuntUserScores.objects.order_by('-date_added')
+        context['mathfacts_userscores'] = MathFactsUserScores.objects.order_by('-date_added')
+        context['anagramhunt_userscores'] = AnagramHuntUserScores.objects.order_by('-date_added')
 
 
 def render_to_response(self, context, **response_kwargs):
