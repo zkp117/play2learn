@@ -35,3 +35,24 @@ class AnagramHuntScoreBoard(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+class MathFactsUserScores(models.Model):
+    score = models.IntegerField(default=0)
+    operation = models.CharField()
+    max_number = models.IntegerField() 
+    time_left = models.DurationField()
+    date_added = models.DateTimeField(('date added'), default=timezone.now)
+
+    @property
+    def seconds_left(self):
+        return int(self.time_left.total_seconds())
+class AnagramHuntUserScores(models.Model):
+    score = models.IntegerField(default=0)
+    word_length = models.IntegerField()
+    time_left = models.DurationField()
+    date_added = models.DateTimeField(('date added'), default=timezone.now)
+    
+    @property
+    def seconds_left(self):
+        return int(self.time_left.total_seconds())
