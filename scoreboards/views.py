@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import MathFactsScoreBoard, AnagramHuntScoreBoard, MathFactsUserScores, AnagramHuntUserScores
 class ScoreBoards(TemplateView):
     template_name = 'scoreboards.html'
@@ -10,15 +11,15 @@ class ScoreBoards(TemplateView):
         context['anagramhunt_scores'] = AnagramHuntScoreBoard.objects.order_by('-score')[:10]
 
         return context
-
-class UserScores(TemplateView):
+class UserScores(LoginRequiredMixin, TemplateView):
     template_name = 'my_scores.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        context['mathfacts_userscores'] = MathFactsUserScores.objects.order_by('-date_added')
-        context['anagramhunt_userscores'] = AnagramHuntUserScores.objects.order_by('-date_added')
+        user = self.request.user
+        context['mathfacts_userscores'] = MathFactsUserScores.objects.filter(user=user).order_by('-date_added')
+        context['anagramhunt_userscores'] = AnagramHuntUserScores.objects.filter(user=user).order_by('-date_added')
+        return context 
 
 
 def render_to_response(self, context, **response_kwargs):

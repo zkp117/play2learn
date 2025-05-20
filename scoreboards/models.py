@@ -38,6 +38,9 @@ class AnagramHuntScoreBoard(models.Model):
     
 
 class MathFactsUserScores(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     operation = models.CharField()
     max_number = models.IntegerField() 
@@ -48,6 +51,9 @@ class MathFactsUserScores(models.Model):
     def seconds_left(self):
         return int(self.time_left.total_seconds())
 class AnagramHuntUserScores(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     word_length = models.IntegerField()
     time_left = models.DurationField()

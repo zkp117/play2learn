@@ -5,5 +5,5 @@ app_name = 'scoreboards'
 
 urlpatterns = [
     path('',ScoreBoards.as_view(), name='scoreboards'),
-    path('',UserScores.as_view(), name='my-scores')
+    path('my-scores/',UserScores.as_view(), name='my-scores')
 ]

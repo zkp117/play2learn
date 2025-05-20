@@ -1,4 +1,4 @@
-from scoreboards.models import MathFactsScoreBoard, AnagramHuntScoreBoard
+from scoreboards.models import MathFactsScoreBoard, AnagramHuntScoreBoard, MathFactsUserScores, AnagramHuntUserScores
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
@@ -31,6 +31,14 @@ class EnterMathFactsScore(View):
                 max_number = max_number,
                 time_left = timedelta(seconds=float(seconds_left))
             )
+
+            MathFactsUserScores.objects.create(
+                user = request.user,
+                score = score,
+                operation = operation,
+                max_number = max_number,
+                time_left = timedelta(seconds=float(seconds_left))
+            )
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status = 400)
@@ -53,6 +61,16 @@ class EnterAnagramHuntScore(View):
                 word_length = word_length,
                 time_left = timedelta(seconds=float(seconds_left))
             )
+
+            AnagramHuntUserScores.objects.create(
+                user = request.user,
+                score = score,
+                word_length = word_length,
+                time_left = timedelta(seconds=float(seconds_left))
+            )
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status = 400)
+        
+
+        

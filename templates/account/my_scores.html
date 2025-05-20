@@ -17,22 +17,19 @@
         </tr>
     </thead>
     <tbody>
-        {% if mathfacts_userscores %}
-      <tr>
-        <td class="h3">
-
-        <td>{{ mathfacts_userscore.date_added|date:"M d Y h:ia" }}</td>
-        <td>{{ score.score }}</td>
-        <td>{{ score.operation }}</td>
-        <td>{{ score.time_left.total_seconds|floatformat:0 }}</td>
-        <td>{{ score.max_number }}</td>
-          </td>
-          {% else %}
-           <tr>
-        <td colspan="7">No scores yet.</td>
-      </tr>
-          </tr>
-          {% endif %}
+        {% for score in mathfacts_userscores %}
+        <tr>
+            <td>{{ score.date_added|date:"M d Y h:ia" }}</td>
+            <td>{{ score.score }}</td>
+            <td>{{ score.operation }}</td>
+            <td>{{ score.seconds_left }}</td>
+            <td>{{ score.max_number }}</td>
+        </tr>
+        {% empty %}
+    <tr>
+        <td colspan="5">Nothing yet.</td>
+    </tr>
+    {% endfor %}
     </tbody>
 </table>
 
