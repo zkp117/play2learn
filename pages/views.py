@@ -18,8 +18,8 @@ class MathFactsView(TemplateView):
 class CustomLoginView(TemplateView):
     template_name = 'account/login.html'
 
-class SettingsView(TemplateView):
-    template_name = 'account/settings.html'
+class MyScoresView(TemplateView):
+    template_name = 'account/my_scores.html'
 
 class ScoreBoardsView(TemplateView):
     template_name = 'templates/scoreboards.html'
