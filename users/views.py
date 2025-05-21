@@ -66,7 +66,7 @@ class PasswordEmailView(PasswordResetView):
     def get_email_context(self, context):
         context['domain'] = '127.0.0.1:8000'
         context['site_name'] = 'Play2Learn'
-        context['protocol'] = 'https'
+        context['protocol'] = 'http'
         return context
 
 @login_required
