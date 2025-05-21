@@ -6,7 +6,7 @@ from .forms import CustomAuthenticationForm, CustomUserChangeForm
 from reviews.models import GameReviews
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView
+from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView, PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.urls import reverse_lazy
@@ -61,6 +61,13 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         self.request.user.refresh_from_db()
         
         return response
+    
+class PasswordEmailView(PasswordResetView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['domain'] = '127.0.0.1:8000'
+        context['site_name'] = 'Play2Learn'
+        return context
 
 @login_required
 def clear_avatar(request):
