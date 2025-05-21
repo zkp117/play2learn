@@ -6,6 +6,12 @@
 
 {% block main %}
 
-Contact us here
+<h1>Contact Us</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Send</button>
+</form>
+
 
 {% endblock %}

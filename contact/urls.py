@@ -6,6 +6,6 @@ from .views import ContactAppView, ContactAppThanksView
 
 app_name = 'contact'
 urlpatterns = [
-    path('contact_us/', ContactAppView.as_view(), name='app'),
-    path('contact_us/thanks/', ContactAppThanksView.as_view(), name='thanks'),
+    path('contact-us/', ContactAppView.as_view(), name='contact_form'),
+    path('thanks/', ContactAppThanksView.as_view(), name='thanks'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,6 +9,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
     path('', homepage_view, name='home'),
+    path('contact/', include('contact.urls', namespace='contact')),
 
     # Ensure this path includes Vue app routes
     path('games/', include(('games.urls'), namespace='games')),

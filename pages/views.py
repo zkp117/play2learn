@@ -6,9 +6,6 @@ class HomePageView(TemplateView):
 class AboutUsView(TemplateView):
     template_name = 'about-us.html'
 
-class ContactUsView(TemplateView):
-    template_name = 'contact-us.html'
-
 class MyAccountView(TemplateView):
     template_name = 'account/my-account.html'
 
