@@ -34,8 +34,9 @@ class ContactAppView(FormView):
                 user_email,
                 'Your Questions & Feedback Received',
                 '<p>Thank you for reaching out to us! We will respond in 3 - 5 business days</p>'
+                f'<p>Your message:</p>{content}'
             )
 
         return super().form_valid(form)
 class ContactAppThanksView(TemplateView):
-    template_name = 'connect/thanks.html'
+    template_name = 'contact-thanks.html'
