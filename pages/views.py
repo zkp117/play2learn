@@ -19,7 +19,7 @@ class CustomLoginView(TemplateView):
     template_name = 'account/login.html'
 
 class MyScoresView(TemplateView):
-    template_name = 'account/my_scores.html'
+    template_name = 'my_scores.html'
 
 class ScoreBoardsView(TemplateView):
     template_name = 'templates/scoreboards.html'
