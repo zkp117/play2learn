@@ -63,10 +63,10 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return response
     
 class PasswordEmailView(PasswordResetView):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_email_context(self, context):
         context['domain'] = '127.0.0.1:8000'
         context['site_name'] = 'Play2Learn'
+        context['protocol'] = 'https'
         return context
 
 @login_required

@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'corsheaders'
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 # CRISPY SECTION
 
