@@ -4,13 +4,13 @@ class HomePageView(TemplateView):
     template_name = 'pages/home.html'
 
 class AboutUsView(TemplateView):
-    template_name = 'templates/about_us.html'
+    template_name = 'about-us.html'
 
 class ContactUsView(TemplateView):
-    template_name = 'templates/contact_us.html'
+    template_name = 'contact-us.html'
 
 class MyAccountView(TemplateView):
-    template_name = 'account/my_account.html'
+    template_name = 'account/my-account.html'
 
 class AnagramHuntView(TemplateView):
     template_name = 'games/anagram-hunt.html'
