@@ -4,7 +4,10 @@ class HomePageView(TemplateView):
     template_name = 'pages/home.html'
 
 class AboutUsView(TemplateView):
-    template_name = 'pages/about_us.html'
+    template_name = 'templates/about_us.html'
+
+class ContactUsView(TemplateView):
+    template_name = 'templates/contact_us.html'
 
 class MyAccountView(TemplateView):
     template_name = 'account/my_account.html'
