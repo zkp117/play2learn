@@ -10,12 +10,16 @@ import json
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
 
+    @login_required
+    def check_auth(request):
+        return JsonResponse({"authenticated": True})
+
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
 
-    def get(self, request, *args, **kwargs):
-        print("Django served AnagramHuntView")
-        return super().get(request, *args, **kwargs)
+    @login_required
+    def check_auth(request):
+        return JsonResponse({"authenticated": True})
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):

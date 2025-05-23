@@ -15,3 +15,4 @@ class PrivateMediaStorage(S3Boto3Storage):
     location = 'media/private'
     default_acl = 'private'
     file_overwrite = False
+

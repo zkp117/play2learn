@@ -9,9 +9,16 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.withCredentials = true;
 
-const app = createApp(App); // Correct way to create app instance
+fetch("/api/check-auth/")
+  .then(response => {
+    if (!response.ok) {
+      window.location.href = "/accounts/login/";
+    }
+  });
 
-app.use(router); // Use the router
-app.use(VueAxios, axios); // Use axios
+const app = createApp(App);
 
-app.mount('#app'); // Mount the app to the DOM
+app.use(router); 
+app.use(VueAxios, axios);
+
+app.mount('#app');
