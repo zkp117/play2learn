@@ -6,12 +6,16 @@ from django.http import JsonResponse
 from django.views import View
 from datetime import timedelta
 import json
-@method_decorator(login_required, name='dispatch')
+
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
-@method_decorator(login_required, name='dispatch')
+
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
+
+    def get(self, request, *args, **kwargs):
+        print("Django served AnagramHuntView")
+        return super().get(request, *args, **kwargs)
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):
