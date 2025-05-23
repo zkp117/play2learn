@@ -9,12 +9,6 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.withCredentials = true;
 
-fetch("/api/check-auth/")
-  .then(response => {
-    if (!response.ok) {
-      window.location.href = "/accounts/login/";
-    }
-  });
 
 const app = createApp(App);
 
