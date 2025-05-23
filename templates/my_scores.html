@@ -45,7 +45,18 @@
         </tr>
     </thead>
     <tbody>
-        <td></td>
+        <tr>
+            {% for score in anagramhunt_userscores %}
+            <td>{{ score.date_added|date:"M d Y h:ia" }}</td>
+            <td>{{ score.score }}</td>
+            <td>{{ score.word_length }}</td>
+            <td>{{ score.seconds_left }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Nothing yet.</td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 
