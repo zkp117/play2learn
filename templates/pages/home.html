@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block homepage_carousel %}
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="background-color: honeydew;">
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="background-color: rgb(235, 245, 255);">
   <div class="carousel-indicators">
     {% for review in random_reviews %}
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}"
@@ -37,5 +37,54 @@
 {% endblock %}
 
 {% block main %}
-  <h2>Welcome to Play2Learn!</h2>
+
+<br>
+
+  <h2 class="text-center">Welcome to Play2Learn!</h2>
+{% endblock %}
+
+{% block homepage_features %}
+<div class="container">
+  <div class="row g-3 py-5 row-cols-1 row-cols-lg-3">
+    
+    <div class="col">
+      <div class="feature text-center">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle" style="width: 4rem; height: 4rem;">
+          <i class="bi bi-calculator"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Games</h3>
+        <p>On Play2Learn there are two games for you to play, titled MathFacts 
+          and AnagramHunt! To get started, check out either of the games by 
+          reading the rules and start playing. You can play as many times as you want. </p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="feature text-center">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle" style="width: 4rem; height: 4rem;">
+          <i class="bi bi-chat-right-quote"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Reviews</h3>
+        <p>After playing a game, you are offered to wite a review! You can can only write 
+          a review after playing a game while logged in. Your most recent review can see
+          viewed in your profile.
+        </p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="feature text-center">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle" style="width: 4rem; height: 4rem;">
+          <i class="bi bi-award"></i>
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Scoreboards</h3>
+        <p>After playing a game, your score will be added to your personal scoreboard! You can also
+          see if your score was high enough to land a place in the all-user leaderboard. Your personal
+          highest and most recent scores for both games will be visible in your profile.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
 {% endblock %}

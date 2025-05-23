@@ -18,7 +18,6 @@ class CustomUser(AbstractUser):
     email = models.EmailField(('email address'), blank=True)
     dob = models.DateField(
         verbose_name="Date of Birth", null=True, blank=True,
-        help_text="If you fill your birthday wrong, please contact staff"
     )
     avatar = models.ImageField(upload_to='avatars/', 
         storage=PublicMediaStorage(), 
