@@ -1,14 +1,20 @@
-from scoreboards.models import MathFactsScoreBoard, AnagramHuntScoreBoard, MathFactsUserScores, AnagramHuntUserScores
+from scoreboards.models import (
+    MathFactsScoreBoard, 
+    AnagramHuntScoreBoard, 
+    MathFactsUserScores, 
+    AnagramHuntUserScores
+    )
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views import View
 from datetime import timedelta
 import json
-class MathFactsView(TemplateView):
+class MathFactsView(LoginRequiredMixin, TemplateView):
     template_name = "vue-templates/math-facts.html"
-class AnagramHuntView(TemplateView):
+class AnagramHuntView(LoginRequiredMixin, TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
