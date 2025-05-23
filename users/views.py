@@ -53,13 +53,13 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     
     def form_valid(self, form):
         response = super().form_valid(form)
-        if 'avatar' in self.request.FILES:
-            avatar = self.request.FILES['avatar']  
 
-        self.request.user.avatar = avatar
-        self.request.user.save()
-        self.request.user.refresh_from_db()
-        
+        avatar_file = self.request.FILES.get('avatar')
+        if avatar_file:
+            self.request.user.avatar = avatar_file
+            self.request.user.save()
+            self.request.user.refresh_from_db()
+            
         return response
     
 class PasswordEmailView(PasswordResetView):

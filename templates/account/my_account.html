@@ -4,11 +4,13 @@
 {% block title %}My Account{% endblock %}
 
 {% block main %}
-<div class="container mt-3 ">
+<div class="container mt-3">
   <div class="row justify-content-center align-items-start gx-2" style="max-width: 1000px; margin: 0 auto;">
 
-    <div class="col-md-5 mb-4">
-      <div class="card border-primary text-center">
+    <!-- LEFT COLUMN: Game Scores + Reviews -->
+    <div class="col-md-6 mb-4">
+      <!-- Game Scores -->
+      <div class="card border-primary text-center mb-3">
         <div class="card-header">Game Scores</div>
         <div class="card-body">
           <h5>Anagram Hunt:</h5>
@@ -24,7 +26,7 @@
           <h5 class="mt-3">Math Facts:</h5>
           {% if mathfacts_newest %}
             <strong>Latest Score:</strong>
-           <p class="badge bg-primary rounded-pill">{{ mathfacts_newest.score }}</p><br>
+            <p class="badge bg-primary rounded-pill">{{ mathfacts_newest.score }}</p><br>
             <strong>Highest Score:</strong>
             <p class="badge bg-primary rounded-pill">{{ mathfacts_highest.score }}</p>
           {% else %}
@@ -32,47 +34,45 @@
           {% endif %}
         </div>
       </div>
-    </div>
 
-    <div class="col-md-5 mb-4">
+      <!-- Game Reviews -->
       <div class="card border-primary h-100">
         <div class="card-header text-center">Game Reviews</div>
         <div class="card-body">
           <h5 class="mt-3">Anagram Hunt:</h5>
           {% if anagramreview_newest %}
-          <p>{{ anagramreview_newest.review }}</p><br>
+            <p>{{ anagramreview_newest.review }}</p><br>
           {% else %}
-          <p>None yet.</p>
+            <p>None yet.</p>
           {% endif %}
           <h5 class="mt-3">Math Facts:</h5>
-          {% if mathreviews_newest %}
-          <strong>Latest Review:</strong>
-          <p>{{ mathreviews_newest.review }}</p><br>
+          {% if mathreview_newest %}
+            <strong>Latest Review:</strong>
+            <p>{{ mathreview_newest.review }}</p><br>
           {% else %}
-          <p>None yet.</p>
+            <p>None yet.</p>
           {% endif %}
-           <p class="fw-lighter"><small>If you want to change a review, you can replay 
-            the game</small></p>
+          <p class="fw-lighter"><small>If you want to change a review, you can replay the game</small></p>
         </div>
       </div>
     </div>
 
-    <!-- Right Column: Profile Form including Avatar Upload -->
-    <div class="col-md-5 mb-4">
+    <!-- RIGHT COLUMN: Update Profile -->
+    <div class="col-md-6 mb-4">
       <div class="card border-primary h-100">
         <div class="card-header text-center">Update Profile</div>
         <div class="card-body">
           <div class="text-center">Your Avatar</div>
-        <div class="card-body text-center">
-          {% if user.avatar %}
-            <img src="{{ user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2">
-            <form method="POST" action="{% url 'clear_avatar' %}">
-              {% csrf_token %}
-            </form>
-          {% else %}
-            <p>No avatar set.</p>
-          {% endif %}
-        </div>
+          <div class="card-body text-center">
+            {% if user.avatar %}
+              <img src="{{ user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2">
+              <form method="POST" action="{% url 'clear_avatar' %}">
+                {% csrf_token %}
+              </form>
+            {% else %}
+              <p>No avatar set.</p>
+            {% endif %}
+          </div>
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
