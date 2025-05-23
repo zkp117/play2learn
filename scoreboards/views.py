@@ -1,6 +1,10 @@
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import MathFactsScoreBoard, AnagramHuntScoreBoard, MathFactsUserScores, AnagramHuntUserScores
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
+@method_decorator(login_required, name='dispatch')
 class ScoreBoards(TemplateView):
     template_name = 'scoreboards.html'
 
@@ -11,6 +15,7 @@ class ScoreBoards(TemplateView):
         context['anagramhunt_scores'] = AnagramHuntScoreBoard.objects.order_by('-score')[:10]
 
         return context
+@method_decorator(login_required, name='dispatch')
 class UserScores(LoginRequiredMixin, TemplateView):
     template_name = 'my_scores.html'
 

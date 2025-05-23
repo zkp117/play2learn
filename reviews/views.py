@@ -5,8 +5,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import GameReviews
 from common.utils.email_service import send_email
 from .forms import ReviewsMathForm, ReviewsAnagramForm
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
-
+@method_decorator(login_required, name='dispatch')
 class ReviewsMathAppView(LoginRequiredMixin, FormView):
     template_name = 'vue-reviews/reviewing_math.html'
     form_class = ReviewsMathForm
@@ -41,6 +43,7 @@ class ReviewsMathAppView(LoginRequiredMixin, FormView):
         send_email(to, subject, content)
 
         return super().form_valid(form)
+@method_decorator(login_required, name='dispatch')
 class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
     template_name = 'vue-reviews/reviewing_anagram.html'
     form_class = ReviewsAnagramForm
@@ -77,6 +80,6 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
 
         return super().form_valid(form)
 
-
+@method_decorator(login_required, name='dispatch')
 class ReviewsAppThanksView(TemplateView):
     template_name = 'vue-reviews/review_thanks.html'
