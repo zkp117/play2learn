@@ -13,8 +13,7 @@ def validate_avatar(value):
 
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=100, unique=True,
-        verbose_name= 'Username',
-        help_text="If you want to change your username, please [...]")
+        verbose_name= 'Username')
     email = models.EmailField(('email address'), blank=True)
     dob = models.DateField(
         verbose_name="Date of Birth", null=True, blank=True,
@@ -23,7 +22,8 @@ class CustomUser(AbstractUser):
         storage=PublicMediaStorage(), 
         blank=True, 
         null=True,
-        validators = [validate_avatar])
+        validators = [validate_avatar],
+        help_text= 'Avatar cannot be larger than 200x200 pixels',)
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
 
     # Score fields
