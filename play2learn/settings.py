@@ -183,7 +183,7 @@ AWS_STORAGE_BUCKET_NAME = 'play2learn-bucket'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_QUERYSTRING_AUTH = True
-AWS_DEFAULT_ACL = None 
+AWS_DEFAULT_ACL = 'public-read'
 
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
