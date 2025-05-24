@@ -26,10 +26,10 @@
   color: #000;
   position: relative;
   text-shadow: 2px 0 #00ff11, -2px 0 #000;
-  animation: glitch-anim 1s infinite;
+  animation: glitch-anim-vue 1s infinite;
 }
 
-@keyframes glitch-anim {
+@keyframes glitch-anim-vue {
   0% {
     text-shadow: 2px 0 #00ff11, -2px 0 #000;
   }
@@ -41,7 +41,13 @@
   }
 }
 
+/* glitch font non-animated */
 .glitch-stable{
     font-family: 'Press Start 2P', cursive;
     color: black;
+}
+
+.glich-testing{
+  font-family: 'Press Start 2P', cursive;
+  color: yellow;
 }

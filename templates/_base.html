@@ -13,7 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   
   <!-- Your static CSS -->
-<link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ timestamp }}">
+{% if debug %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ timestamp }}">
+{% else %}
+  <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/css/style.css?v={{ timestamp }}">
+{% endif %}
+
 
   <!-- Other scripts and icons -->
   <script src="https://kit.fontawesome.com/f804978a2a.js" crossorigin="anonymous"></script>
