@@ -13,7 +13,7 @@
       <div class="card border-primary text-center mb-3">
         <div class="card-header">Game Scores</div>
         <div class="card-body">
-          <h5>Anagram Hunt:</h5>
+          <h5 class="glitch-stable">Anagram Hunt:</h5>
           {% if anagramhunt_newest %}
             <strong>Latest Score:</strong>
             <p class="badge bg-primary rounded-pill">{{ anagramhunt_newest.score }}</p><br>
@@ -23,12 +23,12 @@
             <p>None yet.</p>
           {% endif %}
 
-          <h5 class="mt-3">Math Facts:</h5>
+          <h5 class="mt-3 glitch-stable">Math Facts:</h5>
           {% if mathfacts_newest %}
             <strong>Latest Score:</strong>
-            <p class="badge bg-primary rounded-pill">{{ mathfacts_newest.score }}</p><br>
+            <p class="badge rounded-pill score-badge">{{ mathfacts_newest.score }}</p><br>
             <strong>Highest Score:</strong>
-            <p class="badge bg-primary rounded-pill">{{ mathfacts_highest.score }}</p>
+            <p class="badge rounded-pill score-badge">{{ mathfacts_highest.score }}</p>
           {% else %}
             <p>None yet.</p>
           {% endif %}
@@ -39,20 +39,19 @@
       <div class="card border-primary h-100">
         <div class="card-header text-center">Game Reviews</div>
         <div class="card-body">
-          <h5 class="mt-3">Anagram Hunt:</h5>
+          <h5 class="mt-3 text-center glitch-stable">Anagram Hunt:</h5>
           {% if anagramreview_newest %}
-            <p>{{ anagramreview_newest.review }}</p><br>
+            <p class="text-center">{{ anagramreview_newest.review }}</p><br>
           {% else %}
-            <p>None yet.</p>
+            <p class="text-center">None yet.</p>
           {% endif %}
-          <h5 class="mt-3">Math Facts:</h5>
+          <h5 class="mt-3 text-center glitch-stable">Math Facts:</h5>
           {% if mathreview_newest %}
-            <strong>Latest Review:</strong>
-            <p>{{ mathreview_newest.review }}</p><br>
+            <p class="text-center">{{ mathreview_newest.review }}</p><br>
           {% else %}
-            <p>None yet.</p>
+            <p class="text-center">None yet.</p>
           {% endif %}
-          <p class="fw-lighter"><small>If you want to change a review, you can replay the game</small></p>
+          <p class="fw-lighter text-center"><small>If you want to change a review, you can replay the game</small></p>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@
             </select>
           </div>
           <div class="row">
-            <label for="max-number" class="form-label col-3">Max Number</label>
+            <label for="max-number" class="form-label col-3 mathfacts-label">Max Number</label>
             <input id="max-number" class="form-control col" type="number" min="1" max="100" v-model="maxNumber">
           </div>
         </div>
@@ -107,17 +107,6 @@
     </div>
   </div>
 </template>
-
-<style>
-div {
-  margin-bottom: 0.75rem; 
-}
-
-label {
-  padding: 0.2rem;
-}
-
-</style>
 
 <script type="text/javascript">
 const csrfToken = "{{ csrf_token }}"
