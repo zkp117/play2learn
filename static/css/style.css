@@ -1,4 +1,7 @@
-.glitch {
+
+/* font that kind of looks like video game or arcade look */
+
+.glitch-edit {
   font-family: 'Press Start 2P', cursive;
   color: #ff00ff;
   position: relative;
@@ -16,4 +19,9 @@
   100% {
     text-shadow: 2px 0 #0ff, -2px 0 #f0f;
   }
+}
+
+.glitch-stable{
+    font-family: 'Press Start 2P', cursive;
+    color: black;
 }
