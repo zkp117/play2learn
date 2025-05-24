@@ -78,7 +78,14 @@
             {{ forloop.counter }}.
           {% endif %}
         </td>
-        <td>{{ score.user.username }}</td>
+        <td>
+          <div class="d-flex align-items-center justify-content-center" style="white-space: nowrap;">
+            {% if score.user.avatar %}
+            <img src="{{ score.user.avatar.url }}" alt="{{ score.user.username }}'s avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
+            {% endif %}
+            <span>{{ score.user.username }}</span>
+          </div>
+        </td>
         <td>{{ score.date_added|date:"M d Y h:ia" }}</td>
         <td>{{ score.score }}</td>
         <td>{{ score.word_length }}</td>

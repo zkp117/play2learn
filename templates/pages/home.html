@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block homepage_carousel %}
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="background-color: rgb(235, 245, 255);">
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="background-color: #ebf5ff;">
   <div class="carousel-indicators">
     {% for review in random_reviews %}
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}"
@@ -17,8 +17,11 @@
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
         <blockquote class="blockquote text-center p-4">
           <p class="mb-0">{{ review.review|linebreaksbr|truncatechars:200 }}</p>
-          <footer class="blockquote-footer mt-2">
-            {{ review.user.username }} ({{ review.get_game_display }})
+          <footer class="blockquote-footer mt-2 d-flex align-items-center justify-content-center" style="white-space: nowrap;">
+            {% if review.user.avatar %}
+            <img src="{{ review.user.avatar.url }}" alt="{{ review.user.username }}'s avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
+            {% endif %}
+            <span>{{ review.user.username }} ({{ review.get_game_display }})</span>
           </footer>
         </blockquote>
       </div>
