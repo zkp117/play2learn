@@ -108,7 +108,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 div {
   margin-bottom: 0.75rem; 
 }

@@ -64,7 +64,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
   div, label {
     padding: 0.2rem;
   }
