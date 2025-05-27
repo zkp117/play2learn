@@ -10,18 +10,18 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', homepage_view, name='home'),
     path('contact/', include('contact.urls', namespace='contact')),
-
-    # Ensure this path includes Vue app routes
-    path('games/', include(('games.urls'), namespace='games')),
-    path('vue-games/', include('vue-games.urls', namespace='vue-games')),
-
-    # Include other apps with their respective paths
     path('', include("pages.urls")),
     path('', include('users.urls')),
     path('', include('reviews.urls')),
     path('scoreboards/', include('scoreboards.urls')),
+
+    # routes for vue games
+    path('games/', include(('games.urls'), namespace='games')),
+    path('vue-games/', include('vue-games.urls', namespace='vue-games')),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+# takes out these sections from admin
 admin.site.unregister(SocialToken)
 admin.site.unregister(SocialAccount)
 admin.site.unregister(SocialApp)

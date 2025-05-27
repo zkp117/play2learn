@@ -2,26 +2,18 @@ import os
 from pathlib import Path
 from django.conf import settings
 
-
 def global_debug(request):
    return{'debug': settings.DEBUG}
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = 'django-insecure-0^=_l^slk4l=b236-2q9+)5om$ge)%ovmz%@^fltsu)sgnww41'
 
-
 DEBUG = True
-
 
 ALLOWED_HOSTS = []
 
-
-# INSTALLED_APPS SECTION
-
-
+# APPS SECTION
 INSTALLED_APPS = [
    # built-in django apps
    'django.contrib.admin',
@@ -35,13 +27,11 @@ INSTALLED_APPS = [
    'django_extensions',
    'django_password_eye',
 
-
    # local apps
    'pages.apps.PagesConfig',
    'contact.apps.ContactConfig',
    'users.apps.UsersConfig',
    'reviews.apps.ReviewsConfig',
-
 
    # third-party apps
    'crispy_forms',
@@ -55,20 +45,14 @@ INSTALLED_APPS = [
    'corsheaders'
 ]
 
-
-SITE_ID = 2
-
+# changed from 1 since host name was changed
+SITE_ID = 2 
 
 # CRISPY SECTION
-
-
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
-
-
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
-# MIDDLEWARE SECTION
 
-
+# MIDDLEWARE SECTIONS
 MIDDLEWARE = [
    'django.middleware.security.SecurityMiddleware',
    'django.contrib.sessions.middleware.SessionMiddleware',
@@ -83,19 +67,15 @@ MIDDLEWARE = [
    'corsheaders.middleware.CorsMiddleware',
 ]
 
-
 ROOT_URLCONF = 'play2learn.urls'
 
-
 # TEMPLATES SECTION
-
-
 TEMPLATES = [
    {
        'BACKEND': 'django.template.backends.django.DjangoTemplates',
        'DIRS': [
            os.path.join(BASE_DIR, 'templates'),
-           os.path.join(BASE_DIR, 'templates/vue-templates')  # Add this line
+           os.path.join(BASE_DIR, 'templates/vue-templates')
        ],
        'APP_DIRS': True,
        'OPTIONS': {
@@ -112,18 +92,13 @@ TEMPLATES = [
    },
 ]
 
-
 # Time zone is one hour behind without this (I'm not sure why)
 TIME_ZONE = 'America/New_York'
 USE_TZ = True
 
-
 WSGI_APPLICATION = 'play2learn.wsgi.application'
 
-
 # EMAIL SECTION
-
-
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
@@ -132,13 +107,9 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 DEFAULT_FROM_EMAIL = 'neeneez2008@gmail.com'
 
-
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 
-
 # DATABASES SECTION
-
-
 DATABASES = {
    'default': {  
        'ENGINE': 'django.db.backends.postgresql',
@@ -149,7 +120,6 @@ DATABASES = {
        'PORT': 6623
    }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
    {
@@ -166,89 +136,59 @@ AUTH_PASSWORD_VALIDATORS = [
    },
 ]
 
-
 # AUTHENTICATION SETTINGS
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = '/'
 
-
-## django-allauth settings
+## ALLUTH SETTINGS settings
 ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1  # Default: 3
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Default: 'optional'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'  # Default: '/'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1 
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' 
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'pages:homepage'
 ACCOUNT_AUTHENTICATED_REDIRECT_URL = 'pages:homepage'
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 ACCOUNT_RATE_LIMITS = {
-   "login_failed": "5/m"  # Allows 5 failed login attempts per minute
+   "login_failed": "5/m"  # limits attempted login for 5 minutes (safety / security)
 }
 
-
 AUTHENTICATION_BACKENDS = (
-   # Needed to login by username in Django admin, even w/o `allauth`
    'django.contrib.auth.backends.ModelBackend',
-
-
-   # `allauth`-specific auth methods, such as login by e-mail
    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-
 LANGUAGE_CODE = 'en-us'
-
 
 USE_I18N = True
 
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-
-# AWS settings
-
-
+# AWS SETTINGS
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'play2learn-bucket'
-\
+# \
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_QUERYSTRING_AUTH = True
 AWS_DEFAULT_ACL = 'public-read'
-
-
 AWS_S3_OBJECT_PARAMETERS = {
    'CacheControl': 'max-age=86400',
 }
 AWS_S3_REGION_NAME = 'us-east-2'
-
-
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'play2learn.storage_backends.PublicMediaStorage'
 PRIVATE_FILE_STORAGE = 'play2learn.storage_backends.PrivateMediaStorage'
-
-
 STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/static/'
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/media/public/'
-
-
 PUBLIC_MEDIA_LOCATION = 'media/public'
 PRIVATE_MEDIA_STORAGE = 'media/private'
 
-
 STATICFILES_DIRS = [
-   BASE_DIR / 'static',          # general static files in your Django app
+   BASE_DIR / 'static',  
 ]
-
-
 STATIC_ROOT = None
-
-
 STORAGES = {
    "default": {
        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
@@ -261,20 +201,15 @@ STORAGES = {
    },
 }
 
-
 CORS_ALLOWED_ORIGINS = [
-   "http://localhost:8080",  # your Vue app URL
+   "http://localhost:8080",  # for local host (general pages + vue games)
    "http://localhost:8000",
 ]
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
 
-
-# BOTTOM OF settings.py
 if os.environ.get('ENVIRONMENT') != 'production':
    from .local_settings import *
 # DON'T PUT ANYTHING BELOW THIS

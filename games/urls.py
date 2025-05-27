@@ -1,7 +1,10 @@
 app_name = 'games'
 
 from django.urls import path
-from .views import MathFactsView, AnagramHuntView, EnterMathFactsScore, EnterAnagramHuntScore
+from .views import (MathFactsView, 
+                    AnagramHuntView, 
+                    EnterMathFactsScore, 
+                    EnterAnagramHuntScore)
 
 urlpatterns = [
     path('math-facts/', MathFactsView.as_view(), name='math-facts'),

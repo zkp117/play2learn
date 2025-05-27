@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-
 class GameReviews(models.Model):
 
     GAME_CHOICES = [
@@ -15,7 +14,6 @@ class GameReviews(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.get_game_display()}"
-    
     class Meta:
         verbose_name = 'Game Review'
         verbose_name_plural = 'Game Reviews'

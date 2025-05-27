@@ -7,7 +7,6 @@ from common.utils.email_service import send_email
 from .forms import ReviewsMathForm, ReviewsAnagramForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
 @method_decorator(login_required, name='dispatch')
 class ReviewsMathAppView(LoginRequiredMixin, FormView):
     template_name = 'vue-reviews/reviewing_math.html'
@@ -26,7 +25,7 @@ class ReviewsMathAppView(LoginRequiredMixin, FormView):
         self.request.user.mathfacts_reviews = review_text
         self.request.user.save()
 
-        # Send email
+        # MathFacts Review Email
         data = form.cleaned_data
         to = 'neeneez2008@gmail.com'
         subject = 'Play2Learn Game Review - MathFacts'
@@ -52,7 +51,6 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         review_text = form.cleaned_data['anagramhunt_reviews']
 
-        # Save to GameReviews
         GameReviews.objects.create(
             user=self.request.user,
             game='anagramhunt',
@@ -62,7 +60,7 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
         self.request.user.anagramhunt_reviews = review_text
         self.request.user.save()
 
-        # Send email
+        # AnagramHunt Review Email
         data = form.cleaned_data
         to = 'neeneez2008@gmail.com'
         subject = 'Play2Learn Game Review - AnagramHunt'
@@ -79,7 +77,6 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
         send_email(to, subject, content)
 
         return super().form_valid(form)
-
 @method_decorator(login_required, name='dispatch')
 class ReviewsAppThanksView(TemplateView):
     template_name = 'vue-reviews/review_thanks.html'

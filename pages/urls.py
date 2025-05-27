@@ -1,6 +1,11 @@
 from django.urls import path
 
-from .views import AboutUsView, HomePageView, AnagramHuntView, MathFactsView, CustomLoginView, MyScoresView
+from .views import (AboutUsView, 
+                    HomePageView, 
+                    AnagramHuntView, 
+                    MathFactsView, 
+                    CustomLoginView, 
+                    MyScoresView)
 
 app_name = 'pages'
 urlpatterns = [
