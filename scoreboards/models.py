@@ -19,7 +19,6 @@ class MathFactsScoreBoard(models.Model):
 
     def __str__(self):
         return self.user.username
-
 class AnagramHuntScoreBoard(models.Model):
     user = models.ForeignKey(
         CustomUser, 
@@ -36,8 +35,6 @@ class AnagramHuntScoreBoard(models.Model):
 
     def __str__(self):
         return self.user.username
-    
-
 class MathFactsUserScores(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
