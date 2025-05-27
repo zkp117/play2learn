@@ -5,7 +5,6 @@ from django.conf import settings
 from . import views
 from .views import MyAccountPageView, CustomLoginView, PasswordEmailView
 from django.contrib.auth.views import (
-    PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
     PasswordResetCompleteView

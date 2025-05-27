@@ -46,6 +46,7 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context['mathfacts_newest'] = mathfacts_scores.order_by('-date_added').first()
         context['mathfacts_highest'] = mathfacts_scores.order_by('-score').first()
 
+        # MathFacts and AnagramHunt reviews (recent)
         context['anagramreview_newest'] = GameReviews.objects.filter(user=user, game='anagramhunt').order_by('-submitted').first()
         context['mathreview_newest'] = GameReviews.objects.filter(user=user, game='mathfacts').order_by('-submitted').first()
 
@@ -61,7 +62,6 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
             self.request.user.refresh_from_db()
             
         return response
-    
 class PasswordEmailView(PasswordResetView):
     def get_email_context(self, context):
         context['domain'] = '127.0.0.1:8000'
@@ -75,23 +75,12 @@ def clear_avatar(request):
     user.avatar.delete()
     user.save()
     return redirect('my-account') 
-
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
     authentication_form = CustomAuthenticationForm
 
     def get_success_url(self):
         return reverse_lazy('my-account')
-    
-def render_to_response(self, context, **response_kwargs):
-        response = super().render_to_response(context, **response_kwargs)
-        
-        # Explicitly disable caching
-        response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-        response['Pragma'] = 'no-cache'
-        response['Expires'] = '0'
-
-        return response
 
 def homepage_view(request):
     reviews = list(GameReviews.objects.all())

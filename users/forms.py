@@ -27,7 +27,6 @@ class CustomUserChangeForm(forms.ModelForm):
                 years=BIRTH_YEAR_CHOICES
             )
         }
-
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,
@@ -39,6 +38,6 @@ class CustomAuthenticationForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')})
     )
 
+    # helps clean to load smoother / faster
     def clean(self):
-        # This is critical — it triggers Django's authentication logic
         return super().clean()

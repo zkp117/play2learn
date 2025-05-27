@@ -1,6 +1,7 @@
 <template>
   <div>
-    <router-view></router-view> <!-- This is where the route components will be displayed -->
+    <!-- This is where the route components will be displayed -->
+    <router-view></router-view> 
   </div>
 </template>
 
@@ -11,5 +12,4 @@ export default {
 </script>
 
 <style scoped>
-/* Global styles for your app */
 </style>

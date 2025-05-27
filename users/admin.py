@@ -12,9 +12,13 @@ class CustomUserAdmin(UserAdmin):
 
     model = CustomUser
 
-    readonly_fields = ['password_form', 'get_anagramhunt_scores', 'get_mathfacts_scores', 'avatar_display', 'mathfacts_reviews', 'anagramhunt_reviews',]
+    readonly_fields = ['password_form', 'get_anagramhunt_scores', 
+                       'get_mathfacts_scores', 'avatar_display', 
+                       'mathfacts_reviews', 'anagramhunt_reviews',]
 
-    list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 'get_mathfacts_scores','get_math_reviews', 'get_anagram_reviews')
+    list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 
+                                             'get_mathfacts_scores','get_math_reviews', 
+                                             'get_anagram_reviews')
     list_display_links = ('username', 'email', 'first_name', 'last_name')
 
     fieldsets = UserAdmin.fieldsets + (
@@ -39,16 +43,19 @@ class CustomUserAdmin(UserAdmin):
         return top_score.score if top_score else 0
     get_anagramhunt_scores.short_description = "Highest AnagramHunt Score"
 
+    # setup display for MathFacts scores
     def get_mathfacts_scores(self, obj):
         top_score = obj.math_scores.order_by('-score').first()
         return top_score.score if top_score else 0
     get_mathfacts_scores.short_description = "Highest MathFacts Score"
 
+    # setup display for MathFacts reviews
     def get_math_reviews(self, obj):
         review = GameReviews.objects.filter(user = obj, game='mathfacts').order_by('-submitted').first()
         return review.review if review else "No review submitted"
     get_math_reviews.short_description = 'MathFacts Reviews'
 
+    # setup display for AnagramHunt reviews
     def get_anagram_reviews(self, obj):
         review = GameReviews.objects.filter(user = obj, game='anagramhunt').order_by('-submitted').first()
         return review.review if review else 'No review submitted'
