@@ -11,7 +11,13 @@ SECRET_KEY = 'django-insecure-0^=_l^slk4l=b236-2q9+)5om$ge)%ovmz%@^fltsu)sgnww41
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'play2learn-lmn4.onrender.com',
+    'play2learn.site',               
+]
+
 
 # APPS SECTION
 INSTALLED_APPS = [
