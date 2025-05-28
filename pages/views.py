@@ -1,5 +1,8 @@
 from django.views.generic import TemplateView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
+@method_decorator(never_cache, name='dispatch')
 class HomePageView(TemplateView):
     template_name = 'pages/home.html'
 
