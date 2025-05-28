@@ -1,0 +1,1 @@
+web: gunicorn play2learn.wsgi
