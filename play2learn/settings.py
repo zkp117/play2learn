@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 from django.conf import settings
+import dj_database_url
+
 
 def global_debug(request):
    return{'debug': settings.DEBUG}
@@ -12,12 +14,12 @@ SECRET_KEY = 'django-insecure-0^=_l^slk4l=b236-2q9+)5om$ge)%ovmz%@^fltsu)sgnww41
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'play2learn-lmn4.onrender.com',
-    'play2learn.site',               
+    "localhost",
+    "127.0.0.1",
+    "play2learn-Imn4.onrender.com",
+    "play2learn.site",
+    "www.play2learn.site",
 ]
-
 
 # APPS SECTION
 INSTALLED_APPS = [
@@ -116,16 +118,23 @@ DEFAULT_FROM_EMAIL = 'neeneez2008@gmail.com'
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 
 # DATABASES SECTION
+
 DATABASES = {
-   'default': {  
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'user_info',
-       'USER': 'zoeparigian',
-       'PASSWORD': 'Pandora117!',
-       'HOST': 'localhost',
-       'PORT': 6623
-   }
+    'default': dj_database_url.config(
+        default='postgres://zoe:Pandora117!@localhost:5432/play2learn'
+    )
 }
+
+# DATABASES = {
+  # 'default': {  
+  #     'ENGINE': 'django.db.backends.postgresql',
+  #     'NAME': 'user_info',
+   #    'USER': 'zoeparigian',
+   #    'PASSWORD': 'Pandora117!',
+  #     'HOST': 'localhost',
+   #    'PORT': 6623
+  # }
+#}
 
 AUTH_PASSWORD_VALIDATORS = [
    {
