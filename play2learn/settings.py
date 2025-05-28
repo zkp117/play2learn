@@ -16,7 +16,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "play2learn-Imn4.onrender.com",
+    "play2learn-lmn4.onrender.com",
     "play2learn.site",
     "www.play2learn.site",
 ]
