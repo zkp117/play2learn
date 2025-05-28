@@ -210,6 +210,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
 
-if os.environ.get('ENVIRONMENT') != 'production':
-   from .local_settings import *
+try:
+   if os.environ.get('ENVIRONMENT') != 'production':
+      from .local_settings import *
+except ImportError:
+   pass
 # DON'T PUT ANYTHING BELOW THIS
