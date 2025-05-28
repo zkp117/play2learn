@@ -3,7 +3,6 @@ from pathlib import Path
 from django.conf import settings
 import dj_database_url
 
-
 def global_debug(request):
    return{'debug': settings.DEBUG}
 
