@@ -15,10 +15,13 @@ import random
 from django.views.generic import UpdateView
 
 from scoreboards.models import AnagramHuntScoreBoard, MathFactsScoreBoard
+
+
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):
     success_url = reverse_lazy('my-account')
     login_url = reverse_lazy('account_login')
-    
+
+
 class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = get_user_model()
     login_url = reverse_lazy('account_login')
@@ -51,3 +54,9 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context['mathreview_newest'] = GameReviews.objects.filter(user=user, game='mathfacts').order_by('-submitted').first()
 
         return context
+
+
+def homepage_view(request):
+    reviews = list(GameReviews.objects.all())
+    random_reviews = random.sample(reviews, min(3, len(reviews)))
+    return render(request, 'pages/home.html', {'random_reviews': random_reviews})
