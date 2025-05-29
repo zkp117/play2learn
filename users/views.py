@@ -30,9 +30,6 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user
 
-    def form_valid(self, form):
-        return super().form_valid(form)  # ✅ This goes inside the class
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
