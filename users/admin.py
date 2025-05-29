@@ -33,9 +33,12 @@ class CustomUserAdmin(UserAdmin):
     
     def avatar_display(self, obj):
         if obj.avatar:
-            return mark_safe(f'<img src="{obj.avatar.url}" width="50" height="50"/>')
+            try:
+                return mark_safe(f'<img src="{obj.avatar.url}" width="50" height="50"/>')
+            except Exception as e:
+                return f"Error loading avatar: {e}"
         return "No Avatar"
-    avatar_display.short_description = 'Avatar'
+
 
     # setup display for AnagramHunt scores
     def get_anagramhunt_scores(self, obj):
