@@ -64,9 +64,10 @@
           <div class="text-center">Your Avatar</div>
           <div class="card-body text-center">
             {% if user.avatar %}
-              <img src="{{ user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2">
+              <img src="{{ request.user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2">
               <form method="POST" action="{% url 'clear_avatar' %}">
                 {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger btn-sm">Remove Avatar</button>
               </form>
             {% else %}
               <p>No avatar set.</p>

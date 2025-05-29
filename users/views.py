@@ -30,6 +30,9 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user
 
+    def form_valid(self, form):
+        return super().form_valid(form)  # ✅ This goes inside the class
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
@@ -51,40 +54,3 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context['mathreview_newest'] = GameReviews.objects.filter(user=user, game='mathfacts').order_by('-submitted').first()
 
         return context
-    
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        
-        avatar_file = self.request.FILES.get('avatar')
-        
-        if avatar_file:
-            self.request.user.avatar = avatar_file
-            self.request.user.save(update_fields=['avatar'])
-            self.request.user.refresh_from_db()
-            
-            return response
-class PasswordEmailView(PasswordResetView):
-    def get_email_context(self, context):
-        context['domain'] = '127.0.0.1:8000'
-        context['site_name'] = 'Play2Learn'
-        context['protocol'] = 'http'
-        return context
-
-@login_required
-def clear_avatar(request):
-    user = request.user
-    user.avatar.delete()
-    user.save()
-    return redirect('my-account') 
-class CustomLoginView(LoginView):
-    template_name = 'account/login.html'
-    authentication_form = CustomAuthenticationForm
-
-    def get_success_url(self):
-        return reverse_lazy('my-account')
-
-def homepage_view(request):
-    reviews = list(GameReviews.objects.all())
-    random_reviews = random.sample(reviews, min(3, len(reviews)))
-    return render(request, 'pages/home.html', {'random_reviews': random_reviews})
-
