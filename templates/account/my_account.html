@@ -62,12 +62,9 @@
         <div class="card-header text-center">Update Profile</div>
         <div class="card-body">
           <div class="text-center">Your Avatar</div>
-          <div class="card-body text-center">
+          <div class="text-center">
             {% if user.avatar %}
               <img src="{{ request.user.avatar.url }}" alt="Avatar" class="img-fluid rounded mb-2">
-              <form method="POST" action="{% url 'clear_avatar' %}">
-                {% csrf_token %}
-              </form>
             {% else %}
               <p>No avatar set.</p>
             {% endif %}
