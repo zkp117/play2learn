@@ -51,17 +51,18 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context['mathreview_newest'] = GameReviews.objects.filter(user=user, game='mathfacts').order_by('-submitted').first()
 
         return context
-    
+
     def form_valid(self, form):
         response = super().form_valid(form)
-
+        
         avatar_file = self.request.FILES.get('avatar')
+
         if avatar_file:
             self.request.user.avatar = avatar_file
-            self.request.user.save()
+            self.request.user.save(update_fields=['avatar'])
             self.request.user.refresh_from_db()
-            
-        return response
+            return response
+
 class PasswordEmailView(PasswordResetView):
     def get_email_context(self, context):
         context['domain'] = '127.0.0.1:8000'
