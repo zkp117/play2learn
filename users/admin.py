@@ -11,10 +11,10 @@ CustomUser = get_user_model()
 class CustomUserAdmin(UserAdmin):
 
     model = CustomUser
-
+    
     readonly_fields = ['password_form', 'get_anagramhunt_scores', 
                        'get_mathfacts_scores', 'avatar_display', 
-                       'mathfacts_reviews', 'anagramhunt_reviews',]
+                       'get_math_reviews', 'get_anagram_reviews']
 
     list_display = UserAdmin.list_display + ('is_superuser', 'get_anagramhunt_scores', 
                                              'get_mathfacts_scores','get_math_reviews', 
@@ -23,9 +23,9 @@ class CustomUserAdmin(UserAdmin):
 
     fieldsets = UserAdmin.fieldsets + (
         ('Game Scores', {'fields': ('get_anagramhunt_scores', 'get_mathfacts_scores')}),
-        ('Game Reviews', {'fields': ('mathfacts_review', 'anagramhunt_review')}),
+        ('Game Reviews', {'fields': ('get_math_reviews', 'get_anagram_reviews')}),
         ('Personal Information', {'fields': ('dob', 'avatar')}), 
-    )
+        )
 
     def password_form(self, obj):
         url = reverse('admin:auth_user_password_change', args=[obj.pk])
