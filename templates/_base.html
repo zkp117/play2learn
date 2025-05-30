@@ -29,7 +29,7 @@
   
   <title>{% block title %}Play2Learn{% endblock %}</title>
 </head>
-<body style="background-color: #ebf5ff;">
+<body>
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{% url 'pages:homepage' %}">
@@ -154,6 +154,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('theme-toggle');
   const body = document.body;
   const defaultTheme = localStorage.getItem('theme');
@@ -166,15 +167,23 @@
 
   themeBtn.addEventListener('click', () => {
     if (body.classList.contains('light-mode')) {
-      body.classList.remove('light-mode');
-      body.classList.add('dark-mode');
+      body.classList.replace('light-mode', 'dark-mode');
       localStorage.setItem('theme', 'dark-mode');
+      themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
     } else {
-      body.classList.remove('dark-mode');
-      body.classList.add('light-mode');
+      body.classList.replace('dark-mode', 'light-mode');
       localStorage.setItem('theme', 'light-mode');
+      themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
     }
   });
+
+  // Set correct icon on load
+  if (body.classList.contains('dark-mode')) {
+    themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+  } else {
+    themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+  }
+});
 </script>
 
 </body>
