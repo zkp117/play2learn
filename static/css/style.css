@@ -71,7 +71,7 @@ body.dark-mode .score-badge {
 
 body.dark-mode .dark-container {
   background-color: #545454;
-  color: #7a7a7a;
+  color: #dadada;
 }
 
 body.dark-mode nav.navbar {
@@ -85,7 +85,7 @@ body.dark-mode nav.navbar a {
 
 body.dark-mode footer {
   background-color: #7a7a7a;
-  color: #fff
+  color: #dadada;
 }
 
 body.dark-mode footer a {
