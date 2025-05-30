@@ -73,3 +73,21 @@ body.dark-mode .dark-container {
   background-color: #545454;
   color: #c2c2c2;
 }
+
+body.dark-mode nav.navbar {
+  background-color: #c2c2c2;
+  color: #fff;
+}
+
+body.dark-mode nav.navbar a {
+  color: #75a4d9;
+}
+
+body.dark-mode footer {
+  background-color: #c2c2c2;
+  color: #fff
+}
+
+body.dark-mode footer a {
+  color: #75a4d9;
+}
