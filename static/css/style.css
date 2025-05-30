@@ -49,15 +49,17 @@ body.light-mode {
 }
 
 /* dark theme */
-body.dark-mode {
-  background-color: #121212;
+body.dark-mode .glitch-edit {
+  color: #fff;
+  text-shadow: 2px 0 #00ff11, -2px 0 #fff;
+}
+
+body.dark-mode .glitch-stable {
   color: #fff;
 }
 
-body.dark-mode nav.navbar {
-  background-color: #1f1f1f;
-}
-
-.dark-mode a {
-  color: #9ecbff;
+body.dark-mode .score-badge {
+  color: #fff;
+  background-color: #444;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
