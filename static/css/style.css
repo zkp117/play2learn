@@ -36,7 +36,7 @@
 
 .score-badge{
   font-family: 'Press Start 2P', cursive;
-  color: black;
+  color: #000;
   background-color: #fff200;
 }
 
@@ -50,7 +50,7 @@ body.light-mode {
 
 /* dark theme */
 body.dark-mode {
-  background-color: #121212;
+  background-color: #7d9dbd;
   color: #fff;
 }
 
@@ -66,28 +66,28 @@ body.dark-mode .glitch-stable {
 body.dark-mode .score-badge {
   color: #fff;
   background-color: #444;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px #0000004d;
 }
 
 body.dark-mode .dark-container {
   background-color: #545454;
-  color: #c2c2c2;
+  color: #7a7a7a;
 }
 
 body.dark-mode nav.navbar {
-  background-color: #c2c2c2;
+  background-color: #7a7a7a;
   color: #fff;
 }
 
 body.dark-mode nav.navbar a {
-  color: #75a4d9;
+  color: #426183;
 }
 
 body.dark-mode footer {
-  background-color: #c2c2c2;
+  background-color: #7a7a7a;
   color: #fff
 }
 
 body.dark-mode footer a {
-  color: #75a4d9;
+  color: #426183;
 }
