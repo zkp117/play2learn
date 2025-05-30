@@ -8,5 +8,5 @@ echo "CSS upload complete."
 
 # open this file in terminal
 # run (first) 'chmod +x css.sh'
-# run (second) 'export AWS_PROFILE=play2learn-admin ./css.sh '
+# run (second) './css.sh'
 # do NOT run this script unless you make changes to './css/styles.css'
