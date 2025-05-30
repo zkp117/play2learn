@@ -49,6 +49,11 @@ body.light-mode {
 }
 
 /* dark theme */
+body.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+
 body.dark-mode .glitch-edit {
   color: #fff;
   text-shadow: 2px 0 #00ff11, -2px 0 #fff;
