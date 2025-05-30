@@ -68,3 +68,8 @@ body.dark-mode .score-badge {
   background-color: #444;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
+
+body.dark-mode .dark-container {
+  background-color: #fff;
+  color: #000;
+}
