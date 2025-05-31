@@ -48,8 +48,7 @@ class CustomAuthenticationForm(AuthenticationForm):
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if 'password2' in self.fields:
-            del self.fields['password2']
+        self.fields.pop('password2', None)
 
     def save(self, request):
         return super().save(request)
