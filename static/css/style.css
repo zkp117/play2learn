@@ -1,4 +1,3 @@
-
 /* font that kind of looks like video game or arcade look */
 .glitch-edit {
   font-family: 'Press Start 2P', cursive;
@@ -85,7 +84,7 @@ body.dark-mode nav.navbar a {
 
 body.dark-mode footer {
   background-color: #7a7a7a;
-  color: #e6e6e6;
+  color: #6c6c6c;
 }
 
 body.dark-mode footer a {
