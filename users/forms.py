@@ -8,7 +8,8 @@ from django.forms.widgets import ClearableFileInput
 from allauth.account.forms import SignupForm
 
 BIRTH_YEAR_CHOICES = range(1915, datetime.now().year)
-class SignupForm(forms.Form):
+
+class CustomSignupForm(forms.Form):
     first_name = forms.CharField(max_length=50, required=False)
     last_name = forms.CharField(max_length=50, required=False)
 
