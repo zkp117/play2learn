@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
-from .forms import CustomAuthenticationForm, CustomUserChangeForm
+from .forms import CustomAuthenticationForm, CustomUserChangeForm, CustomSignupForm
 from reviews.models import GameReviews
 from allauth.account.views import SignupView
 
@@ -76,11 +77,10 @@ class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
 
     def get_form_class(self):
-        from .forms import get_custom_signup_form
-        return get_custom_signup_form
+        return CustomSignupForm
     
     def get_success_url(self):
-        return reverse_lazy ('my_account')
+        return reverse_laz('my_account')
 
 def homepage_view(request):
     reviews = list(GameReviews.objects.all())
