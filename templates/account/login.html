@@ -1,67 +1,20 @@
-{% extends '_base.html' %}
-{% load crispy_forms_tags %}
-{% load static %}
-
-{% block title %}Log in{% endblock %}
-
 {% block main %}
 <div class="d-flex justify-content-center align-items-center min-vh-100">
-  <div class="card border-primary m-auto mb-3 dark-container" style="max-width: 30rem">
+  <div class="card border-primary dark-container" style="max-width: 30rem; width: 100%;">
     <div class="card-header text-center">Log in</div>
     <div class="card-body">
-      <form method="post" class="m-auto">
+      <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="form-control btn btn-primary mt-3">LOG IN</button>
       </form>
     </div>
     <div class="card-footer">
-      <p>
+      <p class="mb-0">
         Need an account? <a href="{% url 'account_signup' %}">Register</a>.<br>
         Lost your password? <a href="{% url 'password_reset' %}">Reset it</a>.
       </p>
     </div>
   </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-
-  /** this script is for a viewable password field
-   * I had it in my 2nd project and I wanted to 
-   * add it again 
-  */
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const userPswrd = document.querySelector('input[type="password"]');
-    if (userPswrd) {
-      const storagePswrd = document.createElement('div');
-      storagePswrd.style.position = 'relative';
-  
-      const eyePswrd = document.createElement('i');
-      eyePswrd.setAttribute('title', 'Show/Hide Password');
-      eyePswrd.classList.add('fa', 'fa-eye', 'password-toggle-icon');
-      
-      Object.assign(eyePswrd.style,{
-        position: 'absolute',
-        right: '10px',
-        top:'50%',
-        transform: 'translateY(-50%)',
-        cursor: 'pointer',
-      })
-      userPswrd.parentNode.insertBefore(storagePswrd, userPswrd);
-      storagePswrd.appendChild(userPswrd);
-      storagePswrd.appendChild(eyePswrd);
-  
-      eyePswrd.addEventListener('click', function () {
-        const isHidden = userPswrd.type === 'password';
-        userPswrd.type = isHidden ? 'text' : 'password';
-        eyePswrd.classList.toggle('fa-eye-slash', isHidden);
-        eyePswrd.classList.toggle('fa-eye', !isHidden);
-      });
-    }
-  });
-  </script>
-  
 {% endblock %}
