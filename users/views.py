@@ -2,8 +2,9 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
-from .forms import CustomAuthenticationForm, CustomUserChangeForm
+from .forms import CustomAuthenticationForm, CustomUserChangeForm, CustomSignupForm
 from reviews.models import GameReviews
+from allauth.account.views import SignupView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView, PasswordResetView
@@ -71,9 +72,9 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('my-account')
     
-class CustomSignUpForm(LoginView):
+class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
-    authentication_form = CustomAuthenticationForm
+    form_class = CustomSignupForm
 
     def get_success_url(self):
         return reverse_lazy('my-account')

@@ -140,6 +140,10 @@ AUTH_PASSWORD_VALIDATORS = [
    },
 ]
 
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.CustomSignupForm',
+}
+
 # AUTHENTICATION SETTINGS
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = 'account_login'

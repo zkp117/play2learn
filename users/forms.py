@@ -5,6 +5,7 @@ from django_password_eye.fields import PasswordEye
 from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.forms.widgets import ClearableFileInput
+from allauth.account.forms import SignupForm
 
 BIRTH_YEAR_CHOICES = range(1915, datetime.now().year)
 class SignupForm(forms.Form):
@@ -43,3 +44,12 @@ class CustomAuthenticationForm(AuthenticationForm):
     # helps clean to load smoother / faster
     def clean(self):
         return super().clean()
+    
+class CustomSignupForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'password2' in self.fields:
+            del self.fields['password2']
+
+    def save(self, request):
+        return super().save(request)
