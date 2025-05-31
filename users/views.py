@@ -70,6 +70,13 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('my-account')
+    
+class CustomSignUpForm(LoginView):
+    template_name = 'account/signup.html'
+    authentication_form = CustomAuthenticationForm
+
+    def get_success_url(self):
+        return reverse_lazy('my-account')
 
 def homepage_view(request):
     reviews = list(GameReviews.objects.all())
