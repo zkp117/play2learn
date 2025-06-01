@@ -13,10 +13,15 @@ class CustomSignupForm(forms.Form):
     first_name = forms.CharField(max_length=50, required=False)
     last_name = forms.CharField(max_length=50, required=False)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields.pop('password2', None)
+
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+        return user
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
@@ -45,13 +50,5 @@ class CustomAuthenticationForm(AuthenticationForm):
     # helps clean to load smoother / faster
     def clean(self):
         return super().clean()
-
-class CustomSignupForm(SignupForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields.pop('password2', None)
-
-    def save(self, request):
-        return super().save(request)
             
 

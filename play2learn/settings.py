@@ -140,8 +140,8 @@ AUTH_PASSWORD_VALIDATORS = [
    },
 ]
 
-ACCOUNT_SIGNUP_FORM_CLASS = {
-    "signup": "users.forms.CustomSignupForm"
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.CustomSignupForm',
 }
 
 # AUTHENTICATION SETTINGS
