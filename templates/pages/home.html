@@ -53,7 +53,7 @@
     <div class="col">
       <div class="feature text-center">
         <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle" style="width: 4rem; height: 4rem;">
-          <i class="bi" data-icon="calculator"></i>
+          <i class="bi bi-calculator" data-icon="calculator"></i>
         </div>
         <h3 class="fs-2 text-body-emphasis">Games</h3>
         <p>On Play2Learn there are two games for you to play, titled MathFacts 
@@ -65,7 +65,7 @@
     <div class="col">
       <div class="feature text-center">
         <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle" style="width: 4rem; height: 4rem;">
-          <i class="bi" data-icon="quote"></i>
+          <i class="bi bi-chat-right-quote" data-icon="quote"></i>
         </div>
         <h3 class="fs-2 text-body-emphasis">Reviews</h3>
         <p>After playing a game, you are offered to wite a review! You can can only write 
@@ -78,7 +78,7 @@
     <div class="col">
       <div class="feature text-center">
         <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle" style="width: 4rem; height: 4rem;">
-          <i class="bi" data-icon="award"></i>
+          <i class="bi bi-award" data-icon="award"></i>
         </div>
         <h3 class="fs-2 text-body-emphasis">Scoreboards</h3>
         <p>After playing a game, your score will be added to your personal scoreboard! You can also
@@ -98,31 +98,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
   const icons = document.querySelectorAll('.feature-icon i');
 
-  const setTheme = (mode) => {
+  const iconMap = {
+    calculator: {
+      light: 'bi-calculator',
+      dark: 'bi-calculator-fill'
+    },
+    quote: {
+      light: 'bi-chat-right-quote',
+      dark: 'bi-chat-right-quote-fill'
+    },
+    award: {
+      light: 'bi-award',
+      dark: 'bi-award-fill'
+    }
+  };
+
+  function setTheme(mode) {
     body.classList.remove('light-mode', 'dark-mode');
     body.classList.add(mode);
     localStorage.setItem('theme', mode);
+
+    // Toggle icon in button
     themeBtn.innerHTML = mode === 'dark-mode'
       ? '<i class="bi bi-sun-fill"></i>'
       : '<i class="bi bi-moon-fill"></i>';
 
+    // Update feature icons
     icons.forEach(icon => {
-      icon.className = 'bi'; // Reset
-      if (icon.dataset.icon === 'calculator') {
-        icon.classList.add(mode === 'dark-mode' ? 'bi-calculator-fill' : 'bi-calculator');
-      } else if (icon.dataset.icon === 'quote') {
-        icon.classList.add(mode === 'dark-mode' ? 'bi-chat-right-quote-fill' : 'bi-chat-right-quote');
-      } else if (icon.dataset.icon === 'award') {
-        icon.classList.add(mode === 'dark-mode' ? 'bi-award-fill' : 'bi-award');
+      const key = icon.dataset.icon;
+      if (iconMap[key]) {
+        icon.className = `bi ${iconMap[key][mode === 'dark-mode' ? 'dark' : 'light']}`;
       }
     });
-  };
+  }
 
-  // Initial theme
   const savedTheme = localStorage.getItem('theme') || 'light-mode';
   setTheme(savedTheme);
 
-  // Toggle button
   themeBtn.addEventListener('click', () => {
     const newTheme = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode';
     setTheme(newTheme);
