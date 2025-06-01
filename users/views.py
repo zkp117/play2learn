@@ -77,7 +77,7 @@ class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
     
     def get_success_url(self):
-        return reverse_lazy('my_account')
+        return reverse_lazy('my-account')
 
 def homepage_view(request):
     reviews = list(GameReviews.objects.all())
