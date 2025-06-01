@@ -97,7 +97,7 @@ const body = document.body;
 const themeBtn = document.getElementById('theme-toggle');
 const icons = document.querySelectorAll('.feature-icon i');
 
-function inverseIcons(){
+function inverseDisplay(){
   if (body.classList.contains('dark-mode')){
     themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
   } else {
@@ -126,12 +126,12 @@ icons.forEach( icon => {
   }
 });}
 
-updateThemeIcon();
-updateFutureIcons();
+inverseDisplay();
+inverseIcons();
 
-theme.Btn(addEventListener('click', () =>{
+themeBtn.addEventListener('click', () =>{
   body.classList.toggle('dark-mode');
-  updateThemeIcon();
-  updateFutureIcons();
-}));
+  inverseDisplay();
+  inverseIcons();
+});
 </script>
