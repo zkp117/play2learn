@@ -10,7 +10,7 @@
   <div class="card-body">
     <form method="post" class="m-auto mb-2">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form|crispy }}
       <button class="form-control btn btn-primary">REGISTER</button>
     </form>
   </div>
