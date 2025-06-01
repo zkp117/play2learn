@@ -9,6 +9,7 @@ from allauth.account.views import SignupView
 
 from allauth.account.views import SignupView
 from .signup_form import CustomSignupForm
+from django.views.decorators.cache import never_cache
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView, PasswordResetView
@@ -84,6 +85,7 @@ class CustomSignupView(SignupView):
     def get_success_url(self):
         return reverse_lazy('my-account')
 
+@never_cache
 def homepage_view(request):
     reviews = list(GameReviews.objects.all())
     random_reviews = random.sample(reviews, min(3, len(reviews))) if reviews else []
