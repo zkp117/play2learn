@@ -73,12 +73,12 @@ body.dark-mode .dark-container {
   color: #e7e7e7;
 }
 
-body.dark-mode .nav-dark {
+body.dark-mode .dark-nav {
   background-color: #7a7a7a;
   color: #fff;
 }
 
-body.dark-mode .nav-dark a {
+body.dark-mode .dark-nav a {
   color: #426183;
 }
 
