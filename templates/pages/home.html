@@ -97,12 +97,15 @@ const body = document.body;
 const themeBtn = document.getElementById('theme-toggle');
 const icons = document.querySelectorAll('.feature-icon i');
 
-if (body.classList.contains('dark-mode')){
-  themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
-} else {
-  themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+function inverseIcons(){
+  if (body.classList.contains('dark-mode')){
+    themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+  } else {
+    themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+  }
 }
 
+function inverseIcons() {
 icons.forEach( icon => {
   if (body.classList.contains('dark-mode')){
     if (icon.classList.contains('bi-calculator')) {
@@ -121,5 +124,14 @@ icons.forEach( icon => {
       icon.classList.replace('bi-award-fill', 'bi-award');
     }
   }
-});
+});}
+
+updateThemeIcon();
+updateFutureIcons();
+
+theme.Btn(addEventListener('click', () =>{
+  body.classList.toggle('dark-mode');
+  updateThemeIcon();
+  updateFutureIcons();
+}));
 </script>
