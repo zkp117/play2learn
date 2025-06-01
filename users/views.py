@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
-from .forms import CustomAuthenticationForm, CustomUserChangeForm, CustomSignupForm
+from .forms import CustomAuthenticationForm, CustomUserChangeForm
 from reviews.models import GameReviews
 from allauth.account.views import SignupView
 
@@ -75,9 +75,6 @@ class CustomLoginView(LoginView):
     
 class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
-
-    def get_form_class(self):
-        return CustomSignupForm
     
     def get_success_url(self):
         return reverse_lazy('my_account')
