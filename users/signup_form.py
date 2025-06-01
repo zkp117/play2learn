@@ -1,12 +1,12 @@
 from django import forms
-from allauth.account.forms import SignupForm
-
-class CustomSignupForm(SignupForm):
+from allauth.account.forms import BaseSignupForm
+class CustomSignupForm(BaseSignupForm):
     first_name = forms.CharField(max_length=50, required=False)
     last_name = forms.CharField(max_length=50, required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Remove password2 field if you want single password field (optional)
         self.fields.pop('password2', None)
 
     def signup(self, request, user):
@@ -14,3 +14,4 @@ class CustomSignupForm(SignupForm):
         user.last_name = self.cleaned_data.get('last_name', '')
         user.save()
         return user
+
