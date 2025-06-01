@@ -84,12 +84,12 @@ body.dark-mode .dark-nav a {
 }
 
 body.light-mode .light-nav {
-  background-color: #f1f1f1;
+  background-color: #fbfdff;
   color: #545454;
 }
 
 body.light-mode .light-footer{
-    background-color: #f1f1f1;
+    background-color: #fbfdff;
     color: #545454;
 }
 
