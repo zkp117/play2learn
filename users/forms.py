@@ -5,11 +5,11 @@ from django_password_eye.fields import PasswordEye
 from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.forms.widgets import ClearableFileInput
-from allauth.account.forms import SignupForm
+from allauth.account import forms as allauth_forms
 
 BIRTH_YEAR_CHOICES = range(1915, datetime.now().year)
 
-class CustomSignupForm(forms.Form):
+class CustomSignupForm(allauth_forms.SignupForm):
     first_name = forms.CharField(max_length=50, required=False)
     last_name = forms.CharField(max_length=50, required=False)
 
