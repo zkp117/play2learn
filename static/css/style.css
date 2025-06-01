@@ -75,12 +75,12 @@ body.dark-mode .dark-container {
 
 
 body.dark-mode .dark-nav {
-  background-color: #7a7a7a;
+  background-color: #4c6278;
   color: #fff;
 }
 
 body.dark-mode .dark-nav a {
-  color: #426183;
+  color: #daecff;
 }
 
 body.light-mode .light-nav {
@@ -94,12 +94,12 @@ body.light-mode .light-footer{
 }
 
 body.dark-mode .dark-footer {
-  background-color: #545454;
+  background-color: #4c6278;
   color: #e7e7e7;
 }
 
 body.dark-mode .dark-footer a {
-  color: #426183;
+  color: #daecff;
 }
 
 body.dark-mode .signup {
