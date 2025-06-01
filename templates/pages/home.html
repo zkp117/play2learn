@@ -97,39 +97,44 @@ const body = document.body;
 const themeBtn = document.getElementById('theme-toggle');
 const icons = document.querySelectorAll('.feature-icon i');
 
-function inverseDisplay(){
-  if (body.classList.contains('dark-mode')){
+// Sets the moon/sun icon on the toggle button
+function inverseDisplay() {
+  if (body.classList.contains('dark-mode')) {
     themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
   } else {
     themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
   }
 }
 
+// Switches icons between filled and outline versions
 function inverseIcons() {
-icons.forEach( icon => {
-  if (body.classList.contains('dark-mode')){
-    if (icon.classList.contains('bi-calculator')) {
-      icon.classList.replace('bi-calculator', 'bi-calculator-fill');
-    } else if (icon.classList.contains('bi-chat-right-quote')) {
-      icon.classList.replace('bi-chat-right-quote', 'bi-chat-right-quote-fill');
-    } else if (icon.classList.contains('bi-award')){
-      icon.classList.replace('bi-award', 'bi-award-fill');
+  icons.forEach(icon => {
+    if (body.classList.contains('dark-mode')) {
+      if (icon.classList.contains('bi-calculator')) {
+        icon.classList.replace('bi-calculator', 'bi-calculator-fill');
+      } else if (icon.classList.contains('bi-chat-right-quote')) {
+        icon.classList.replace('bi-chat-right-quote', 'bi-chat-right-quote-fill');
+      } else if (icon.classList.contains('bi-award')) {
+        icon.classList.replace('bi-award', 'bi-award-fill');
+      }
+    } else {
+      if (icon.classList.contains('bi-calculator-fill')) {
+        icon.classList.replace('bi-calculator-fill', 'bi-calculator');
+      } else if (icon.classList.contains('bi-chat-right-quote-fill')) {
+        icon.classList.replace('bi-chat-right-quote-fill', 'bi-chat-right-quote');
+      } else if (icon.classList.contains('bi-award-fill')) {
+        icon.classList.replace('bi-award-fill', 'bi-award');
+      }
     }
-  } else {
-    if (icon.classList.contains('bi-calculator-fill')) {
-      icon.classList.replace('bi-calculator-fill', 'bi-calculator');
-    } else if (icon.classList.contains('bi-chat-right-quote-fill')) {
-      icon.classList.replace('bi-chat-right-quote-fill', 'bi-chat-right-quote');
-    } else if (icon.classList.contains('bi-award-fill')){
-      icon.classList.replace('bi-award-fill', 'bi-award');
-    }
-  }
-});}
+  });
+}
 
+// Initial state on page load
 inverseDisplay();
 inverseIcons();
 
-themeBtn.addEventListener('click', () =>{
+// Event listener for the toggle
+themeBtn.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
   inverseDisplay();
   inverseIcons();
