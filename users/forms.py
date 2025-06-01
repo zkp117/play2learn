@@ -1,4 +1,5 @@
 from django import forms
+from allauth.account.forms import SignupForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 from django_password_eye.fields import PasswordEye
@@ -7,20 +8,18 @@ from django.contrib.auth import get_user_model
 from django.forms.widgets import ClearableFileInput
 
 BIRTH_YEAR_CHOICES = range(1915, datetime.now().year)
-class CustomSignupForm(forms.Form):  # Temporarily just subclass Form
+class CustomSignupForm(SignupForm):
     first_name = forms.CharField(max_length=50, required=False)
     last_name = forms.CharField(max_length=50, required=False)
 
     def __init__(self, *args, **kwargs):
-        # Delay importing SignupForm to avoid circular import
-        from allauth.account.forms import SignupForm
-        self.__class__ = type(self.__class__.__name__, (SignupForm,), dict(self.__class__.__dict__))
         super().__init__(*args, **kwargs)
+        # Optional: remove confirm password field
         self.fields.pop('password2', None)
 
     def signup(self, request, user):
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
+        user.first_name = self.cleaned_data.get('first_name', '')
+        user.last_name = self.cleaned_data.get('last_name', '')
         user.save()
         return user
 class CustomUserChangeForm(forms.ModelForm):
