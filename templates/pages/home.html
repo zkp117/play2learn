@@ -91,3 +91,35 @@
   </div>
 </div>
 {% endblock %}
+
+<script>
+const body = document.body;
+const themeBtn = document.getElementById('theme-toggle');
+const icons = document.querySelectorAll('.feature-icon i');
+
+if (body.classList.contains('dark-mode')){
+  themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+} else {
+  themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+}
+
+icons.forEach( icon => {
+  if (body.classList.contains('dark-mode')){
+    if (icon.classList.contains('bi-calculator')) {
+      icon.classList.replace('bi-calculator', 'bi-calculator-fill');
+    } else if (icon.classList.contains('bi-chat-right-quote')) {
+      icon.classList.replace('bi-chat-right-quote', 'bi-chat-right-quote-fill');
+    } else if (icon.classList.contains('bi-award')){
+      icon.classList.replace('bi-award', 'bi-award-fill');
+    }
+  } else {
+    if (icon.classList.contains('bi-calculator-fill')) {
+      icon.classList.replace('bi-calculator-fill', 'bi-calculator');
+    } else if (icon.classList.contains('bi-chat-right-quote-fill')) {
+      icon.classList.replace('bi-chat-right-quote-fill', 'bi-chat-right-quote');
+    } else if (icon.classList.contains('bi-award-fill')){
+      icon.classList.replace('bi-award-fill', 'bi-award');
+    }
+  }
+});
+</script>
