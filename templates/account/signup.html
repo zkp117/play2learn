@@ -7,7 +7,7 @@
 {% block main %}
 <div class="dark-container card border-primary m-auto mb-3" style="max-width: 30rem">
   <div class="card-header text-center">Register</div>
-  <div class="card-body">
+  <div class="card-body signup">
     <form method="post" class="m-auto mb-2">
       {% csrf_token %}
       {{ form|crispy }}

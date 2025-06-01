@@ -90,3 +90,7 @@ body.dark-mode footer {
 body.dark-mode footer a {
   color: #426183;
 }
+
+body.dark-mode .signup {
+  color: #fff;
+}
