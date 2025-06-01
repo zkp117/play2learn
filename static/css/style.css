@@ -41,18 +41,18 @@
 
 /* the css for light & dark themes */
 
-/* light theme (which is default) */
+/* body light & dark mode  */
 body.light-mode {
   background-color: #ebf5ff;
   color: #000;
 }
 
-/* dark theme */
 body.dark-mode {
   background-color: #7d9dbd;
   color: #fff;
 }
 
+/* glitch animated text dark mode */
 body.dark-mode .glitch-edit {
   color: #fff;
   text-shadow: 2px 0 #00ff11, -2px 0 #fff;
@@ -73,6 +73,7 @@ body.dark-mode .dark-container {
   color: #e7e7e7;
 }
 
+
 body.dark-mode .dark-nav {
   background-color: #7a7a7a;
   color: #fff;
@@ -80,6 +81,16 @@ body.dark-mode .dark-nav {
 
 body.dark-mode .dark-nav a {
   color: #426183;
+}
+
+body.light-mode .light-nav {
+  background-color: #f1f1f1;
+  color: #545454;
+}
+
+body.light-mode .light-footer{
+    background-color: #f1f1f1;
+    color: #545454;
 }
 
 body.dark-mode .dark-footer {
