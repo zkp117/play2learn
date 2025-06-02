@@ -80,7 +80,6 @@ body.dark-mode .dark-nav {
 }
 
 body.dark-mode .dark-nav a {
-  background-color: #4c6278;
   color: #daecff;
 }
 
@@ -105,4 +104,8 @@ body.dark-mode .dark-footer a {
 
 body.dark-mode .signup {
   color: #fff;
+}
+
+body.dark-mode .dropdown-menu{
+  background-color: #4c6278;
 }
