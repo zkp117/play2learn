@@ -151,9 +151,44 @@
   {{ form.media }}
 {% endblock %}
 
-{% block scripts %}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+{% block extra_js %}
+  {{ form.media }}
 {% endblock %}
 
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  const defaultTheme = localStorage.getItem('theme');
+
+  if (defaultTheme) {
+    body.classList.add(defaultTheme);
+  } else {
+    body.classList.add('light-mode');
+  }
+
+  themeBtn.addEventListener('click', () => {
+    if (body.classList.contains('light-mode')) {
+      body.classList.replace('light-mode', 'dark-mode');
+      localStorage.setItem('theme', 'dark-mode');
+      themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+    } else {
+      body.classList.replace('dark-mode', 'light-mode');
+      localStorage.setItem('theme', 'light-mode');
+      themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+    }
+  });
+
+  if (body.classList.contains('dark-mode')) {
+    themeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+  } else {
+    themeBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+  }
+});
+</script>
+{% endblock %}
 </body>
 </html>
