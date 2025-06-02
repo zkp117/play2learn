@@ -100,7 +100,7 @@
     const body = document.body;
     const icons = document.querySelectorAll('.feature-icon i');
 
-    const iconMap = {
+    const webIcons = {
       calculator: {
         light: 'bi-calculator',
         dark: 'bi-calculator-fill'
@@ -115,7 +115,7 @@
       }
     };
 
-    function setTheme(mode) {
+    function setToggle(mode) {
       body.classList.remove('light-mode', 'dark-mode');
       body.classList.add(mode);
       localStorage.setItem('theme', mode);
@@ -126,19 +126,19 @@
 
       icons.forEach(icon => {
         const key = icon.dataset.icon;
-        if (iconMap[key]) {
-          Object.values(iconMap[key]).forEach(cls => icon.classList.remove(cls));
-          icon.classList.add(iconMap[key][mode === 'dark-mode' ? 'dark' : 'light']);
+        if (webIcons[key]) {
+          Object.values(webIcons[key]).forEach(cls => icon.classList.remove(cls));
+          icon.classList.add(webIcons[key][mode === 'dark-mode' ? 'dark' : 'light']);
         }
       });
     }
 
     const savedTheme = localStorage.getItem('theme') || 'light-mode';
-    setTheme(savedTheme);
+    setToggle(savedTheme);
 
     themeBtn.addEventListener('click', () => {
       const newTheme = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode';
-      setTheme(newTheme);
+      setToggle(newTheme);
     });
   });
 </script>
