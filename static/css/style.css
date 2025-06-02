@@ -105,3 +105,7 @@ body.dark-mode .dark-footer a {
 body.dark-mode .signup {
   color: #fff;
 }
+
+body.dark-mode .dropdown-links {
+  color: #667b91;
+}
