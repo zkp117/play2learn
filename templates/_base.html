@@ -54,10 +54,10 @@
               aria-expanded="false">
               Games
             </a>
-            <div class="dropdown-menu dropdown-links" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'vue-games:math-facts' %}">MathFacts</a>
-              <a class="dropdown-item" href="{% url 'vue-games:anagram-hunt' %}">AnagramHunt</a>
-              <a class="dropdown-item" href="{% url 'scoreboards:scoreboards' %}">LeaderBoards</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item dropdown-links" href="{% url 'vue-games:math-facts' %}">MathFacts</a>
+              <a class="dropdown-item dropdown-links" href="{% url 'vue-games:anagram-hunt' %}">AnagramHunt</a>
+              <a class="dropdown-item dropdown-links" href="{% url 'scoreboards:scoreboards' %}">LeaderBoards</a>
               <div class="dropdown-divider">
                 
               </div>
@@ -70,13 +70,13 @@
               aria-expanded="false">
               Me
             </a>
-            <div class="dropdown-menu dropdown-links" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'my-account' %}">My Account</a>
-              <a class="dropdown-item" href="{% url 'scoreboards:my-scores' %}">My Scores</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item dropdown-links" href="{% url 'my-account' %}">My Account</a>
+              <a class="dropdown-item dropdown-links" href="{% url 'scoreboards:my-scores' %}">My Scores</a>
               <div class="dropdown-divider"></div>
               <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
-                <button class="btn dropdown-item">Log out</button>
+                <button class="btn dropdown-item dropdown-links">Log out</button>
               </form>
             </div>
           </li>

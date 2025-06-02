@@ -106,6 +106,6 @@ body.dark-mode .signup {
   color: #fff;
 }
 
-body.dark-mode .dropdown-links {
+body.dark-mode .dropdown-links a{
   color: #667b91;
 }
