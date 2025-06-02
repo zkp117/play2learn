@@ -91,55 +91,6 @@
   </div>
 </div>
 {% endblock %}
-
 {% block scripts %}
   {{ block.super }}
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icons = document.querySelectorAll('.feature-icon i');
-
-    const webIcons = {
-      calculator: {
-        light: 'bi-calculator',
-        dark: 'bi-calculator-fill'
-      },
-      quote: {
-        light: 'bi-chat-right-quote',
-        dark: 'bi-chat-right-quote-fill'
-      },
-      award: {
-        light: 'bi-award',
-        dark: 'bi-award-fill'
-      }
-    };
-
-    function setToggle(mode) {
-      body.classList.remove('light-mode', 'dark-mode');
-      body.classList.add(mode);
-      localStorage.setItem('theme', mode);
-
-      themeBtn.innerHTML = mode === 'dark-mode'
-        ? '<i class="bi bi-sun-fill"></i>'
-        : '<i class="bi bi-moon-fill"></i>';
-
-      icons.forEach(icon => {
-        const key = icon.dataset.icon;
-        if (webIcons[key]) {
-          Object.values(webIcons[key]).forEach(cls => icon.classList.remove(cls));
-          icon.classList.add(webIcons[key][mode === 'dark-mode' ? 'dark' : 'light']);
-        }
-      });
-    }
-
-    const savedTheme = localStorage.getItem('theme') || 'light-mode';
-    setToggle(savedTheme);
-
-    themeBtn.addEventListener('click', () => {
-      const newTheme = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode';
-      setToggle(newTheme);
-    });
-  });
-</script>
 {% endblock %}
