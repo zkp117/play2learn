@@ -75,6 +75,8 @@ import anagrams from "@/helpers/anagrams";
 import { getRandomInteger } from "@/helpers/helpers";
 import Axios from "axios";
 
+const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
 export default {
   name: 'AnagramGame',
   data() {
@@ -90,8 +92,7 @@ export default {
       correctGuesses: [],
       userInput: "",
       interval: null,
-      csrfToken: document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
-    }
+    };
   },
   computed: {
     guessesLeft() {
@@ -102,6 +103,9 @@ export default {
     play() {
       this.score = 0;
       this.screen = "play";
+
+      if (this.interval) clearInterval(this.interval);
+
       this.newAnagramList();
       this.interval = setInterval(() => {
         this.timeLeft -= 1;
@@ -109,7 +113,11 @@ export default {
     },
     checkAnswer() {
       const input = this.userInput.toLowerCase();
-      if (this.anagramList.includes(input) && !this.correctGuesses.includes(input) && this.currentWord !== input) {
+      if (
+        this.anagramList.includes(input) &&
+        !this.correctGuesses.includes(input) &&
+        this.currentWord !== input
+      ) {
         this.correctGuesses.push(input);
         this.userInput = "";
         this.score += 1;
@@ -119,12 +127,20 @@ export default {
         }
       }
     },
+    
     newAnagramList() {
       const currentAnagramList = [...this.anagramList];
       const potentialAnagramLists = this.anagrams[this.wordLength];
+
+      if (!potentialAnagramLists || potentialAnagramLists.length === 0) {
+        console.warn("No anagram list available for word length:", this.wordLength);
+        return;
+      }
+
       do {
         this.anagramList = [...potentialAnagramLists[getRandomInteger(0, potentialAnagramLists.length)]];
       } while (this.anagramList[0] === currentAnagramList[0]);
+
       this.currentWord = this.anagramList[getRandomInteger(0, this.anagramList.length)];
       this.correctGuesses = [];
     },
@@ -137,7 +153,7 @@ export default {
         }, {
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': this.csrfToken
+            'X-CSRFToken': csrfToken
           },
           withCredentials: true
         });
@@ -160,5 +176,5 @@ export default {
       }
     }
   }
-}
+};
 </script>

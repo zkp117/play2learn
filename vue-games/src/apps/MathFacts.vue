@@ -109,9 +109,10 @@
 </template>
 
 <script type="text/javascript">
-const csrfToken = "{{ csrf_token }}"
 import { getRandomInteger } from '@/helpers/helpers';
 import Axios from 'axios';
+
+const csrfToken = "{{ csrf_token }}";
 
 export default {
   name: 'MathGame',
@@ -132,7 +133,7 @@ export default {
       userInput: "",
       interval: null,
       timeLeft: 60,
-    }
+    };
   },
   methods: {
     play() {
@@ -140,7 +141,7 @@ export default {
       this.getNewQuestion();
       this.interval = setInterval(() => {
         this.timeLeft--;
-      }, 1000)
+      }, 1000);
     },
     getNewQuestion() {
       let num1 = getRandomInteger(0, this.maxNumber + 1);
@@ -148,12 +149,10 @@ export default {
       if (this.operation == "-") {
         this.number1 = Math.max(num1, num2);
         this.number2 = Math.min(num1, num2);
-      }
-      else if (this.operation == "/") {
+      } else if (this.operation == "/") {
         this.number1 = num1 * num2;
         this.number2 = num2;
-      }
-      else {
+      } else {
         this.number1 = num1;
         this.number2 = num2;
       }
@@ -165,7 +164,7 @@ export default {
         maxNumber: this.maxNumber,
         timeLeft: this.timeLeft
       };
-
+      
       try {
         const response = await Axios.post('/games/api/record-score/mathfacts/', userData, {
           headers: {
@@ -175,6 +174,9 @@ export default {
           withCredentials: true
         });
         console.log("Saved successfully", response.data);
+        setTimeout(() => {
+          window.location.href = '/scoreboards/';
+        }, 500);
       } catch (error) {
         console.error("Error saving", error);
       }
@@ -190,26 +192,22 @@ export default {
       if (this.operation == "+") {
         return input === this.number1 + this.number2;
       }
-
       if (this.operation == "-") {
         return input === this.number1 - this.number2;
       }
-
       if (this.operation == "x") {
         return input === this.number1 * this.number2;
       }
-
       if (this.operation == "/") {
         return input === this.number1 / this.number2;
       }
-
       return false;
-    },
+    }
   },
   watch: {
     userInput() {
       if (this.correctAnswer) {
-        this.score++; 
+        this.score++;
         this.getNewQuestion();
         this.userInput = "";
       }
@@ -224,5 +222,5 @@ export default {
       }
     }
   }
-}
+};
 </script>
