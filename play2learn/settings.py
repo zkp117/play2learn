@@ -208,6 +208,8 @@ STORAGES = {
 CORS_ALLOWED_ORIGINS = [
    "http://localhost:8080",  # for local host (general pages + vue games)
    "http://localhost:8000",
+   "https://www.play2learn.app",
+   "https://play2learn.app",
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
