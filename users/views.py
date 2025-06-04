@@ -59,12 +59,16 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context['mathreview_newest'] = GameReviews.objects.filter(user=user, game='mathfacts').order_by('-submitted').first()
 
         return context
+    
 class PasswordEmailView(PasswordResetView):
-    def get_email_context(self, context): 
-        context['domain'] = 'www.play2learn.app'
-        context['site_name'] = 'Play2Learn'
-        context['protocol'] = 'https'
-        return context
+    def get_email_options(self):
+        return {
+            "extra_email_context": {
+                "domain": "www.play2learn.app",
+                "site_name": "Play2Learn",
+                "protocol": "https",
+            }
+        }
 
 @login_required
 def clear_avatar(request):
