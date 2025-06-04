@@ -21,5 +21,5 @@ urlpatterns = [
 
     # User account
     path('my-account/', MyAccountPageView.as_view(), name='my-account'),
-    path('clear-avatar/', views.clear_avatar, name='clear_avatar'),
+    path('account/clear-avatar/', views.clear_avatar, name='clear_avatar'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
