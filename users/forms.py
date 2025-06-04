@@ -1,5 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
+from django.template.loader import render_to_string
+from common.utils.email_service import send_email
 from django.utils.translation import gettext_lazy as _
 from django_password_eye.fields import PasswordEye
 from datetime import datetime
