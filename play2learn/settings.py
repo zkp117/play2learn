@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 ]
 
 # changed from 1 since host name was changed
-SITE_ID = 2 
+SITE_ID = 3 
 
 # CRISPY SECTION
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
