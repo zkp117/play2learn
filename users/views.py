@@ -61,7 +61,7 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return context
     
 class PasswordEmailView(PasswordResetView):
-    email_template_name = "account/email/password_reset_key_message.txt"
+    email_template_name = "account/email/password_reset_key_message.html"
     subject_template_name = "account/email/password_reset_key_subject.txt"
     html_email_template_name = "account/email/password_reset_key_message.html"
 
