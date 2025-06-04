@@ -23,6 +23,7 @@
       </div>
       <button class="btn btn-primary w-100" @click="play">Play!</button>
     </div>
+
     <!-- Play Screen -->
     <div v-else-if="screen == 'play'" class="container">
       <div class="row">
@@ -44,6 +45,7 @@
         </ol>
       </div>
     </div>
+
     <!-- End Screen -->
     <div v-else-if="screen == 'end'" class="container">
       <div class="row">
@@ -92,6 +94,7 @@ export default {
       correctGuesses: [],
       userInput: "",
       interval: null,
+      usedAnagramLists: [], // ✅ New tracker for used sets
     };
   },
   computed: {
@@ -102,11 +105,15 @@ export default {
   methods: {
     play() {
       this.score = 0;
+      this.timeLeft = 60;
       this.screen = "play";
+      this.correctGuesses = [];
+      this.usedAnagramLists = []; // ✅ Reset on new game
 
       if (this.interval) clearInterval(this.interval);
 
       this.newAnagramList();
+
       this.interval = setInterval(() => {
         this.timeLeft -= 1;
       }, 1000);
@@ -127,9 +134,7 @@ export default {
         }
       }
     },
-    
     newAnagramList() {
-      const currentAnagramList = [...this.anagramList];
       const potentialAnagramLists = this.anagrams[this.wordLength];
 
       if (!potentialAnagramLists || potentialAnagramLists.length === 0) {
@@ -137,9 +142,19 @@ export default {
         return;
       }
 
-      do {
-        this.anagramList = [...potentialAnagramLists[getRandomInteger(0, potentialAnagramLists.length)]];
-      } while (this.anagramList[0] === currentAnagramList[0]);
+      const unusedLists = potentialAnagramLists.filter(
+        list => !this.usedAnagramLists.some(used => used[0] === list[0])
+      );
+
+      if (unusedLists.length === 0) {
+        console.warn("All anagram sets used");
+        this.screen = 'end'; // Optional: End game when all used
+        return;
+      }
+
+      const chosenList = [...unusedLists[getRandomInteger(0, unusedLists.length)]];
+      this.anagramList = chosenList;
+      this.usedAnagramLists.push(chosenList);
 
       this.currentWord = this.anagramList[getRandomInteger(0, this.anagramList.length)];
       this.correctGuesses = [];

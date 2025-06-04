@@ -16,7 +16,7 @@
     {% for review in random_reviews %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
         <blockquote class="blockquote text-center p-4">
-          <p class="mb-0">{{ review.review|linebreaksbr|truncatechars:200 }}</p>
+          <p class="mb-0 review-text">{{ review.review|linebreaksbr|truncatechars:200 }}</p>
           <footer class="blockquote-footer mt-2 d-flex align-items-center justify-content-center" style="white-space: nowrap;">
             {% if review.user.avatar %}
             <img src="{{ review.user.avatar.url }}" alt="{{ review.user.username }}'s avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
@@ -57,8 +57,8 @@
         </div>
         <h3 class="fs-2 text-body-emphasis">Games</h3>
         <p>On Play2Learn there are two games for you to play, titled MathFacts 
-          and AnagramHunt! To get started, check out either of the games by 
-          reading the rules and start playing. You can play as many times as you want. </p>
+          and AnagramHunt! To get started, either log in to your account or 
+          sign up with your email. You can play as many times as you want. </p>
       </div>
     </div>
 

@@ -109,3 +109,15 @@ body.dark-mode .signup {
 body.dark-mode .dropdown {
   background-color: #4c6278;
 }
+
+body.dark-mode .review-text{
+  color: #000;
+}
+
+body.dark-mode .logout{
+  color: #daecff;
+}
+
+body.dark-mode .text{
+  color: #000;
+}
