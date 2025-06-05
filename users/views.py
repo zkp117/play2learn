@@ -77,9 +77,9 @@ class PasswordEmailView(PasswordResetView):
 @login_required
 def clear_avatar(request):
     user = request.user
-    user.avatar.delete()
-    user.save()
-    return redirect('my-account') 
+    if user.avatar:
+        user.avatar.delete(save=True)
+        return redirect('my-account')
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
     authentication_form = CustomAuthenticationForm

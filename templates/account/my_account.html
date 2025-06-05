@@ -87,7 +87,7 @@
             
             {% if user.avatar %}
             <div class="mb-3 text-center">
-              <a href="{% url 'clear-avatar' %}" class="btn btn-outline-danger btn-sm">Clear Avatar</a>
+              <a href="{% url 'users:clear-avatar' %}" class="btn btn-outline-danger btn-sm">Clear Avatar</a>
             </div>
             {% endif %}
             <button type="submit" class="form-control btn btn-primary mt-3">Save Changes</button>
