@@ -1,29 +1,27 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
-from django.template.loader import render_to_string
-from common.utils.email_service import send_email
-from django.utils.translation import gettext_lazy as _
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout
 from django_password_eye.fields import PasswordEye
 from datetime import datetime
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
-from django.forms.widgets import ClearableFileInput
+
+from .models import CustomUser
 
 BIRTH_YEAR_CHOICES = range(1915, datetime.now().year)
 
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ('email', 'username', 'first_name', 'last_name', 'dob', 'avatar',
-                 )
+        fields = ('email', 'username', 'first_name', 'last_name', 'dob')
         widgets = {
             'dob': forms.SelectDateWidget(
-                attrs={
-                    'style': 'width: 31%; display: inline-block; margin: 0 1%'
-                },
+                attrs={'style': 'width: 31%; display: inline-block; margin: 0 1%'},
                 years=BIRTH_YEAR_CHOICES
             ),
-            'avatar': ClearableFileInput(attrs={'class': 'form-control-file'})
         }
+
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,
@@ -35,8 +33,30 @@ class CustomAuthenticationForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')})
     )
 
-    # helps clean to load smoother / faster
     def clean(self):
         return super().clean()
-            
 
+# ✅ Your actual ProfileUpdateForm (not nested!)
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Set a class on the avatar field manually
+        if 'avatar' in self.fields:
+            self.fields['avatar'].widget.attrs['class'] = 'form-control'
+
+        # Setup crispy helper
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+
+        # Layout without avatar
+        self.helper.layout = Layout(
+            'first_name',
+            'last_name',
+            'email'
+            # avatar will be rendered manually
+        )
