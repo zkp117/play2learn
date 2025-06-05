@@ -21,7 +21,6 @@ class CustomUserChangeForm(forms.ModelForm):
                 years=BIRTH_YEAR_CHOICES
             ),
         }
-
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,
@@ -35,8 +34,6 @@ class CustomAuthenticationForm(AuthenticationForm):
 
     def clean(self):
         return super().clean()
-
-# ✅ Your actual ProfileUpdateForm (not nested!)
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
@@ -45,18 +42,14 @@ class ProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Set a class on the avatar field manually
         if 'avatar' in self.fields:
             self.fields['avatar'].widget.attrs['class'] = 'form-control'
 
-        # Setup crispy helper
         self.helper = FormHelper()
         self.helper.form_method = 'post'
 
-        # Layout without avatar
         self.helper.layout = Layout(
             'first_name',
             'last_name',
             'email'
-            # avatar will be rendered manually
         )
