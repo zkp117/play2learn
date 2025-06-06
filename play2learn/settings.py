@@ -49,7 +49,7 @@ INSTALLED_APPS = [
    'storages',
    'games',
    'scoreboards',
-   'corsheaders'
+   'corsheaders',
    'widget_tweaks',
 ]
 
