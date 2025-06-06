@@ -50,6 +50,7 @@ INSTALLED_APPS = [
    'games',
    'scoreboards',
    'corsheaders'
+   'widget_tweaks',
 ]
 
 # changed from 1 since host name was changed
