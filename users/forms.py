@@ -34,22 +34,30 @@ class CustomAuthenticationForm(AuthenticationForm):
 
     def clean(self):
         return super().clean()
+
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email', 'avatar', 'dob']
+        widgets = {
+            'dob': forms.SelectDateWidget(
+                attrs={'style': 'width: 31%; display: inline-block; margin: 0 1%'},
+                years=BIRTH_YEAR_CHOICES
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if 'avatar' in self.fields:
-            self.fields['avatar'].widget.attrs['class'] = 'form-control'
+        self.fields['avatar'].widget.attrs['class'] = 'form-control'
 
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-
         self.helper.layout = Layout(
             'first_name',
             'last_name',
-            'email'
+            'email',
+            'avatar',
+            'dob'
         )
+
