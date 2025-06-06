@@ -55,46 +55,52 @@
         </div>
       </div>
     </div>
+
     <!-- User Profile -->
-     <div class="col-md-6 mb-4">
+    <div class="col-md-6 mb-4">
       <div class="card border-primary h-100 dark-container">
         <div class="card-header text-center">Update Profile</div>
         <div class="card-body">
           <div class="text-center">Your Avatar</div>
           <div class="text-center mb-3">
-            {% if user.avatar %}
-            <img src="{{ user.avatar.url }}?v={{ user.date_joined|date:'U' }}" alt="Avatar" class="img-fluid rounded mb-2" style="max-width: 200px;">
-            {% else %}
-            <p>No avatar set.</p>
-            {% endif %}
-          </div>
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="{{ form.avatar.id_for_label }}" class="form-label">Upload New Avatar</label>
-              {{ form.avatar }}
-              {% if form.avatar.help_text %}
-              <div class="form-text">{{ form.avatar.help_text }}</div>
-              {% endif %}
-              {% if form.avatar.errors %}
-              <div class="text-danger">{{ form.avatar.errors }}</div>
-              {% endif %}
-            </div>
-            {% for field in form %}
-            {% if field.name != "avatar" %}
-            {{ field|as_crispy_field }}
-            {% endif %}
-            {% endfor %}
-            {% if user.avatar %}
-            <div class="mb-3 text-center">
-              <a href="{% url 'clear-avatar' %}" class="btn btn-outline-danger btn-sm">Clear Avatar</a>
-            </div>
-            {% endif %}
-            <button type="submit" class="form-control btn btn-primary mt-3">Save Changes</button>
-          </form>
+          {% if user.avatar %}
+          <img src="{{ user.avatar.url }}?v={{ user.date_joined|date:'U' }}" alt="Avatar" class="img-fluid rounded mb-2" style="max-width: 200px;">
+          {% else %}
+          <p>No avatar set.</p>
+          {% endif %}
         </div>
-      </div>
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        {% if field.name != "avatar" %}
+        {{ field|as_crispy_field }}
+        {% endif %}
+        {% endfor %}
+        <div class="mb-3">
+          <label for="{{ form.avatar.id_for_label }}" class="form-label">Upload New Avatar</label>
+          <div class="form-control">
+            {{ form.avatar }}
+          </div>
+          {% if form.avatar.help_text %}
+          <div class="form-text">{{ form.avatar.help_text }}</div>
+          {% endif %}
+          {% if form.avatar.errors %}
+          <div class="text-danger">{{ form.avatar.errors }}</div>
+          {% endif %}
+        </div>
+        {% if user.avatar %}
+        <div class="mb-3 text-center">
+          <a href="{% url 'clear-avatar' %}" class="btn btn-outline-danger btn-sm">Clear Avatar</a>
+        </div>
+        {% endif %}
+        <button type="submit" class="form-control btn btn-primary mt-3">Save Changes</button>
+      </form>
     </div>
+  </div>
+</div>
+
+
+    
   </div>
 </div>
 {% endblock %}
