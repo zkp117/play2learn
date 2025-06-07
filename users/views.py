@@ -82,7 +82,10 @@ def clear_avatar(request):
     user = request.user
     if user.avatar:
         user.avatar.delete(save=True)
-        return redirect('my-account')
+        user.avatar = None             
+        user.save()
+    return redirect('my-account')
+
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
     authentication_form = CustomAuthenticationForm
