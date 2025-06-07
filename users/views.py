@@ -1,25 +1,17 @@
+import random
+from django.views.generic import UpdateView
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
-
 from .forms import CustomAuthenticationForm, CustomUserChangeForm
 from reviews.models import GameReviews
 from allauth.account.views import SignupView
-
-from allauth.account.views import SignupView
-from django.views.decorators.cache import never_cache
-from django.utils.decorators import method_decorator
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView, PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
-
-from django.urls import reverse_lazy
-import random
-
-from django.views.generic import UpdateView
-
 from scoreboards.models import AnagramHuntScoreBoard, MathFactsScoreBoard
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):
     success_url = reverse_lazy('my-account')

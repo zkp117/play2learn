@@ -7,7 +7,6 @@ from django.core.files.images import get_image_dimensions
 from django.views.decorators.cache import never_cache
 from play2learn.storage_backends import PublicMediaStorage
 
-@never_cache
 def validate_avatar(value):
     w, h = get_image_dimensions(value)
     if w > 200 or h > 200:
