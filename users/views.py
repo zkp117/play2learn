@@ -8,7 +8,6 @@ from reviews.models import GameReviews
 from allauth.account.views import SignupView
 
 from allauth.account.views import SignupView
-from .signup_form import CustomSignupForm
 from django.views.decorators.cache import never_cache
 
 from django.contrib.auth.mixins import LoginRequiredMixin

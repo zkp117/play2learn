@@ -10,7 +10,7 @@ class PublicMediaStorage(S3Boto3Storage):
     file_overwrite = False
     custom_domain = settings.AWS_S3_CUSTOM_DOMAIN
     object_parameters = {
-        'CacheControl': 'max-age=60',
+        'Cache-Control': 'no-cache, no-store, must-revalidate'
     }
 class PrivateMediaStorage(S3Boto3Storage):
     location = 'media/private'

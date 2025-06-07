@@ -19,7 +19,6 @@ class CustomUserChangeForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Add Bootstrap styling or any widget attrs for avatar field
         if 'avatar' in self.fields:
             self.fields['avatar'].widget.attrs.update({'class': 'form-control'})
 
