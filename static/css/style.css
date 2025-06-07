@@ -111,7 +111,7 @@ body.dark-mode .dropdown-menu {
   color: #daecff;
 }
 
-body.dark-mode .dropdown-menu a {
+body.dark-mode .dropdown-menu a:hover {
   background-color: #243c54;
 }
 
