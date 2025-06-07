@@ -36,11 +36,7 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     template_name = 'account/my_account.html'
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        if 'avatar' in self.request.FILES:
-            self.object.avatar = self.request.FILES['avatar']
-            self.object.save()
-        return response
+        return super().form_valid(form)
 
     def get_object(self):
         return self.request.user

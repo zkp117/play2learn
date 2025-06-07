@@ -1,16 +1,14 @@
 from storages.backends.s3boto3 import S3Boto3Storage
-import os
+from django.conf import settings
 class StaticStorage(S3Boto3Storage):
     location = 'static'
     default_acl = 'public-read'
     file_overwrite = False
-
 class PublicMediaStorage(S3Boto3Storage):
-    # creates correct path for uploading avatars
-    location = os.path.join('media', 'public')
+    location = 'media/public'
     default_acl = 'public-read'
     file_overwrite = False
-
+    custom_domain = settings.AWS_S3_CUSTOM_DOMAIN
 class PrivateMediaStorage(S3Boto3Storage):
     location = 'media/private'
     default_acl = 'private'
