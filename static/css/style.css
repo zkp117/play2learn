@@ -121,3 +121,13 @@ body.dark-mode .logout{
 body.dark-mode .text{
   color: #000;
 }
+
+.carousel{
+  background-color: #ebf5ff;
+  color: #000;
+}
+
+.dark-mode .carousel{
+  background-color: #4c6278;
+  color: #fff;
+}
