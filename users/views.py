@@ -74,6 +74,7 @@ class PasswordEmailView(PasswordResetView):
             }
         }
 
+@never_cache
 @login_required
 def clear_avatar(request):
     user = request.user
