@@ -128,9 +128,12 @@ body.dark-mode .text{
 
 .dark-mode .carousel-dark{
   background-color: #4c6278;
-  color: #fff;
 }
 
-.dark-mode info{
-  color: #f0f0f0
+.dark-mode .review-text{
+  color: #f0f0f0;
+}
+
+.dark-mode .info{
+  color: #ffffff
 }
