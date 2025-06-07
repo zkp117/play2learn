@@ -128,8 +128,9 @@ body.dark-mode .text{
 
 .dark-mode .carousel-dark{
   background-color: #4c6278;
+  color: #fff;
 }
 
-.dark-mode .blockquote{
+.dark-mode .carousel-inner{
   color: #e7e7e7
 }
