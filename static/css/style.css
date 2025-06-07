@@ -106,7 +106,7 @@ body.dark-mode .signup {
   color: #fff;
 }
 
-body.dark-mode #navbarDropdown {
+body.dark-mode .dropdown-menu {
   background-color: #4c6278;
   color: #daecff;
 }
