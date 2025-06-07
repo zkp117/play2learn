@@ -24,9 +24,6 @@ from scoreboards.models import AnagramHuntScoreBoard, MathFactsScoreBoard
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):
     success_url = reverse_lazy('my-account')
     login_url = reverse_lazy('account_login')
-
-class CustomSignupView(SignupView):
-    form_class = CustomSignupForm
 class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = get_user_model()
     login_url = reverse_lazy('account_login')
