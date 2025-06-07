@@ -111,6 +111,11 @@ body.dark-mode .dropdown-menu {
   color: #daecff;
 }
 
+body.dark-mode .dropdown-menu a {
+  background-color: #4c6278;
+  color: #8ca9c8;
+}
+
 body.dark-mode .logout{
   color: #daecff;
 }
