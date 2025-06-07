@@ -21,7 +21,7 @@
             {% if review.user.avatar %}
             <img src="{{ review.user.avatar.url }}" alt="{{ review.user.username }}'s avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
             {% endif %}
-            <span>{{ review.user.username }} ({{ review.get_game_display }})</span>
+            <span class="info">{{ review.user.username }} ({{ review.get_game_display }})</span>
           </footer>
         </blockquote>
       </div>
