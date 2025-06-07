@@ -9,6 +9,7 @@ from allauth.account.views import SignupView
 
 from allauth.account.views import SignupView
 from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChangeView, LoginView, PasswordResetView
@@ -23,6 +24,8 @@ from scoreboards.models import AnagramHuntScoreBoard, MathFactsScoreBoard
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):
     success_url = reverse_lazy('my-account')
     login_url = reverse_lazy('account_login')
+
+@method_decorator(never_cache, name='dispatch') 
 class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = get_user_model()
     login_url = reverse_lazy('account_login')
