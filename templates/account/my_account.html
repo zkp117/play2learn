@@ -64,7 +64,8 @@
           <div class="text-center">Your Avatar</div>
           <div class="text-center">
             {% if request.user.avatar %}
-            <img src="{{ request.user.avatar.url }}?v={{ user.date_joined.timestamp }}" alt="Avatar">
+            <img src="{{ request.user.avatar.url }}?v={{ random|default:request.user.date_joined.timestamp }}" alt="Avatar" class="img-fluid rounded mb-2">
+
             {% else %}
               <p>No avatar set.</p>
             {% endif %}
