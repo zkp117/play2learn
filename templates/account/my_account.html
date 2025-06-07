@@ -16,9 +16,9 @@
           <h5 class="glitch-stable">Anagram Hunt:</h5>
           {% if anagramhunt_newest %}
             <strong>Latest Score:</strong>
-            <p class="badge bg-primary rounded-pill score-badge">{{ anagramhunt_newest.score }}</p><br>
+            <p class="badge rounded-pill score-badge">{{ anagramhunt_newest.score }}</p><br>
             <strong>Highest Score:</strong>
-            <p class="badge bg-primary rounded-pill score-badge">{{ anagramhunt_highest.score }}</p>
+            <p class="badge rounded-pill score-badge">{{ anagramhunt_highest.score }}</p>
           {% else %}
             <p>None yet.</p>
           {% endif %}
