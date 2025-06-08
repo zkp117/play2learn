@@ -139,3 +139,7 @@ body.dark-mode .text{
 .dark-mode .info{
   color: #ffffff;
 }
+
+.dark-mode .bi-sun {
+  color: white;
+}
