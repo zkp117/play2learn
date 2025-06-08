@@ -145,7 +145,7 @@ body.dark-mode .text{
 body.light-mode #theme-toggle {
   background-color: #fff;
   border-color: #fff;
-  color: #ffff19;
+  color: #ffd900;
 }
 
 body.dark-mode #theme-toggle {
