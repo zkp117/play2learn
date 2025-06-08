@@ -142,14 +142,24 @@ body.dark-mode .text{
 
 /* css for icons */
 
-body.light-mode .bi-sun.theme-icon {
-  color: #ffff19;
+body.light-mode #theme-toggle {
   background-color: #fff;
   border-color: #fff;
+  color: #ffff19;
 }
 
-body.dark-mode .bi-moon-fill.theme-icon {
-  color: #efefef;
+body.dark-mode #theme-toggle {
   background-color: #000;
   border-color: #000;
+  color: #efefef;
 }
+
+body.light-mode #theme-toggle:hover {
+  background-color: #f0f0f0;
+}
+
+body.dark-mode #theme-toggle:hover {
+  background-color: #111;
+}
+
+
