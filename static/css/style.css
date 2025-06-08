@@ -53,6 +53,10 @@ body.dark-mode {
   color: #fff;
 }
 
+body.dark-mode .carousel{
+  background-color: #7d9dbd;
+}
+
 /* glitch animated text dark mode */
 body.dark-mode .glitch-edit {
   color: #fff;
@@ -125,7 +129,7 @@ body.dark-mode .text{
 }
 
 .carousel{
-  background-color: #ffffff;
+  background-color: #ebf5ff;
 }
 
 .dark-mode .review-text{
