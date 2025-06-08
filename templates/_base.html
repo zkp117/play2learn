@@ -191,8 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('theme', mode);
 
     themeBtn.innerHTML = mode === 'dark-mode'
-      ? '<i class="bi bi-moon-fill"></i>'
-      : '<i class="bi bi-sun"></i>';
+    ? '<i class="bi bi-moon-fill theme-icon"></i>'
+    : '<i class="bi bi-sun theme-icon"></i>';
 
     updateThemeIcons(mode);
   }
