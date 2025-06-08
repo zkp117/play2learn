@@ -33,7 +33,7 @@
   padding: 0.2rem;
 }
 
-.score-badge{
+body.light-mode .score-badge{
   font-family: 'Press Start 2P', cursive;
   color: #000;
   background-color: #fff200;
