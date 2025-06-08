@@ -148,7 +148,8 @@ body.light-mode .bi-sun {
   border-color: #fff;
 }
 
-body.light-mode .dark-mode .moon-fill{
+
+body.dark-mode .bi-moon-fill {
   color: #efefef;
   background-color: #000;
   border-color: #000;
