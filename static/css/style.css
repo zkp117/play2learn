@@ -142,13 +142,13 @@ body.dark-mode .text{
 
 /* css for icons */
 
-.bi-sun {
+body.light-mode .bi-sun {
   color: #ffff19;
   background-color: #fff;
   border-color: #fff;
 }
 
-.dark-mode .moon-fill{
+body.light-mode .dark-mode .moon-fill{
   color: #efefef;
   background-color: #000;
   border-color: #000;
