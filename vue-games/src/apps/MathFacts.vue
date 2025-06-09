@@ -174,9 +174,6 @@ export default {
           withCredentials: true
         });
         console.log("Saved successfully", response.data);
-        setTimeout(() => {
-          window.location.href = '/scoreboards/';
-        }, 500);
       } catch (error) {
         console.error("Error saving", error);
       }
