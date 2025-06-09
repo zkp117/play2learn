@@ -143,8 +143,8 @@ body.dark-mode .text{
 /* css for icons */
 
 body.light-mode #theme-toggle {
-  background-color: #fff;
-  border-color: #fff;
+  background-color: #fbfdff;
+  border-color: #fbfdff;
   color: #ffd900;
 }
 
