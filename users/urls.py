@@ -14,16 +14,16 @@ from django.contrib.auth.views import (
 )
 
 urlpatterns = [
-    path("login/", CustomLoginView.as_view(), name="login"),
 
     # Password reset links
     path('account/password_reset/', PasswordEmailView.as_view(template_name='account/password/password_reset.html'), name='password_reset'),
     path('account/password_reset_done/', PasswordResetDoneView.as_view(template_name='account/password/password_reset_done.html'), name='password_reset_done'),
     path('account/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='account/password/password_reset_confirm.html'), name='password_reset_confirm'),
     path('account/reset/done/', PasswordResetCompleteView.as_view(template_name='account/password/password_reset_complete.html'), name='password_reset_complete'),
-    path('signup/', CustomSignupView.as_view(), name='account_signup'),
 
     # User account links
     path('my-account/', MyAccountPageView.as_view(), name='my-account'),
+    path("login/", CustomLoginView.as_view(), name="login"),
+    path('signup/', CustomSignupView.as_view(), name='account_signup'),
     path('clear-avatar/', views.clear_avatar, name='clear-avatar'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

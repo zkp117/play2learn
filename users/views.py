@@ -16,7 +16,6 @@ from scoreboards.models import AnagramHuntScoreBoard, MathFactsScoreBoard
 class CustomPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, DjangoPasswordChangeView):
     success_url = reverse_lazy('my-account')
     login_url = reverse_lazy('account_login')
-
 @method_decorator(never_cache, name='dispatch') 
 class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = get_user_model()
@@ -53,7 +52,6 @@ class MyAccountPageView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context['mathreview_newest'] = GameReviews.objects.filter(user=user, game='mathfacts').order_by('-submitted').first()
 
         return context
-    
 class PasswordEmailView(PasswordResetView):
     email_template_name = "account/email/password_reset_key_message.txt"
     subject_template_name = "account/email/password_reset_key_subject.txt"
@@ -83,13 +81,12 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('my-account')
-    
 class CustomSignupView(SignupView):
     template_name = 'account/signup.html'
     
     def get_success_url(self):
         return reverse_lazy('my-account')
-
+    
 @never_cache
 def homepage_view(request):
     reviews = list(GameReviews.objects.all())

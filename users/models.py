@@ -4,7 +4,6 @@ from django.db import models
 from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
-from django.views.decorators.cache import never_cache
 from play2learn.storage_backends import PublicMediaStorage
 
 def validate_avatar(value):

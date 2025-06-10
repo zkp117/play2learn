@@ -1,4 +1,8 @@
-#!/bin/bash
+# this file I run when I update either of the vue games (actual .vue files only)
+# it's setup this way so if I update them it deletes the old files and replaces it with the new one
+# instructions: 
+    # "npm run build && ./deploy.sh"
+    # npm command builds games and './deploy.sh' sends the current build to aws
 
 # builds MathFacts game
 echo "Building Math Facts game..."
@@ -29,6 +33,3 @@ echo "Anagram Hunt JavaScript sync completed."
 echo "Syncing Anagram Hunt CSS files to S3..."
 aws s3 sync ./dist/css/ s3://play2learn-bucket/vue-games/anagram-hunt/css/ --delete --acl public-read --exact-timestamps --content-type "text/css"
 echo "Anagram Hunt CSS sync completed."
-
-# shows that everything went through
-echo "✅ Deployment complete!"
