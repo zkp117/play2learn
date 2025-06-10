@@ -1,7 +1,11 @@
 from django.views.generic import TemplateView
-from .models import MathFactsScoreBoard, AnagramHuntScoreBoard, MathFactsUserScores, AnagramHuntUserScores
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .models import ( 
+    MathFactsScoreBoard, 
+    AnagramHuntScoreBoard, 
+    MathFactsUserScores, 
+    AnagramHuntUserScores )
 class UserScores(LoginRequiredMixin, TemplateView):
     template_name = 'my_scores.html'
 
@@ -11,7 +15,6 @@ class UserScores(LoginRequiredMixin, TemplateView):
         context['mathfacts_userscores'] = MathFactsUserScores.objects.filter(user=user).order_by('-date_added')
         context['anagramhunt_userscores'] = AnagramHuntUserScores.objects.filter(user=user).order_by('-date_added')
         return context 
-
 class ScoreBoards(LoginRequiredMixin, TemplateView):
     template_name = 'scoreboards.html'
 

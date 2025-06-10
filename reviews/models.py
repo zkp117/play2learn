@@ -6,7 +6,6 @@ class GameReviews(models.Model):
         ('mathfacts', 'MathFacts'),
         ('anagramhunt', 'AnagramHunt'),
     ]
-
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='game_reviews')
     game = models.CharField(max_length=20, choices=GAME_CHOICES)
     review = models.TextField()

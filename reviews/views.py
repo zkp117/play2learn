@@ -56,7 +56,6 @@ class ReviewsAnagramAppView(LoginRequiredMixin, FormView):
             game='anagramhunt',
             review=review_text
         )
-
         self.request.user.anagramhunt_reviews = review_text
         self.request.user.save()
 

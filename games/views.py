@@ -1,3 +1,5 @@
+import json
+
 from scoreboards.models import (
     MathFactsScoreBoard, 
     AnagramHuntScoreBoard, 
@@ -6,13 +8,13 @@ from scoreboards.models import (
     )
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views import View
 from datetime import timedelta
-import json
 @method_decorator(never_cache, name='dispatch')
 class MathFactsView(LoginRequiredMixin, TemplateView):
     template_name = "vue-templates/math-facts.html"

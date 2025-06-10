@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import GameReviews
-
 @admin.register(GameReviews)
 class GameReviewsAdmin(admin.ModelAdmin):
     list_display = ('user', 'game', 'review', 'submitted')

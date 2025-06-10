@@ -12,6 +12,7 @@ SECRET_KEY = 'django-insecure-0^=_l^slk4l=b236-2q9+)5om$ge)%ovmz%@^fltsu)sgnww41
 
 DEBUG = True
 
+# Don't use local host but still keep it, kept all local host references in settings.py
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
    'widget_tweaks',
 ]
 
-# changed from 1 since host name was changed
+# changed from 1 since host name was changed then changed it again (now it's 3)
 SITE_ID = 3 
 
 # CRISPY SECTION
@@ -189,7 +190,7 @@ PRIVATE_MEDIA_STORAGE = 'media/private'
 
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'no-cache, no-store, must-revalidate',
-}
+} # website caches a lot without this, also put in some different .py files for website
 
 STATICFILES_DIRS = [
    BASE_DIR / 'static',  
@@ -208,7 +209,7 @@ STORAGES = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-   "http://localhost:8080",  # for local host (general pages + vue games)
+   "http://localhost:8080",  
    "http://localhost:8000",
    "https://www.play2learn.app",
    "https://play2learn.app",

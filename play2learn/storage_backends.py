@@ -11,7 +11,7 @@ class PublicMediaStorage(S3Boto3Storage):
     custom_domain = settings.AWS_S3_CUSTOM_DOMAIN
     object_parameters = {
         'CacheControl': 'no-cache, no-store, must-revalidate'
-    }
+    } # avatar doesn't update without this
 class PrivateMediaStorage(S3Boto3Storage):
     location = 'media/private'
     default_acl = 'private'
