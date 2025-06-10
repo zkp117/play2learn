@@ -21,7 +21,6 @@ class CustomUserChangeForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if 'avatar' in self.fields:
             self.fields['avatar'].widget.attrs.update({'class': 'form-control'})
-
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,
@@ -32,6 +31,5 @@ class CustomAuthenticationForm(AuthenticationForm):
         label='Password',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')})
     )
-
     def clean(self):
         return super().clean()

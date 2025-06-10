@@ -39,7 +39,6 @@ class CustomUserAdmin(UserAdmin):
                 return f"Error loading avatar: {e}"
         return "No Avatar"
 
-
     # setup display for AnagramHunt scores
     def get_anagramhunt_scores(self, obj):
         top_score = obj.anagram_scores.order_by('-score').first()

@@ -1,3 +1,5 @@
+# this page was added so signup form could have custom password setup
+
 from django import forms
 from allauth.account.forms import SignupForm
 class CustomSignupForm(SignupForm):
@@ -6,12 +8,10 @@ class CustomSignupForm(SignupForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Remove password2 field
         if 'password2' in self.fields:
             del self.fields['password2']
 
     def clean(self):
-        # Remove password2 validation
         cleaned_data = super().clean()
         return cleaned_data
 
