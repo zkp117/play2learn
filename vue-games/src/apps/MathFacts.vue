@@ -102,7 +102,6 @@
         <button onclick="window.location.href='/reviewing_math/'" class="btn btn-info w-100 m-1">Write MathFacts Review</button>
         <button onclick="window.location.href='/scoreboards/my-scores/'" class="btn btn-success w-100 m-1">Check your Scoreboard</button>
         <button onclick="window.location.href='/scoreboards/'" class="btn btn-light w-100 m-1">Check the Leaderboard</button>
-
       </div>
     </div>
   </div>

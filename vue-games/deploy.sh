@@ -1,7 +1,7 @@
 # this file I run when I update either of the vue games (actual .vue files only)
 # it's setup this way so if I update them it deletes the old files and replaces it with the new one
 # instructions: 
-    # "npm run build && ./deploy.sh"
+    # run "npm run build && ./deploy.sh"
     # npm command builds games and './deploy.sh' sends the current build to aws
 
 # builds MathFacts game

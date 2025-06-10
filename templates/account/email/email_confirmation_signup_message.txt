@@ -1,7 +1,7 @@
 Hello!
 
-You are receiving this email because someone (hopefully you) has registered you for {{ current_site.name }} using this email address.
+You are receiving this email because you have registered an for an account for {{ current_site.name }} using this email address.
 
 To confirm this is correct, go to {{ activate_url }}
 
-Thank you!
+Thank you! We hope to see you using our website soon
