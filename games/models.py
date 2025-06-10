@@ -43,7 +43,6 @@ class MathFactsScore(models.Model):
     max_number = models.IntegerField(null=True, blank=True)
     time_left = models.DurationField(default=datetime.timedelta(seconds=0))
 
-
     def __str__(self):
         return f"{self.user} - MathFacts : {self.score}"
 
@@ -65,4 +64,3 @@ class MathReview(models.Model):
 
     def __str__(self):
         return f"Review for MathFacts by {self.user.username}"
-

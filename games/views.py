@@ -51,7 +51,6 @@ class EnterMathFactsScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status = 400)
-        
 @method_decorator(login_required, name='dispatch')
 class EnterAnagramHuntScore(View):
     def post(self, request):
