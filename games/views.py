@@ -9,7 +9,6 @@ from scoreboards.models import (
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
@@ -81,6 +80,3 @@ class EnterAnagramHuntScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status = 400)
-        
-
-        
