@@ -20,6 +20,9 @@ class MathFactsView(LoginRequiredMixin, TemplateView):
 @method_decorator(never_cache, name='dispatch')
 class AnagramHuntView(LoginRequiredMixin, TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
+
+def is_logged_in(request):
+    return JsonResponse({'is_logged_in': request.user.is_authenticated})
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):
