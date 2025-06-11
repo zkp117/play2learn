@@ -111,7 +111,7 @@
 import { getRandomInteger } from '@/helpers/helpers';
 import Axios from 'axios';
 
-const csrfToken = "{{ csrf_token }}";
+const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
 export default {
   name: 'MathGame',
