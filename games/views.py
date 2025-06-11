@@ -91,3 +91,8 @@ class EnterAnagramHuntScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+        
+@login_required
+def is_logged_in(request):
+    # If this view is reached, user is authenticated
+    return JsonResponse({'logged_in': True, 'username': request.user.username})
