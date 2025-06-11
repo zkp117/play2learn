@@ -146,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # AUTHENTICATION SETTINGS
 AUTH_USER_MODEL = 'users.CustomUser'
-LOGIN_URL = 'https://www.play2learn.app/accounts/login/', 
+LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = '/'
 
 ## ALLUTH SETTINGS settings
