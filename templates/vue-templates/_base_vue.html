@@ -3,32 +3,13 @@
 {% block title %}Play2Learn{% endblock %}
 
 {% block extra_head %}
-
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@3.x/dist/vue.global.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.x/dist/vue.global.js"></script>
+  {% block extra_css %}{% endblock %}
 {% endblock %}
 
 {% block main %}
-  {% if not request.user.is_authenticated %}
-    <script>
-      window.location.href = "{% url 'account_login' %}?next={{ request.path }}";
-    </script>
-    <noscript>
-      <p>You must be logged in to play.</p>
-    </noscript>
-  {% endif %}
-
+  
   <div id="app"></div>
 {% endblock %}
 
-
-{% block extra_js %}
-  <link rel="stylesheet" href="https://play2learn-bucket.s3.amazonaws.com/css/style.css?v={{ timestamp }}">
-  <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.css" rel="stylesheet">
-  <link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/css/app.css" rel="stylesheet">
-
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.js"></script>
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.js"></script>
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/js/chunk-vendors.js"></script>
-  <script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/anagram-hunt/js/app.js"></script>
-{% endblock %}
+{% block extra_js %}{% endblock %}

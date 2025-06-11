@@ -1,11 +1,6 @@
 import json
+from datetime import timedelta
 
-from scoreboards.models import (
-    MathFactsScoreBoard, 
-    AnagramHuntScoreBoard, 
-    MathFactsUserScores, 
-    AnagramHuntUserScores
-    )
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -13,16 +8,29 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views import View
-from datetime import timedelta
-@method_decorator(never_cache, name='dispatch')
+
+from scoreboards.models import (
+    MathFactsScoreBoard, 
+    AnagramHuntScoreBoard, 
+    MathFactsUserScores, 
+    AnagramHuntUserScores
+)
+
+# --------------------
+# Vue Page Views
+# --------------------
 class MathFactsView(LoginRequiredMixin, TemplateView):
+    login_url = '/accounts/login/'
     template_name = "vue-templates/math-facts.html"
-@method_decorator(never_cache, name='dispatch')
+
+    @method_decorator(never_cache)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 class AnagramHuntView(LoginRequiredMixin, TemplateView):
+    login_url = '/accounts/login/'
     template_name = "vue-templates/anagram-hunt.html"
 
-def is_logged_in(request):
-    return JsonResponse({'is_logged_in': request.user.is_authenticated})
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):
@@ -37,23 +45,24 @@ class EnterMathFactsScore(View):
                 return JsonResponse({'status': 'error', 'message': 'Missing data'}, status=400)
             
             MathFactsScoreBoard.objects.create(
-                user = request.user,
-                score = score,
-                operation = operation,
-                max_number = max_number,
-                time_left = timedelta(seconds=float(seconds_left))
+                user=request.user,
+                score=score,
+                operation=operation,
+                max_number=max_number,
+                time_left=timedelta(seconds=float(seconds_left))
             )
 
             MathFactsUserScores.objects.create(
-                user = request.user,
-                score = score,
-                operation = operation,
-                max_number = max_number,
-                time_left = timedelta(seconds=float(seconds_left))
+                user=request.user,
+                score=score,
+                operation=operation,
+                max_number=max_number,
+                time_left=timedelta(seconds=float(seconds_left))
             )
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status = 400)
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
 @method_decorator(login_required, name='dispatch')
 class EnterAnagramHuntScore(View):
     def post(self, request):
@@ -67,18 +76,18 @@ class EnterAnagramHuntScore(View):
                 return JsonResponse({'status': 'error', 'message': 'Missing data'}, status=400)
             
             AnagramHuntScoreBoard.objects.create(
-                user = request.user,
-                score = score,
-                word_length = word_length,
-                time_left = timedelta(seconds=float(seconds_left))
+                user=request.user,
+                score=score,
+                word_length=word_length,
+                time_left=timedelta(seconds=float(seconds_left))
             )
 
             AnagramHuntUserScores.objects.create(
-                user = request.user,
-                score = score,
-                word_length = word_length,
-                time_left = timedelta(seconds=float(seconds_left))
+                user=request.user,
+                score=score,
+                word_length=word_length,
+                time_left=timedelta(seconds=float(seconds_left))
             )
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status = 400)
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
