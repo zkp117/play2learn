@@ -3,16 +3,23 @@
 
 {% block title %}Anagram Hunt | Play2Learn{% endblock %}
 
-{% block extra_css %}
-  <link href="{% static 'vue-games/anagram-hunt/css/app.css' %}" rel="stylesheet">
-{% endblock %}
-
 {% block main %}
-  <h1 class="text-center glitch-edit">Anagram Hunt</h1>
+  <h1 class="text-center glitch-edit">Anagram Hunt Game</h1>
+  <br>
   <div id="app"></div>
 {% endblock %}
 
-{% block extra_js %}
+{% block extra_scripts %}
+  <link href="{% static 'vue-games/anagram-hunt/css/app.css' %}" rel="stylesheet">
   <script src="{% static 'vue-games/anagram-hunt/js/chunk-vendors.js' %}"></script>
   <script src="{% static 'vue-games/anagram-hunt/js/app.js' %}"></script>
+
+  <!-- Optional: Explicit Vue mount if needed -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.vueApp && typeof window.vueApp.mount === 'function') {
+        window.vueApp.mount('#app');
+      }
+    });
+  </script>
 {% endblock %}
