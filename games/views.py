@@ -19,16 +19,21 @@ from scoreboards.models import (
 # --------------------
 # Vue Page Views
 # --------------------
-
-@method_decorator(never_cache, name='dispatch')
 class MathFactsView(LoginRequiredMixin, TemplateView):
     login_url = '/accounts/login/'
     template_name = "vue-templates/math-facts.html"
 
-@method_decorator(never_cache, name='dispatch')
+    @method_decorator(never_cache)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 class AnagramHuntView(LoginRequiredMixin, TemplateView):
     login_url = '/accounts/login/'
     template_name = "vue-templates/anagram-hunt.html"
+
+    @method_decorator(never_cache)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 # --------------------
 # API Score Submission Views
