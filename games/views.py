@@ -14,8 +14,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views import View
 from datetime import timedelta
-@method_decorator(never_cache, name='dispatch')
-class MathFactsView(LoginRequiredMixin, TemplateView):
+@method_decorator([never_cache, login_required], name='dispatch')
+class MathFactsView(TemplateView):
     login_url = '/accounts/login/'
     template_name = "vue-templates/math-facts.html"
 @method_decorator(never_cache, name='dispatch')
