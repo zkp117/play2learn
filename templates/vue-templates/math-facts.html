@@ -1,7 +1,11 @@
 {% extends "_base_vue.html" %}
 {% load static %}
 
-{% block title %}Math Facts{% endblock %}
+{% block title %}Math Facts | Play2Learn{% endblock %}
+
+{% block extra_css %}
+  <link href="{% static 'vue-games/math-facts/css/app.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block main %}
   <h1 class="text-center glitch-edit">Math Facts</h1>
@@ -9,8 +13,7 @@
   <div id="app"></div>
 {% endblock %}
 
-{% block extra_scripts %}
-  <link href="{% static 'vue-games/math-facts/css/app.css' %}" rel="stylesheet">
+{% block extra_js %}
   <script src="{% static 'vue-games/math-facts/js/chunk-vendors.js' %}"></script>
   <script src="{% static 'vue-games/math-facts/js/app.js' %}"></script>
 {% endblock %}

@@ -3,11 +3,16 @@
 
 {% block title %}Anagram Hunt | Play2Learn{% endblock %}
 
-{% block main %}
-  <h1 class="text-center glitch-edit">Anagram Hunt Game</h1>
-  {{ block.super }}
+{% block extra_css %}
+  <link href="{% static 'vue-games/anagram-hunt/css/app.css' %}" rel="stylesheet">
 {% endblock %}
 
-<link href="{% static 'vue-games/anagram-hunt/css/app.css' %}" rel="stylesheet">
-<script src="{% static 'vue-games/anagram-hunt/js/chunk-vendors.js' %}"></script>
-<script src="{% static 'vue-games/anagram-hunt/js/app.js' %}"></script>
+{% block main %}
+  <h1 class="text-center glitch-edit">Anagram Hunt</h1>
+  <div id="app"></div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'vue-games/anagram-hunt/js/chunk-vendors.js' %}"></script>
+  <script src="{% static 'vue-games/anagram-hunt/js/app.js' %}"></script>
+{% endblock %}
