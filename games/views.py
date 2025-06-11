@@ -31,14 +31,6 @@ class AnagramHuntView(LoginRequiredMixin, TemplateView):
     login_url = '/accounts/login/'
     template_name = "vue-templates/anagram-hunt.html"
 
-    @method_decorator(never_cache)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-# --------------------
-# API Score Submission Views
-# --------------------
-
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):

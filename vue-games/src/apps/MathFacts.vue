@@ -107,11 +107,9 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script type="module">
 import { getRandomInteger } from '@/helpers/helpers';
 import Axios from 'axios';
-
-const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
 export default {
   name: 'MathGame',
@@ -135,9 +133,29 @@ export default {
     };
   },
   methods: {
+    getCsrfToken() {
+      return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+    },
+    async checkLogin() {
+      try {
+        const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
+        if (!res.data.is_logged_in) {
+          window.location.href = "/accounts/login/";
+        }
+      } catch (e) {
+        // On error, assume not logged in
+        window.location.href = "/accounts/login/";
+      }
+    },
     play() {
+      // Before starting, check login status
+      this.checkLogin();
+
       this.screen = "play";
       this.getNewQuestion();
+
+      if (this.interval) clearInterval(this.interval);
+
       this.interval = setInterval(() => {
         this.timeLeft--;
       }, 1000);
@@ -145,10 +163,10 @@ export default {
     getNewQuestion() {
       let num1 = getRandomInteger(0, this.maxNumber + 1);
       let num2 = getRandomInteger(0, this.maxNumber + 1);
-      if (this.operation == "-") {
+      if (this.operation === "-") {
         this.number1 = Math.max(num1, num2);
         this.number2 = Math.min(num1, num2);
-      } else if (this.operation == "/") {
+      } else if (this.operation === "/") {
         this.number1 = num1 * num2;
         this.number2 = num2;
       } else {
@@ -163,40 +181,28 @@ export default {
         maxNumber: this.maxNumber,
         timeLeft: this.timeLeft
       };
-      
       try {
-        const response = await Axios.post('/games/api/record-score/mathfacts/', userData, {
+        await Axios.post('/games/api/record-score/mathfacts/', userData, {
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
+            'X-CSRFToken': this.getCsrfToken()
           },
           withCredentials: true
         });
-        console.log("Saved successfully", response.data);
+        console.log("Score saved successfully");
       } catch (error) {
-        console.error("Error saving", error);
+        console.error("Error saving score:", error);
       }
     }
   },
   computed: {
     correctAnswer() {
-      if (this.userInput.trim() == "") {
-        return false;
-      }
-
+      if (!this.userInput.trim()) return false;
       const input = parseInt(this.userInput);
-      if (this.operation == "+") {
-        return input === this.number1 + this.number2;
-      }
-      if (this.operation == "-") {
-        return input === this.number1 - this.number2;
-      }
-      if (this.operation == "x") {
-        return input === this.number1 * this.number2;
-      }
-      if (this.operation == "/") {
-        return input === this.number1 / this.number2;
-      }
+      if (this.operation === "+") return input === this.number1 + this.number2;
+      if (this.operation === "-") return input === this.number1 - this.number2;
+      if (this.operation === "x") return input === this.number1 * this.number2;
+      if (this.operation === "/") return input === this.number1 / this.number2;
       return false;
     }
   },
@@ -208,13 +214,13 @@ export default {
         this.userInput = "";
       }
     },
-    async timeLeft(newTime) {
-      if (newTime === 0) {
+    async timeLeft(newVal) {
+      if (newVal === 0) {
         clearInterval(this.interval);
         this.timeLeft = 60;
         await this.recordScore();
         this.screen = "end";
-        console.log("Time's up! Your score is added");
+        console.log("Time's up! Score recorded");
       }
     }
   }

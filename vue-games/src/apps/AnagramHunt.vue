@@ -72,12 +72,10 @@
   }
 </style>
 
-<script>
+<script type="module">
 import anagrams from "@/helpers/anagrams";
 import { getRandomInteger } from "@/helpers/helpers";
 import Axios from "axios";
-
-const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
 export default {
   name: 'AnagramGame',
@@ -94,28 +92,38 @@ export default {
       correctGuesses: [],
       userInput: "",
       interval: null,
-      usedAnagramLists: [], // ✅ New tracker for used sets
+      usedAnagramLists: [],
     };
   },
-  computed: {
-    guessesLeft() {
-      return this.anagramList.length - this.correctGuesses.length - 1;
-    }
-  },
   methods: {
+    getCsrfToken() {
+      return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+    },
+    async checkLogin() {
+      try {
+        const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
+        if (!res.data.is_logged_in) {
+          window.location.href = "/accounts/login/";
+        }
+      } catch (e) {
+        window.location.href = "/accounts/login/";
+      }
+    },
     play() {
+      this.checkLogin();
+
       this.score = 0;
       this.timeLeft = 60;
       this.screen = "play";
       this.correctGuesses = [];
-      this.usedAnagramLists = []; // ✅ Reset on new game
+      this.usedAnagramLists = [];
 
       if (this.interval) clearInterval(this.interval);
 
       this.newAnagramList();
 
       this.interval = setInterval(() => {
-        this.timeLeft -= 1;
+        this.timeLeft--;
       }, 1000);
     },
     checkAnswer() {
@@ -127,7 +135,7 @@ export default {
       ) {
         this.correctGuesses.push(input);
         this.userInput = "";
-        this.score += 1;
+        this.score++;
 
         if (this.correctGuesses.length === this.anagramList.length - 1) {
           this.newAnagramList();
@@ -135,20 +143,14 @@ export default {
       }
     },
     newAnagramList() {
-      const potentialAnagramLists = this.anagrams[this.wordLength];
-
-      if (!potentialAnagramLists || potentialAnagramLists.length === 0) {
-        console.warn("No anagram list available for word length:", this.wordLength);
-        return;
-      }
+      const potentialAnagramLists = this.anagrams[this.wordLength] || [];
 
       const unusedLists = potentialAnagramLists.filter(
         list => !this.usedAnagramLists.some(used => used[0] === list[0])
       );
 
       if (unusedLists.length === 0) {
-        console.warn("All anagram sets used");
-        this.screen = 'end'; // Optional: End game when all used
+        this.screen = "end";
         return;
       }
 
@@ -161,20 +163,20 @@ export default {
     },
     async recordScore() {
       try {
-        const response = await Axios.post('/games/api/record-score/anagramhunt/', {
+        await Axios.post('/games/api/record-score/anagramhunt/', {
           score: this.score,
           wordLength: this.wordLength,
           timeLeft: this.timeLeft
         }, {
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
+            'X-CSRFToken': this.getCsrfToken()
           },
           withCredentials: true
         });
-        console.log("Score saved successfully", response.data);
+        console.log("Score saved successfully");
       } catch (error) {
-        console.error("Error saving score", error);
+        console.error("Error saving score:", error);
       }
     }
   },
@@ -182,8 +184,8 @@ export default {
     userInput() {
       this.checkAnswer();
     },
-    async timeLeft(newValue) {
-      if (newValue === 0) {
+    async timeLeft(newVal) {
+      if (newVal === 0) {
         clearInterval(this.interval);
         await this.recordScore();
         this.timeLeft = 60;
