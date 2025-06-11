@@ -22,6 +22,12 @@ class MathFactsView(LoginRequiredMixin, TemplateView):
 class AnagramHuntView(LoginRequiredMixin, TemplateView):
     login_url = '/accounts/login/'
     template_name = "vue-templates/anagram-hunt.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        print(f"User authenticated? {request.user.is_authenticated}")
+        if not request.user.is_authenticated:
+            print("Redirecting to login")
+        return super().dispatch(request, *args, **kwargs)
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):
