@@ -8,14 +8,6 @@
 {% endblock %}
 
 {% block main %}
-  {% if not request.user.is_authenticated %}
-    <script>
-      window.location.href = "{% url 'account_login' %}?next={{ request.path }}";
-    </script>
-    <noscript>
-      <p>You must be logged in to play.</p>
-    </noscript>
-  {% endif %}
   
   <div id="app"></div>
 {% endblock %}
