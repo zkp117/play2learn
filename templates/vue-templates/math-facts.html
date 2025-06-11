@@ -4,19 +4,12 @@
 {% block title %}Math Facts{% endblock %}
 
 {% block main %}
-  {% if not request.user.is_authenticated %}
-    <script>
-      window.location.href = "{% url 'account_login' %}?next={{ request.path }}";
-    </script>
-    <noscript>
-      <p>You must be logged in to play.</p>
-    </noscript>
-  {% endif %}
-
   <h1 class="text-center glitch-edit">Math Facts</h1>
   <br>
   <div id="app"></div>
+{% endblock %}
 
+{% block extra_scripts %}
   <link href="{% static 'vue-games/math-facts/css/app.css' %}" rel="stylesheet">
   <script src="{% static 'vue-games/math-facts/js/chunk-vendors.js' %}"></script>
   <script src="{% static 'vue-games/math-facts/js/app.js' %}"></script>
