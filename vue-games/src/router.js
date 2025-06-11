@@ -1,4 +1,4 @@
-import { createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import AnagramHunt from './apps/AnagramHunt.vue';
 import MathFacts from './apps/MathFacts.vue';
 
@@ -9,7 +9,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 
