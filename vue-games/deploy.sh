@@ -53,3 +53,15 @@ aws s3 sync ./dist/css/ s3://play2learn-bucket/vue-games/anagram-hunt/css/ \
   --content-type "text/css" \
   --cache-control "no-cache, no-store, must-revalidate"
 echo "Anagram Hunt CSS sync completed."
+
+echo "Uploading HTML entry points for Math Facts..."
+aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/math-facts/index.html \
+  --acl public-read \
+  --content-type "text/html" \
+  --cache-control "no-cache, no-store, must-revalidate"
+
+echo "Uploading HTML entry points for Anagram Hunt..."
+aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/anagram-hunt/index.html \
+  --acl public-read \
+  --content-type "text/html" \
+  --cache-control "no-cache, no-store, must-revalidate"
