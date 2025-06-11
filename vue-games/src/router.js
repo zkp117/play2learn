@@ -12,19 +12,16 @@ const router = createRouter({
   routes,
 });
 
-// Global navigation guard for authentication
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // Simple check for Django session cookie
-    const loggedIn = document.cookie.includes('sessionid'); // adjust if your session cookie name is different
+    const loggedIn = document.cookie.includes('sessionid');
 
     if (!loggedIn) {
-      // Redirect browser to Django login page with "next" param for redirect after login
       window.location.href = '/accounts/login/?next=' + encodeURIComponent(to.fullPath);
-      return; // stop Vue navigation here
+      return;
     }
   }
-  next(); // continue normally if logged in or route doesn't require auth
+  next();
 });
 
 export default router;
