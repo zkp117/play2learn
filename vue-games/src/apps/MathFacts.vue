@@ -143,12 +143,10 @@ export default {
           window.location.href = "/accounts/login/";
         }
       } catch (e) {
-        // On error, assume not logged in
         window.location.href = "/accounts/login/";
       }
     },
     play() {
-      // Before starting, check login status
       this.checkLogin();
 
       this.screen = "play";
@@ -223,6 +221,9 @@ export default {
         console.log("Time's up! Score recorded");
       }
     }
+  },
+  mounted() {
+    this.checkLogin();
   }
 };
 </script>

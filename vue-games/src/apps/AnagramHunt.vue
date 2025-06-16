@@ -192,6 +192,9 @@ export default {
         this.screen = "end";
       }
     }
-  }
+  },
+  mounted() {
+    this.checkLogin();
+}
 };
 </script>
