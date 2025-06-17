@@ -136,14 +136,15 @@ export default {
     getCsrfToken() {
       return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
     },
-    async checkLogin() {try {
-      const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
-      if (!res.data.logged_in)
-      window.location.href = "/accounts/login/";
-    } catch (e) {
-      window.location.href = "/accounts/login/";
-    }
-  } ,
+    async checkLogin() {
+      try {
+        const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
+        if (!res.data.logged_in)
+          window.location.href = "/accounts/login/";
+      } catch (e) {
+        window.location.href = "/accounts/login/";
+      }
+    },
     play() {
       this.checkLogin();
 
@@ -219,9 +220,6 @@ export default {
         console.log("Time's up! Score recorded");
       }
     }
-  },
-  mounted() {
-    this.checkLogin();
   }
 };
 </script>
