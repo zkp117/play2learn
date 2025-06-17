@@ -4,7 +4,6 @@ from datetime import timedelta
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views import View
 from django.shortcuts import redirect
@@ -19,17 +18,11 @@ from scoreboards.models import (
 # --------------------
 # Redirect Views for Vue Games
 # --------------------
-
-class RedirectMathFacts(LoginRequiredMixin, View):
-    login_url = '/accounts/login/'
-
+class RedirectMathFacts(View):
     @method_decorator(never_cache)
     def get(self, request, *args, **kwargs):
         return redirect('/vue-games/math-facts/')
-
-class RedirectAnagramHunt(LoginRequiredMixin, View):
-    login_url = '/accounts/login/'
-
+class RedirectAnagramHunt(View):
     @method_decorator(never_cache)
     def get(self, request, *args, **kwargs):
         return redirect('/vue-games/anagram-hunt/')
