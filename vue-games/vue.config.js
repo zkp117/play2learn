@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/games/',
+  publicPath: '/static/vue-games/',
   outputDir: 'dist',
   indexPath: 'templates/index.html',
   filenameHashing: false,

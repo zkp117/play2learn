@@ -3,6 +3,7 @@ from django.conf import settings
 class StaticStorage(S3Boto3Storage):
     location = 'static'
     default_acl = 'public-read'
+    custom_domain = 'd247zk0j19bbkg.cloudfront.net'
     file_overwrite = False
 class PublicMediaStorage(S3Boto3Storage):
     location = 'media/public'

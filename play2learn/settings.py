@@ -182,7 +182,8 @@ USE_TZ = True
 
 # CLOUDFRONT SETTINGS
 
-VUE_GAMES_CDN_URL = 'https://d247zk0j19bbkg.cloudfront.net/vue-games'
+VUE_GAMES_CDN_URL = 'https://d247zk0j19bbkg.cloudfront.net/static/vue-games'
+
 
 # AWS SETTINGS
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -195,7 +196,7 @@ AWS_S3_REGION_NAME = 'us-east-2'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'play2learn.storage_backends.PublicMediaStorage'
 PRIVATE_FILE_STORAGE = 'play2learn.storage_backends.PrivateMediaStorage'
-STATIC_URL = 'https://d247zk0j19bbkg.cloudfront.net/'
+STATIC_URL = 'https://d247zk0j19bbkg.cloudfront.net/static/'
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/media/public/'
 PUBLIC_MEDIA_LOCATION = 'media/public'
 PRIVATE_MEDIA_STORAGE = 'media/private'
