@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/static/vue-games/',
+  publicPath: 'https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/',
   outputDir: 'dist',
   indexPath: 'templates/index.html',
   filenameHashing: false,
