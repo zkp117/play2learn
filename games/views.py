@@ -27,9 +27,24 @@ class MathFactsView(LoginRequiredMixin, TemplateView):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['VUE_GAMES_CDN_URL'] = 'https://play2learn.app/static/vue-games'
+        return context
+
+
 class AnagramHuntView(LoginRequiredMixin, TemplateView):
     login_url = '/accounts/login/'
     template_name = "vue-templates/anagram-hunt.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['VUE_GAMES_CDN_URL'] = 'https://play2learn.app/static/vue-games'
+        return context
+
+# --------------------
+# Score Recording APIs
+# --------------------
 
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
@@ -63,6 +78,7 @@ class EnterMathFactsScore(View):
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
+
 @method_decorator(login_required, name='dispatch')
 class EnterAnagramHuntScore(View):
     def post(self, request):
@@ -91,8 +107,11 @@ class EnterAnagramHuntScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-        
+
+# --------------------
+# Utility
+# --------------------
+
 @login_required
 def is_logged_in(request):
-    # If this view is reached, user is authenticated
     return JsonResponse({'logged_in': True, 'username': request.user.username})
