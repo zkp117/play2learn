@@ -16,8 +16,7 @@ urlpatterns = [
     path('scoreboards/', include('scoreboards.urls')),
 
     # routes for vue games
-    path('games/', include(('games.urls'), namespace='games')),
-    path('vue-games/', include('vue-games.urls', namespace='vue-games')),
+    path('vue-games/', include('games.urls', namespace='games')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
