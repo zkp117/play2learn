@@ -4,10 +4,10 @@ from datetime import timedelta
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views import View
+from django.shortcuts import redirect
 
 from scoreboards.models import (
     MathFactsScoreBoard, 
@@ -17,36 +17,23 @@ from scoreboards.models import (
 )
 
 # --------------------
-# Vue Page Views
+# Redirect Views for Vue Games
 # --------------------
-class MathFactsView(LoginRequiredMixin, TemplateView):
+
+class RedirectMathFacts(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
-    template_name = "vue-templates/math-facts.html"
 
     @method_decorator(never_cache)
-    def dispatch(self, *args, **kwargs):
-        # Prevent caching so Vue app loads fresh on each request
-        return super().dispatch(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return redirect('/vue-games/math-facts/')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # The base URL for your Vue static assets (CSS/JS)
-        context['VUE_GAMES_CDN_URL'] = 'https://play2learn.app/static/vue-games'
-        return context
-class AnagramHuntView(LoginRequiredMixin, TemplateView):
+class RedirectAnagramHunt(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
-    template_name = "vue-templates/anagram-hunt.html"
 
     @method_decorator(never_cache)
-    def dispatch(self, *args, **kwargs):
-        # Same cache prevention for consistency
-        return super().dispatch(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return redirect('/vue-games/anagram-hunt/')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['VUE_GAMES_CDN_URL'] = 'https://play2learn.app/static/vue-games'
-        return context
-    
 # --------------------
 # Score Recording APIs
 # --------------------
@@ -80,6 +67,7 @@ class EnterMathFactsScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
 @method_decorator(login_required, name='dispatch')
 class EnterAnagramHuntScore(View):
     def post(self, request):
