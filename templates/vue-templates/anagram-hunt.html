@@ -1,5 +1,4 @@
 {% extends "_base_vue.html" %}
-{% load static %}
 
 {% block title %}Anagram Hunt | Play2Learn{% endblock %}
 
@@ -10,11 +9,10 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <link href="{% static 'vue-games/anagram-hunt/css/app.css' %}" rel="stylesheet">
-  <script src="{% static 'vue-games/anagram-hunt/js/chunk-vendors.js' %}"></script>
-  <script src="{% static 'vue-games/anagram-hunt/js/app.js' %}"></script>
+  <link href="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/css/app.css" rel="stylesheet">
+  <script src="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/js/chunk-vendors.js"></script>
+  <script src="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/js/app.js"></script>
 
-  <!-- Optional: Explicit Vue mount if needed -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       if (window.vueApp && typeof window.vueApp.mount === 'function') {

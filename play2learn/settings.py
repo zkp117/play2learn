@@ -103,6 +103,7 @@ TEMPLATES = [
                'django.contrib.auth.context_processors.auth',
                'django.contrib.messages.context_processors.messages',
                'django.template.context_processors.tz',
+               'play2learn.context_processors.vue_games_cdn',
            ],
        },
    },
@@ -179,6 +180,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+# CLOUDFRONT SETTINGS
+
+VUE_GAMES_CDN_URL = 'https://d247zk0j19bbkg.cloudfront.net/vue-games'
+
 # AWS SETTINGS
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -190,7 +195,7 @@ AWS_S3_REGION_NAME = 'us-east-2'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'play2learn.storage_backends.PublicMediaStorage'
 PRIVATE_FILE_STORAGE = 'play2learn.storage_backends.PrivateMediaStorage'
-STATIC_URL = 'https://www.play2learn.app/static/'
+STATIC_URL = 'https://d247zk0j19bbkg.cloudfront.net'
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/media/public/'
 PUBLIC_MEDIA_LOCATION = 'media/public'
 PRIVATE_MEDIA_STORAGE = 'media/private'

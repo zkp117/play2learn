@@ -1,5 +1,4 @@
 {% extends "_base_vue.html" %}
-{% load static %}
 
 {% block title %}Math Facts{% endblock %}
 
@@ -10,11 +9,10 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <link href="{% static 'vue-games/math-facts/css/app.css' %}" rel="stylesheet">
-  <script src="{% static 'vue-games/math-facts/js/chunk-vendors.js' %}"></script>
-  <script src="{% static 'vue-games/math-facts/js/app.js' %}"></script>
+  <link href="{{ VUE_GAMES_CDN_URL }}/math-facts/css/app.css" rel="stylesheet">
+  <script src="{{ VUE_GAMES_CDN_URL }}/math-facts/js/chunk-vendors.js"></script>
+  <script src="{{ VUE_GAMES_CDN_URL }}/math-facts/js/app.js"></script>
 
-  <!-- Optional: If your Vue app is not mounting, you can explicitly mount here -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       if (window.vueApp && typeof window.vueApp.mount === 'function') {
