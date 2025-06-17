@@ -25,27 +25,31 @@ class MathFactsView(LoginRequiredMixin, TemplateView):
 
     @method_decorator(never_cache)
     def dispatch(self, *args, **kwargs):
+        # Prevent caching so Vue app loads fresh on each request
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # The base URL for your Vue static assets (CSS/JS)
+        context['VUE_GAMES_CDN_URL'] = 'https://play2learn.app/static/vue-games'
+        return context
+class AnagramHuntView(LoginRequiredMixin, TemplateView):
+    login_url = '/accounts/login/'
+    template_name = "vue-templates/anagram-hunt.html"
+
+    @method_decorator(never_cache)
+    def dispatch(self, *args, **kwargs):
+        # Same cache prevention for consistency
         return super().dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['VUE_GAMES_CDN_URL'] = 'https://play2learn.app/static/vue-games'
         return context
-
-
-class AnagramHuntView(LoginRequiredMixin, TemplateView):
-    login_url = '/accounts/login/'
-    template_name = "vue-templates/anagram-hunt.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['VUE_GAMES_CDN_URL'] = 'https://play2learn.app/static/vue-games'
-        return context
-
+    
 # --------------------
 # Score Recording APIs
 # --------------------
-
 @method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):
@@ -66,7 +70,6 @@ class EnterMathFactsScore(View):
                 max_number=max_number,
                 time_left=timedelta(seconds=float(seconds_left))
             )
-
             MathFactsUserScores.objects.create(
                 user=request.user,
                 score=score,
@@ -77,8 +80,6 @@ class EnterMathFactsScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-
-
 @method_decorator(login_required, name='dispatch')
 class EnterAnagramHuntScore(View):
     def post(self, request):
@@ -97,7 +98,6 @@ class EnterAnagramHuntScore(View):
                 word_length=word_length,
                 time_left=timedelta(seconds=float(seconds_left))
             )
-
             AnagramHuntUserScores.objects.create(
                 user=request.user,
                 score=score,
@@ -109,7 +109,7 @@ class EnterAnagramHuntScore(View):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 # --------------------
-# Utility
+# Utility Endpoint
 # --------------------
 
 @login_required

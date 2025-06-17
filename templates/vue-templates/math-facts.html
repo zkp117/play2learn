@@ -8,18 +8,19 @@
   <div id="app"></div>
 {% endblock %}
 
-{% block extra_scripts %}
-
+{% block extra_css %}
 <link href="{{ VUE_GAMES_CDN_URL }}/math-facts/css/app.css" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
 <script src="{{ VUE_GAMES_CDN_URL }}/math-facts/js/chunk-vendors.js"></script>
 <script src="{{ VUE_GAMES_CDN_URL }}/math-facts/js/app.js"></script>
 
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      if (window.vueApp && typeof window.vueApp.mount === 'function') {
-        window.vueApp.mount('#app');
-      }
-    });
-  </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.vueApp && typeof window.vueApp.mount === 'function') {
+      window.vueApp.mount('#app');
+    }
+  });
+</script>
 {% endblock %}

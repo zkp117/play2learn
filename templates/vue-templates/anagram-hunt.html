@@ -1,18 +1,20 @@
 {% extends "_base_vue.html" %}
 
-{% block title %}Anagram Hunt | Play2Learn{% endblock %}
+{% block title %}Anagram Hunt{% endblock %}
 
 {% block main %}
-  <h1 class="text-center glitch-edit">Anagram Hunt Game</h1>
+  <h1 class="text-center glitch-edit">Anagram Hunt</h1>
   <br>
   <div id="app"></div>
 {% endblock %}
 
-{% block extra_scripts %}
-<link href="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/css/app.css" rel="stylesheet">
-<script src="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/js/chunk-vendors.js"></script>
-<script src="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/js/app.js"></script>
+{% block extra_css %}
+  <link href="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/css/app.css" rel="stylesheet">
+{% endblock %}
 
+{% block extra_js %}
+  <script src="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/js/chunk-vendors.js"></script>
+  <script src="{{ VUE_GAMES_CDN_URL }}/anagram-hunt/js/app.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
