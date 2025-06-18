@@ -13,6 +13,7 @@ const app = createApp(App);
 app.use(router); 
 app.use(VueAxios, axios);
 
-app.mount('#app');
+// DO NOT mount here!
+// app.mount('#app');
 
-window.vueApp = app
+window.vueApp = app;  // export app instance to global
