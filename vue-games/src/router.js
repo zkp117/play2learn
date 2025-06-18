@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router' // ← changed
+
 import AnagramHunt from './apps/AnagramHunt.vue'
 import MathFacts from './apps/MathFacts.vue'
 
@@ -8,7 +9,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/vue-games/'),  // BASE PATH here
+  history: createWebHashHistory(), // ← changed
   routes,
 })
 
