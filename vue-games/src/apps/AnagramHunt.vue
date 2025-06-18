@@ -70,10 +70,6 @@
   div, label {
     padding: 0.2rem;
   }
-  
-body {
-    background-color: #ffcccc;
-  }
 </style>
 
 <script type="module">
