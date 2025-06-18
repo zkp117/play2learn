@@ -15,12 +15,4 @@
 {% block extra_js %}
   <script src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/anagram-hunt/js/chunk-vendors.js"></script>
   <script src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/anagram-hunt/js/app.js"></script>
-
-  <script>
-    window.addEventListener('load', () => {
-      if (window.vueApp && typeof window.vueApp.mount === 'function') {
-        window.vueApp.mount('#app');
-      }
-    });
-  </script>
 {% endblock %}
