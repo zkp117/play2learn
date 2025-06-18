@@ -12,8 +12,6 @@ app_name = 'games'
 
 urlpatterns = [
     # These routes are meant to be accessed at /math-facts/ and /anagram-hunt/
-    path('math-facts/', RedirectMathFacts.as_view(), name='math-facts'),
-    path('anagram-hunt/', RedirectAnagramHunt.as_view(), name='anagram-hunt'),
     path('anagram-hunt/', TemplateView.as_view(template_name='vue-templates/anagram-hunt.html')),
     path('math-facts/', TemplateView.as_view(template_name='vue-templates/math-facts.html')),
 
