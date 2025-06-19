@@ -1,14 +1,9 @@
 module.exports = {
-  publicPath: '/vue-games/',
+  publicPath: 'https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/',
   outputDir: 'dist',
-  indexPath: 'index.html',
+  indexPath: 'templates/index.html',
   filenameHashing: false,
   productionSourceMap: false,
-
-  css: {
-    extract: true  // <-- explicitly extract CSS to separate files
-  },
-
   configureWebpack: {
     devServer: {
       devMiddleware: {

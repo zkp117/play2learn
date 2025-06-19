@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- This is where the route components will be displayed -->
-    <router-view></router-view> 
+    <h2 style="color:red">Vue app mounted!</h2>
+    <router-view></router-view>
   </div>
 </template>
 

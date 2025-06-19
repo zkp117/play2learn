@@ -2,6 +2,12 @@
 
 {% block title %}Anagram Hunt{% endblock %}
 
+{% block main %}
+  <h1 class="text-center glitch-edit">Anagram Hunt</h1>
+  <br>
+  <div id="app"></div>
+{% endblock %}
+
 {% block extra_css %}
   <link href="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/anagram-hunt/css/app.css" rel="stylesheet">
 {% endblock %}
@@ -12,8 +18,11 @@
 
   <script>
     window.addEventListener('load', () => {
+      console.log("Trying to mount vueApp:", window.vueApp);
       if (window.vueApp && typeof window.vueApp.mount === 'function') {
         window.vueApp.mount('#app');
+      } else {
+        console.error("window.vueApp not defined or missing .mount()", window.vueApp);
       }
     });
   </script>
