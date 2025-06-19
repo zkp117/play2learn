@@ -6,6 +6,7 @@ import MathFacts from './apps/MathFacts.vue'
 const routes = [
   { path: '/anagram-hunt', name: 'AnagramHunt', component: AnagramHunt, meta: { requiresAuth: true } },
   { path: '/math-facts', name: 'MathFacts', component: MathFacts, meta: { requiresAuth: true } },
+  { path: '/', redirect: '/anagramhunt'}
 ]
 
 const router = createRouter({
