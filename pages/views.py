@@ -13,10 +13,11 @@ class MyAccountView(TemplateView):
     template_name = 'account/my-account.html'
 
 class AnagramHuntView(TemplateView):
-    template_name = 'vue-templates/anagramhunt.html'
+    template_name = 'games/anagram-hunt.html'
 
 class MathFactsView(TemplateView):
-    template_name = 'vue-templates/mathfacts.html'
+    template_name = 'games/math-facts.html'
+
 class CustomLoginView(TemplateView):
     template_name = 'account/login.html'
 

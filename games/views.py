@@ -1,16 +1,31 @@
 import json
 from datetime import timedelta
+
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views import View
+from django.shortcuts import redirect
+
 from scoreboards.models import (
     MathFactsScoreBoard, 
     AnagramHuntScoreBoard, 
     MathFactsUserScores, 
     AnagramHuntUserScores
 )
+
+# --------------------
+# Redirect Views for Vue Games
+# --------------------
+class RedirectMathFacts(View):
+    @method_decorator(never_cache)
+    def get(self, request, *args, **kwargs):
+        return redirect('/vue-games/math-facts/')
+class RedirectAnagramHunt(View):
+    @method_decorator(never_cache)
+    def get(self, request, *args, **kwargs):
+        return redirect('/vue-games/anagram-hunt/')
 
 # --------------------
 # Score Recording APIs
@@ -73,6 +88,10 @@ class EnterAnagramHuntScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
+# --------------------
+# Utility Endpoint
+# --------------------
 
 @login_required
 def is_logged_in(request):

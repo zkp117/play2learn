@@ -1,7 +1,14 @@
 module.exports = {
-  publicPath: process.env.VUE_APP_BASE_URL || '/',
-  outputDir: `dist/${process.env.VUE_APP_GAME || 'default'}`,
+  publicPath: 'https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/',
+  outputDir: 'dist',
+  indexPath: 'templates/index.html',
   filenameHashing: false,
   productionSourceMap: false,
-  assetsDir: '',
+  configureWebpack: {
+    devServer: {
+      devMiddleware: {
+        writeToDisk: true
+      }
+    }
+  }
 };

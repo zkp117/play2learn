@@ -14,10 +14,12 @@ urlpatterns = [
     path('', include("pages.urls")),
     path('', include('reviews.urls')),
     path('scoreboards/', include('scoreboards.urls')),
-    path('vue-games/', include('games.urls', namespace='games')),
+
+    # Do NOT prefix with vue-games here!
+    path('', include('games.urls', namespace='games')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-# Clean up admin
+# takes out these sections from admin
 admin.site.unregister(SocialToken)
 admin.site.unregister(SocialAccount)
 admin.site.unregister(SocialApp)
