@@ -1,7 +1,9 @@
+const game = process.env.VUE_APP_GAME;
+
 module.exports = {
-  publicPath: 'https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/',
+  publicPath: `/vue-games/${game}/`,  // for correct relative paths
   outputDir: 'dist',
-  indexPath: 'templates/index.html',
+  indexPath: 'index.html',
   filenameHashing: false,
   productionSourceMap: false,
   configureWebpack: {
