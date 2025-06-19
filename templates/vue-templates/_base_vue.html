@@ -1,16 +1,12 @@
-{% extends "_base.html" %}
+{% extends "_base_vue.html" %}
 
-{% block title %}Play2Learn{% endblock %}
+{% block title %}Math Facts{% endblock %}
 
-{% block extra_head %}
-  <!-- Use production Vue build -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
-  {% block extra_css %}{% endblock %}
+{% block extra_css %}
+<link href="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/css/app.css" rel="stylesheet" />
 {% endblock %}
 
-{% block main %}
-  <!-- Single Vue mount point -->
-  <div id="app"></div>
+{% block extra_js %}
+<script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/chunk-vendors.js"></script>
+<script src="https://play2learn-bucket.s3.amazonaws.com/vue-games/math-facts/js/app.js"></script>
 {% endblock %}
-
-{% block extra_js %}{% endblock %}

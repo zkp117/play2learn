@@ -28,10 +28,4 @@ echo "Deploying Anagram Hunt to S3..."
 aws s3 sync dist/ s3://play2learn-bucket/vue-games/anagram-hunt/ \
   $DELETE $ACL $EXACT $CACHE_CONTROL
 
-echo "Invalidating CloudFront cache..."
-aws cloudfront create-invalidation \
-  --distribution-id E22A6PYQ5KKZ6I \
-  --paths "/vue-games/*"
-
-
 echo "✅ Deployment complete!"
