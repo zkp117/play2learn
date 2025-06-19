@@ -1,12 +1,6 @@
 <template>
   <div>
-    <!-- This is your Vue app root -->
+    <h1>Hello from Vue!</h1>
     <router-view />
   </div>
 </template>
-
-<script>
-export default {
-  name: 'App',
-};
-</script>
