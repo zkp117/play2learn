@@ -1,15 +1,12 @@
 <template>
   <div>
-    <h2 style="color:red">Vue app mounted!</h2>
-    <router-view></router-view>
+    <!-- This is your Vue app root -->
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
 };
 </script>
-
-<style scoped>
-</style>
