@@ -2,12 +2,6 @@
 
 {% block title %}Math Facts{% endblock %}
 
-{% block main %}
-  <h1 class="text-center glitch-edit">Math Facts</h1>
-  <br>
-  <div id="app"></div>
-{% endblock %}
-
 {% block extra_css %}
   <link href="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/css/app.css" rel="stylesheet">
 {% endblock %}
@@ -16,12 +10,10 @@
   <script src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/js/chunk-vendors.js"></script>
   <script src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/js/app.js"></script>
 
-    <script>
+  <script>
     window.addEventListener('load', () => {
       if (window.vueApp && typeof window.vueApp.mount === 'function') {
         window.vueApp.mount('#app');
-      } else {
-        console.error("vueApp not available");
       }
     });
   </script>

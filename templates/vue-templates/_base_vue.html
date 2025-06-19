@@ -3,12 +3,13 @@
 {% block title %}Play2Learn{% endblock %}
 
 {% block extra_head %}
-<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  <!-- Use production Vue build for deployment -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
   {% block extra_css %}{% endblock %}
 {% endblock %}
 
 {% block main %}
-  <div id="app"></div>
+  <div id="app"></div>  {# Single app mount point here #}
 {% endblock %}
 
 {% block extra_js %}{% endblock %}
