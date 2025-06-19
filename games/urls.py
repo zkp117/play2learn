@@ -7,14 +7,13 @@ from .views import (
 )
 
 app_name = 'games'
-
 urlpatterns = [
-    # Vue Game Templates (catch all Vue routes under these folders)
-    re_path(r'^vue-games/anagram-hunt(?:/.*)?$', TemplateView.as_view(template_name='vue-templates/anagram-hunt.html'), name='vue-anagram-hunt'),
-    re_path(r'^vue-games/math-facts(?:/.*)?$', TemplateView.as_view(template_name='vue-templates/math-facts.html'), name='vue-math-facts'),
+    re_path(r'^anagram-hunt(?:/.*)?$', TemplateView.as_view(template_name='vue-templates/anagram-hunt.html'), name='vue-anagram-hunt'),
+    re_path(r'^math-facts(?:/.*)?$', TemplateView.as_view(template_name='vue-templates/math-facts.html'), name='vue-math-facts'),
 
-    # API Endpoints
+    # API endpoints
     path("api/record-score/mathfacts/", EnterMathFactsScore.as_view(), name="record_mathfacts_score"),
     path("api/record-score/anagramhunt/", EnterAnagramHuntScore.as_view(), name="record_anagramhunt_score"),
     path("api/is-logged-in/", is_logged_in, name="is_logged_in"),
 ]
+
