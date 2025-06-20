@@ -7,9 +7,8 @@ const base = process.env.VUE_APP_BASE_URL || '/vue-games/'  // GOOD
 const routes = [
   { path: '/math-facts', name: 'MathFacts', component: MathFacts, meta: { requiresAuth: true } },
   { path: '/anagram-hunt', name: 'AnagramHunt', component: AnagramHunt, meta: { requiresAuth: true } },
-  { path: '/', redirect: '/math-facts' }, 
+  { path: '/', redirect: '/math-facts' },  // Leading slash = absolute inside base
 ];
-
 
 const router = createRouter({
   history: createWebHistory(base),
