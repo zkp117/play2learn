@@ -1,11 +1,14 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-const app = createApp(App)
+axios.defaults.withCredentials = true
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
 
-app.use(router)
-
-app.mount('#app')
+createApp(App)
+  .use(router)
+  .use(VueAxios, axios)
+  .mount('#app')
