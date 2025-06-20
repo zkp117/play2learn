@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+cd "$(dirname "$0")"
+
 echo "Building Math Facts game..."
 cd math-facts
 npm install
