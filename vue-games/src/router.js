@@ -5,9 +5,8 @@ import MathFacts from './apps/MathFacts.vue'
 const base = process.env.VUE_APP_BASE_URL || '/vue-games/'  // GOOD
 
 const routes = [
-  { path: '/math-facts', name: 'MathFacts', component: MathFacts, meta: { requiresAuth: true } },
-  { path: '/anagram-hunt', name: 'AnagramHunt', component: AnagramHunt, meta: { requiresAuth: true } },
-  { path: '/', redirect: '/math-facts' } // this will become /vue-games/math-facts thanks to base
+  { path: 'math-facts', name: 'MathFacts', component: MathFacts, meta: { requiresAuth: true } },
+  { path: 'anagram-hunt', name: 'AnagramHunt', component: AnagramHunt, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({
