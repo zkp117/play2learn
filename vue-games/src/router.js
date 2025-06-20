@@ -7,7 +7,9 @@ const base = process.env.VUE_APP_BASE_URL || '/vue-games/'  // GOOD
 const routes = [
   { path: 'math-facts', name: 'MathFacts', component: MathFacts, meta: { requiresAuth: true } },
   { path: 'anagram-hunt', name: 'AnagramHunt', component: AnagramHunt, meta: { requiresAuth: true } },
-]
+  { path: '/', redirect: 'math-facts' },  // ✅ THIS LINE is critical
+];
+
 
 const router = createRouter({
   history: createWebHistory(base),
