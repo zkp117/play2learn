@@ -9,8 +9,6 @@ from .views import (
 app_name = 'games'
 
 urlpatterns = [
-    path('vue-games/anagram-hunt/', TemplateView.as_view(template_name='vue-templates/anagram-hunt.html'), name='vue-anagram-hunt'),
-    path('vue-games/math-facts/', TemplateView.as_view(template_name='vue-templates/math-facts.html'), name='vue-math-facts'),
 
     # API endpoints
     path("api/record-score/mathfacts/", EnterMathFactsScore.as_view(), name="record_mathfacts_score"),
