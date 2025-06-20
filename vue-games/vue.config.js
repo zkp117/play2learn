@@ -1,8 +1,6 @@
 module.exports = {
-  publicPath: '/vue-games/',
+  publicPath: process.env.VUE_APP_BASE_URL || '/vue-games/',
   outputDir: 'dist',
-  assetsDir: '',
   filenameHashing: false,
   productionSourceMap: false,
-  indexPath: 'index-template.html',
 };

@@ -1,44 +1,39 @@
 #!/bin/bash
+set -e
 
-set -e  # Exit on any error
+echo "Cleaning build directory..."
+rm -rf dist/
 
-# Function to build and deploy a game
-deploy_game() {
-  GAME_NAME=$1
-  BASE_URL="/vue-games/$GAME_NAME/"
-  S3_PATH="s3://play2learn-bucket/vue-games/$GAME_NAME/"
+# Build Math Facts
+echo "Building Math Facts game..."
+VUE_APP_BASE_URL=/vue-games/math-facts/ npm run build
 
-  echo "🚀 Deploying $GAME_NAME..."
+echo "Deploying Math Facts to S3..."
+aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/math-facts/ \
+  --delete \
+  --acl public-read \
+  --exact-timestamps \
+  --cache-control "public, max-age=31536000"
 
-  echo "Cleaning build directory..."
-  rm -rf dist/
+aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/math-facts/index.html \
+  --acl public-read \
+  --cache-control "no-cache, no-store, must-revalidate"
 
-  echo "Preparing index.html for $GAME_NAME..."
-  sed "s|%BASE_URL%|$BASE_URL|" public/index-template.html > public/index.html
+rm -rf dist/
 
-  echo "Building $GAME_NAME game..."
-  VUE_APP_BASE_URL=$BASE_URL npm run build
+# Build Anagram Hunt
+echo "Building Anagram Hunt game..."
+VUE_APP_BASE_URL=/vue-games/anagram-hunt/ npm run build
 
-  echo "Removing old index.html from S3 to avoid stale cache..."
-  aws s3 rm "${S3_PATH}index.html" || true
+echo "Deploying Anagram Hunt to S3..."
+aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/anagram-hunt/ \
+  --delete \
+  --acl public-read \
+  --exact-timestamps \
+  --cache-control "public, max-age=31536000"
 
-  echo "Syncing assets for $GAME_NAME to S3..."
-  aws s3 sync ./dist/ "$S3_PATH" \
-    --exclude "index.html" \
-    --delete \
-    --acl public-read \
-    --exact-timestamps \
-    --cache-control "public, max-age=31536000"
+aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/anagram-hunt/index.html \
+  --acl public-read \
+  --cache-control "no-cache, no-store, must-revalidate"
 
-  echo "Uploading fresh index.html with no-cache..."
-  aws s3 cp ./dist/index.html "${S3_PATH}index.html" \
-    --acl public-read \
-    --cache-control "no-cache, no-store, must-revalidate"
-}
-
-# ------------------ Deploy Each Game ------------------
-
-deploy_game "math-facts"
-deploy_game "anagram-hunt"
-
-echo "✅ All games deployed successfully!"
+echo "✅ Deployment complete!"
