@@ -3,25 +3,25 @@ import AnagramHunt from './apps/AnagramHunt.vue'
 import MathFacts from './apps/MathFacts.vue'
 import axios from 'axios'
 
-// Set the base path (used in createWebHistory)
+// Use base URL from env or default
 const base = process.env.VUE_APP_BASE_URL || '/vue-games/'
 
 const routes = [
   {
-    path: 'math-facts',
+    path: '/math-facts',   // <-- add leading slash here
     name: 'MathFacts',
     component: MathFacts,
     meta: { requiresAuth: true },
   },
   {
-    path: 'anagram-hunt',
+    path: '/anagram-hunt',  // <-- add leading slash here
     name: 'AnagramHunt',
     component: AnagramHunt,
     meta: { requiresAuth: true },
   },
   {
-    path: '',
-    redirect: 'math-facts',
+    path: '/',
+    redirect: '/math-facts',  // redirect to valid absolute path
   },
 ]
 
@@ -30,12 +30,12 @@ const router = createRouter({
   routes,
 })
 
-// Axios CSRF & credentials setup
+// Axios CSRF & credentials setup (good)
 axios.defaults.withCredentials = true
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
 
-// Route guard to check if the user is logged in
+// Route guard to check login (looks good)
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
     try {
