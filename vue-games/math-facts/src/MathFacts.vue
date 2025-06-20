@@ -108,7 +108,7 @@
 </template>
 
 <script type="module">
-import { getRandomInteger } from '@/helpers/helpers';
+import { getRandomInteger } from './helpers/helpers';
 import Axios from 'axios';
 
 export default {
