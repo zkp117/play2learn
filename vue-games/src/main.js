@@ -1,16 +1,15 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-// Axios config for CSRF
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
-axios.defaults.withCredentials = true;
+// Axios config
+axios.defaults.withCredentials = true
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
 
-// Create and mount Vue app on #app (from _base_vue.html)
 createApp(App)
   .use(router)
   .use(VueAxios, axios)
-  .mount('#app');
+  .mount('#app')
