@@ -1,14 +1,13 @@
 #!/bin/bash
 set -e
 
+# ----------- Math Facts -----------
 echo "Cleaning build directory..."
 rm -rf dist/
 
-# Build once with shared base path
-echo "Building games with shared base path..."
-VUE_APP_BASE_URL=/vue-games/ npm run build
+echo "Building Math Facts game..."
+VUE_APP_BASE_URL=/vue-games/math-facts/ npm run build
 
-# Deploy to Math Facts subfolder
 echo "Deploying Math Facts to S3..."
 aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/math-facts/ \
   --delete \
@@ -20,7 +19,13 @@ aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/math-facts/index.ht
   --acl public-read \
   --cache-control "no-cache, no-store, must-revalidate"
 
-# Deploy to Anagram Hunt subfolder
+# ----------- Anagram Hunt -----------
+echo "Cleaning build directory again..."
+rm -rf dist/
+
+echo "Building Anagram Hunt game..."
+VUE_APP_BASE_URL=/vue-games/anagram-hunt/ npm run build
+
 echo "Deploying Anagram Hunt to S3..."
 aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/anagram-hunt/ \
   --delete \

@@ -3,7 +3,7 @@ import AnagramHunt from './apps/AnagramHunt.vue'
 import MathFacts from './apps/MathFacts.vue'
 import axios from 'axios'
 
-const base = process.env.VUE_APP_BASE_URL || '/vue-games/'
+const base = process.env.VUE_APP_BASE_URL || '/';
 
 const routes = [
   {
@@ -29,12 +29,10 @@ const router = createRouter({
   routes,
 })
 
-// Axios CSRF & credentials setup (good)
 axios.defaults.withCredentials = true
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
 
-// Route guard to check login (looks good)
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
     try {

@@ -4,7 +4,6 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-// Axios config
 axios.defaults.withCredentials = true
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
