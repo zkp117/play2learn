@@ -3,25 +3,24 @@ import AnagramHunt from './apps/AnagramHunt.vue'
 import MathFacts from './apps/MathFacts.vue'
 import axios from 'axios'
 
-// Use base URL from env or default
 const base = process.env.VUE_APP_BASE_URL || '/vue-games/'
 
 const routes = [
   {
-    path: '/math-facts',   // <-- add leading slash here
+    path: '/math-facts', 
     name: 'MathFacts',
     component: MathFacts,
     meta: { requiresAuth: true },
   },
   {
-    path: '/anagram-hunt',  // <-- add leading slash here
+    path: '/anagram-hunt',
     name: 'AnagramHunt',
     component: AnagramHunt,
     meta: { requiresAuth: true },
   },
   {
     path: '/',
-    redirect: '/math-facts',  // redirect to valid absolute path
+    redirect: '/math-facts',
   },
 ]
 
