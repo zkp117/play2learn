@@ -1,6 +1,6 @@
 import json
 from datetime import timedelta
-
+from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -18,10 +18,8 @@ from scoreboards.models import (
 # --------------------
 # Redirect Views for Vue Games
 # --------------------
-class RedirectMathFacts(View):
-    @method_decorator(never_cache)
-    def get(self, request, *args, **kwargs):
-        return redirect('/vue-games/math-facts/')
+class MathFactsView(TemplateView):
+    template_name = "vue-templates/math-facts.html"
 class RedirectAnagramHunt(View):
     @method_decorator(never_cache)
     def get(self, request, *args, **kwargs):
