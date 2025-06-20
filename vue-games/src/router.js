@@ -3,7 +3,7 @@ import AnagramHunt from './apps/AnagramHunt.vue'
 import MathFacts from './apps/MathFacts.vue'
 import axios from 'axios'
 
-const base = process.env.VUE_APP_BASE_URL || '/';
+const base = process.env.VUE_APP_BASE_URL || '/vue-games/';
 
 const routes = [
   {
