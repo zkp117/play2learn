@@ -4,8 +4,8 @@ import AnagramHunt from './apps/AnagramHunt.vue'
 import MathFacts from './apps/MathFacts.vue'
 
 const routes = [
-  { path: '/anagram-hunt', name: 'AnagramHunt', component: AnagramHunt, meta: { requiresAuth: true } },
-  { path: '/math-facts', name: 'MathFacts', component: MathFacts, meta: { requiresAuth: true } },
+  { path: '/vue-games/anagram-hunt', name: 'AnagramHunt', component: AnagramHunt, meta: { requiresAuth: true } },
+  { path: '/vue-games/math-facts', name: 'MathFacts', component: MathFacts, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({
