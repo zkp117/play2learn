@@ -1,9 +1,0 @@
-{
-  "name": "vue-games",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "cd math-facts && npm run build && cd ../anagram-hunt && npm run build",
-    "dev-math": "cd math-facts && npm run dev",
-    "dev-anagram": "cd anagram-hunt && npm run dev"
-  }
-}
