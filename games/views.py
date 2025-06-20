@@ -20,10 +20,8 @@ from scoreboards.models import (
 # --------------------
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
-class RedirectAnagramHunt(View):
-    @method_decorator(never_cache)
-    def get(self, request, *args, **kwargs):
-        return redirect('/vue-games/anagram-hunt/')
+class AnagramHuntView(TemplateView):
+    template_name = "vue-templates/anagram-hunt.html"
 
 # --------------------
 # Score Recording APIs
