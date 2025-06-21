@@ -2,7 +2,11 @@
 
 {% block title %}Math Facts | Play2Learn{% endblock %}
 
+{% block content %}
+  <div id="app"></div>
+{% endblock %}
+
 {% block extra_js %}
-<div id="app"></div>
+  <script src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/js/chunk-vendors.js" defer></script>
   <script src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/js/app.js" defer></script>
 {% endblock %}
