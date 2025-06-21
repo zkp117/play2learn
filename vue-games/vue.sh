@@ -3,34 +3,28 @@ set -e
 
 cd "$(dirname "$0")"
 
-echo "Building Math Facts game..."
-cd math-facts
-npm install
-npm run build
-echo "Deploying Math Facts to S3..."
-aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/math-facts/ \
-  --delete \
-  --acl public-read \
-  --exact-timestamps \
-  --cache-control "public, max-age=31536000"
-aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/math-facts/index.html \
-  --acl public-read \
-  --cache-control "no-cache, no-store, must-revalidate"
-cd ..
+build_and_deploy() {
+  GAME_NAME=$1
+  echo "🚀 Building $GAME_NAME..."
+  cd "$GAME_NAME"
+  npm ci
+  npm run build
 
-echo "Building Anagram Hunt game..."
-cd anagram-hunt
-npm install
-npm run build
-echo "Deploying Anagram Hunt to S3..."
-aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/anagram-hunt/ \
-  --delete \
-  --acl public-read \
-  --exact-timestamps \
-  --cache-control "public, max-age=31536000"
-aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/anagram-hunt/index.html \
-  --acl public-read \
-  --cache-control "no-cache, no-store, must-revalidate"
-cd ..
+  echo "📦 Deploying $GAME_NAME to S3..."
+  aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/$GAME_NAME/ \
+    --delete \
+    --acl public-read \
+    --exact-timestamps \
+    --cache-control "public, max-age=31536000"
+
+  aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/$GAME_NAME/index.html \
+    --acl public-read \
+    --cache-control "no-cache, no-store, must-revalidate"
+
+  cd ..
+}
+
+build_and_deploy "math-facts"
+build_and_deploy "anagram-hunt"
 
 echo "✅ Deployment complete!"
