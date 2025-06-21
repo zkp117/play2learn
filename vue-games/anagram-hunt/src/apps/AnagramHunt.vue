@@ -74,7 +74,6 @@
 
 <script type="module">
 import anagrams from "@/helpers/anagrams";
-import { getRandomInteger } from "@/helpers/helpers";
 import Axios from "axios";
 
 export default {
