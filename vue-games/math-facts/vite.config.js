@@ -2,9 +2,10 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  base: '/vue-games/math-facts/',
+  base: '/vue-games/math-facts/', // or math-facts/
   plugins: [vue()],
   build: {
+    target: 'es2015',  // ✅ Ensures no raw "export" syntax in JS output
     rollupOptions: {
       output: {
         entryFileNames: `js/app.js`,
