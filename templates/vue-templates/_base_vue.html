@@ -4,15 +4,13 @@
 
 {% block extra_head %}
   {{ block.super }}
-  <!-- Any extra head content like Vue-specific CSS -->
+  <meta name="csrf-token" content="{{ csrf_token }}">
 {% endblock %}
 
 {% block main %}
-  <!-- Vue app mount point -->
   <div id="app"></div>
 {% endblock %}
 
 {% block extra_js %}
   {{ block.super }}
-  <!-- Vue app scripts will be inserted by specific templates like math-facts.html -->
 {% endblock %}
