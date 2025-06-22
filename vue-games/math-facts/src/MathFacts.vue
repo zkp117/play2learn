@@ -43,7 +43,7 @@
         <input class="form-control m-auto" v-model="userInput" style="width: 200px">
       </div>
       <div class="row m-auto" style="width: 300px">
-        <div class="row gx-1">
+        <div class="row gx-2 mb-2">
           <div class="col-4">
             <button @click="userInput += '1'" class="btn btn-primary w-100">1</button>
           </div>
@@ -54,7 +54,7 @@
             <button @click="userInput += '3'" class="btn btn-primary w-100">3</button>
           </div>
         </div>
-        <div class="row gx-1">
+        <div class="row gx-2 mb-2">
           <div class="col-4">
             <button @click="userInput += '4'" class="btn btn-primary w-100">4</button>
           </div>
@@ -65,7 +65,7 @@
             <button @click="userInput += '6'" class="btn btn-primary w-100">6</button>
           </div>
         </div>
-        <div class="row gx-1">
+        <div class="row gx-2 mb-2">
           <div class="col-4">
             <button @click="userInput += '7'" class="btn btn-primary w-100">7</button>
           </div>
