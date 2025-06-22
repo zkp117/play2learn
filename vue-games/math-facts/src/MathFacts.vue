@@ -179,7 +179,7 @@ export default {
         timeLeft: this.timeLeft
       };
       try {
-        await Axios.post('/games/api/record-score/mathfacts/', userData, {
+        await Axios.post('/api/record-score/mathfacts/', userData, {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': this.getCsrfToken()

@@ -161,7 +161,7 @@ export default {
     },
     async recordScore() {
       try {
-        await Axios.post('/games/api/record-score/anagramhunt/', {
+        await Axios.post('/api/record-score/anagramhunt/', {
           score: this.score,
           wordLength: this.wordLength,
           timeLeft: this.timeLeft
