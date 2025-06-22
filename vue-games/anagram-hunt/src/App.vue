@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Welcome to Math Facts!</h1>
+    <h1 class="glitch-edit">Anagram Hunt</h1>
     <AnagramHunt />
   </div>
 </template>
@@ -15,3 +15,5 @@ export default {
   }
 }
 </script>
+
+
