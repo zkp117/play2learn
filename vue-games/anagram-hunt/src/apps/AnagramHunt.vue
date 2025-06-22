@@ -76,6 +76,8 @@
 import anagrams from "@/helpers/anagrams";
 import Axios from "axios";
 
+Axios.defaults.baseURL = "https://www.play2learn.app";
+
 export default {
   name: 'AnagramGame',
   data() {

@@ -111,6 +111,8 @@
 import { getRandomInteger } from './helpers/helpers';
 import Axios from 'axios';
 
+Axios.defaults.baseURL = "https://www.play2learn.app";
+
 export default {
   name: 'MathGame',
   data() {
