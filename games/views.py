@@ -30,7 +30,7 @@ class AnagramHuntView(TemplateView):
 class EnterMathFactsScore(View):
     def post(self, request):
         try:
-            data = json.loads(request.body)pt.6
+            data = json.loads(request.body)
             score = data.get('score')
             operation = data.get('operation')
             max_number = data.get('maxNumber')
