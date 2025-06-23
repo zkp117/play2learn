@@ -119,6 +119,7 @@ export default {
     return {
       score: 0,
       screen: "start",
+      loggedIn: "false",
       maxNumber: 30,
       operation: "+",
       operations: {
@@ -148,6 +149,9 @@ export default {
       }
     },
     play() {
+      if (this.loggedIn) {
+        alert("")
+      }
       this.checkLogin();
 
       this.screen = "play";

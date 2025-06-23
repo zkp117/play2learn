@@ -16,10 +16,8 @@ from scoreboards.models import (
 # --------------------
 # Redirect Views for Vue Games
 # --------------------
-@method_decorator(login_required, name='dispatch')
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
-@method_decorator(login_required, name='dispatch')
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
 

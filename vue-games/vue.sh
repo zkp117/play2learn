@@ -1,4 +1,5 @@
 #!/bin/bash
+# index.html is excluded 
 set -e
 
 build_and_deploy() {
@@ -8,16 +9,13 @@ build_and_deploy() {
   npm ci
   npm run build
 
-  echo "📦 Deploying $GAME_NAME to S3..."
+  echo "📦 Deploying $GAME_NAME to S3"
   aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/$GAME_NAME/ \
+    --exclude "index.html" \ 
     --delete \
     --acl public-read \
     --exact-timestamps \
     --cache-control "public, max-age=31536000"
-
-  aws s3 cp ./dist/index.html s3://play2learn-bucket/vue-games/$GAME_NAME/index.html \
-    --acl public-read \
-    --cache-control "no-cache, no-store, must-revalidate"
 
   cd ..
 }
