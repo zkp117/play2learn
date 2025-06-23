@@ -196,7 +196,7 @@ AWS_S3_REGION_NAME = 'us-east-2'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'play2learn.storage_backends.PublicMediaStorage'
 PRIVATE_FILE_STORAGE = 'play2learn.storage_backends.PrivateMediaStorage'
-STATIC_URL = 'https://d247zk0j19bbkg.cloudfront.net/static/'
+STATIC_URL = 'https://play2learn-bucket.s3.us-east-2.amazonaws.com/static/'
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/media/public/'
 PUBLIC_MEDIA_LOCATION = 'media/public'
 PRIVATE_MEDIA_STORAGE = 'media/private'
@@ -231,6 +231,10 @@ CORS_ALLOWED_ORIGINS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
+
+CSRF_COOKIE_HTTPONLY = False
+CSRF_TRUSTED_ORIGINS = ['https://www.play2learn.app']
+
 
 try:
    if os.environ.get('ENVIRONMENT') != 'production':

@@ -7,5 +7,6 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script type="module" src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/js/app.js" defer></script>
+{% load static %}
+<script type="module" src="{% static 'vue-games/math-facts/js/app.js' %}" defer></script>
 {% endblock %}

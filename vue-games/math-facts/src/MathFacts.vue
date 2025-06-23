@@ -110,8 +110,8 @@
 <script type="module">
 import { getRandomInteger } from './helpers/helpers';
 import Axios from 'axios';
-
 Axios.defaults.baseURL = "https://www.play2learn.app";
+Axios.defaults.withCredentials = true;
 
 export default {
   name: 'MathGame',

@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-cd "$(dirname "$0")"
-
 build_and_deploy() {
   GAME_NAME=$1
   echo "🚀 Building $GAME_NAME..."
