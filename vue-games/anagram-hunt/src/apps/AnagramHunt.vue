@@ -1,5 +1,11 @@
 <template>
   <div class="container" style="width: 500px">
+
+    <!-- Login Required Alert -->
+     <div v-if="!loggedIn && !loggedInWarningDismissed" class="alert alert-warning alert-dismissible fade show" role="alert">
+      🚫 Please <a href="/accounts/login/" class="alert-link">log in</a> to play this game.
+      <button type="button" class="btn-close" aria-label="Close" @click="loggedInWarningDismissed = true"></button>
+    </div>
     <!-- Start Screen -->
     <div v-if="screen=='start'" class="container">
       <div class="row m-auto">
