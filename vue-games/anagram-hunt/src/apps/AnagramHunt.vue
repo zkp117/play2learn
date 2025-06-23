@@ -90,6 +90,8 @@ export default {
       anagramList: [],
       wordLength: 5,
       screen: "start",
+      loggedIn: false,
+      loggedInWarningDismissed: false,
       correctGuesses: [],
       userInput: "",
       interval: null,
@@ -103,25 +105,28 @@ export default {
     async checkLogin() {
       try {
         const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
-        if (!res.data.logged_in)
-          window.location.href = "/accounts/login/";
+        this.loggedIn = res.data.logged_in;
       } catch (e) {
-        window.location.href = "/accounts/login/";
+        this.loggedIn = false;
       }
     },
-    play() {
-      this.checkLogin();
-
+    async play() {
+      await this.checkLogin();
+      
+      if (!this.loggedIn) {
+        this.loggedInWarningDismissed = false;
+        return;
+      }
+      
       this.score = 0;
       this.timeLeft = 60;
       this.screen = "play";
       this.correctGuesses = [];
       this.usedAnagramLists = [];
-
+      
       if (this.interval) clearInterval(this.interval);
-
       this.newAnagramList();
-
+      
       this.interval = setInterval(() => {
         this.timeLeft--;
       }, 1000);

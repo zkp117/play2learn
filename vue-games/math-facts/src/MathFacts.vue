@@ -119,7 +119,8 @@ export default {
     return {
       score: 0,
       screen: "start",
-      loggedIn: "false",
+      loggedIn: false,
+      loggedInWarningDismissed: false,
       maxNumber: 30,
       operation: "+",
       operations: {
@@ -142,17 +143,17 @@ export default {
     async checkLogin() {
       try {
         const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
-        if (!res.data.logged_in)
-          window.location.href = "/accounts/login/";
-      } catch (e) {
-        window.location.href = "/accounts/login/";
+        this.loggedIn = res.data.logged_in; } 
+        catch (e) {
+          this.loggedIn = false;
+        }
+      },
+    async play() {
+      await this.checkLogin();
+      if (!this.loggedIn) {
+        this.loggedInWarningDismissed = false;
+        return;
       }
-    },
-    play() {
-      if (this.loggedIn) {
-        alert("")
-      }
-      this.checkLogin();
 
       this.screen = "play";
       this.getNewQuestion();
