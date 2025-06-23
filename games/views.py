@@ -16,8 +16,10 @@ from scoreboards.models import (
 # --------------------
 # Redirect Views for Vue Games
 # --------------------
+@method_decorator(login_required, name='dispatch')
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
+@method_decorator(login_required, name='dispatch')
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
 
@@ -28,7 +30,7 @@ class AnagramHuntView(TemplateView):
 class EnterMathFactsScore(View):
     def post(self, request):
         try:
-            data = json.loads(request.body)
+            data = json.loads(request.body)pt.6
             score = data.get('score')
             operation = data.get('operation')
             max_number = data.get('maxNumber')
