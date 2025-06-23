@@ -78,11 +78,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'play2learn.urls'
 
-SESSION_COOKIE_NAME = 'sessionid'  # default name, make sure it’s this or adjust frontend accordingly
-SESSION_COOKIE_DOMAIN = '.play2learn.app'  # make sure this includes your frontend domain so the cookie is accessible
-SESSION_COOKIE_PATH = '/'  # usually root, to be accessible site-wide
-SESSION_COOKIE_SAMESITE = 'Lax'  # or 'None' with HTTPS
-SESSION_COOKIE_SECURE = True  # true if using HTTPS, false otherwise
+SESSION_COOKIE_NAME = 'sessionid' 
+SESSION_COOKIE_DOMAIN = '.play2learn.app' 
+SESSION_COOKIE_PATH = '/'
+SESSION_COOKIE_SAMESITE = 'Lax' 
+SESSION_COOKIE_SECURE = True
 
 
 # TEMPLATES SECTION
