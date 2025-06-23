@@ -171,4 +171,9 @@ body.dark-mode #theme-toggle:hover {
   justify-content: center;
 }
 
+.alert.login-warning {
+  max-width: 450px;
+  margin: 1rem auto;
+  text-align: center;
+}
 
