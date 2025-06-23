@@ -1,12 +1,10 @@
 import json
 from datetime import timedelta
 from django.views.generic import TemplateView
-from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views import View
-from django.shortcuts import redirect
 
 from scoreboards.models import (
     MathFactsScoreBoard, 
@@ -89,6 +87,8 @@ class EnterAnagramHuntScore(View):
 # Utility Endpoint
 # --------------------
 
-@login_required
 def is_logged_in(request):
-    return JsonResponse({'logged_in': True, 'username': request.user.username})
+    if request.user.is_authenticated:
+        return JsonResponse({'logged_in': True, 'username': request.user.username})
+    else:
+        return JsonResponse({'logged_in': False})
