@@ -228,6 +228,9 @@ CORS_ALLOWED_ORIGINS = [
    "https://play2learn.app",
 ]
 
+
+CORS_ALLOW_CREDENTIALS = True
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
