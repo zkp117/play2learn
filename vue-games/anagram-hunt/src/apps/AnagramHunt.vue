@@ -1,11 +1,24 @@
 <template>
   <div class="container" style="width: 500px">
 
-    <!-- Login Required Alert -->
-     <div v-if="!loggedIn && !loggedInWarningDismissed" class="alert alert-warning alert-dismissible fade show login-warning" role="alert">
-      🚫 Please <a href="/accounts/login/" class="alert-link">log in</a> to play this game.
-      <button type="button" class="btn-close" aria-label="Close" @click="loggedInWarningDismissed = true"></button>
+    <!-- 🚫 Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content rounded-4 shadow">
+          <div class="modal-header p-4 pb-2 border-bottom-0">
+            <h1 class="fw-bold mb-0 fs-4">Please Log In</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4 pt-0">
+            <p class="mb-4">You must be logged in to play Anagram Hunt.</p>
+            <a href="/accounts/login/" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary">Log In</a>
+            <hr class="my-3">
+            <p class="text-center small text-muted">Don’t have an account? <a href="/accounts/signup/">Sign up here</a>.</p>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- Start Screen -->
     <div v-if="screen=='start'" class="container">
       <div class="row m-auto">
@@ -120,7 +133,8 @@ export default {
       await this.checkLogin();
       
       if (!this.loggedIn) {
-        this.loggedInWarningDismissed = false;
+        const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+        modal.show();
         return;
       }
       
@@ -137,6 +151,7 @@ export default {
         this.timeLeft--;
       }, 1000);
     },
+
     checkAnswer() {
       const input = this.userInput.toLowerCase();
       if (
