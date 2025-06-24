@@ -11,7 +11,7 @@ build_and_deploy() {
 
   echo "📦 Deploying $GAME_NAME to S3"
   aws s3 sync ./dist/ s3://play2learn-bucket/vue-games/$GAME_NAME/ \
-    --exclude "index.html" \ 
+    --exclude "index.html" \
     --delete \
     --acl public-read \
     --exact-timestamps \
