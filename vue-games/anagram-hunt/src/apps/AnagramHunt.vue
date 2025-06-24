@@ -1,23 +1,33 @@
 <template>
   <div class="container" style="width: 500px">
 
-    <!-- 🚫 Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content rounded-4 shadow">
-          <div class="modal-header p-4 pb-2 border-bottom-0">
-            <h1 class="fw-bold mb-0 fs-4">Please Log In</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Modal for Login Prompt -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Sign up for free</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
           </div>
-          <div class="modal-body p-4 pt-0">
-            <p class="mb-4">You must be logged in to play Anagram Hunt.</p>
-            <a href="/accounts/login/" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary">Log In</a>
-            <hr class="my-3">
-            <p class="text-center small text-muted">Don’t have an account? <a href="/accounts/signup/">Sign up here</a>.</p>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
           </div>
-        </div>
+          <a href="/accounts/signup/" class="btn btn-primary w-100 mb-2 btn-lg rounded-3">Sign up</a>
+          <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+          <hr class="my-4">
+        </form>
       </div>
     </div>
+  </div>
+</div>
+
 
     <!-- Start Screen -->
     <div v-if="screen=='start'" class="container">
