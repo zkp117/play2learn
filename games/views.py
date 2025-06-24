@@ -24,7 +24,6 @@ class AnagramHuntView(TemplateView):
 # --------------------
 # Score Recording APIs
 # --------------------
-@method_decorator(login_required, name='dispatch')
 class EnterMathFactsScore(View):
     def post(self, request):
         try:
@@ -55,7 +54,6 @@ class EnterMathFactsScore(View):
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
-@method_decorator(login_required, name='dispatch')
 class EnterAnagramHuntScore(View):
     def post(self, request):
         try:
