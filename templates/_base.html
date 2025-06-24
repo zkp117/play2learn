@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   
   <!-- Google Font -->
@@ -23,8 +24,6 @@
   <!-- Other scripts and icons -->
   <script src="https://kit.fontawesome.com/f804978a2a.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@3.x/dist/vue.global.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-  
   
   <link rel="icon" href="https://play2learn-bucket.s3.amazonaws.com/media/favicon.ico" />
   
@@ -37,67 +36,70 @@
       <img src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/media/public/logo/logo.png" alt="Site Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-    aria-label="Toggle navigation">
+    data-bs-target="#navbarSupportedContent" aria-expanded="false"
+    aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'pages:homepage' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="gamesDropdown" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Games
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
-          <li><a class="dropdown-item" href="https://www.play2learn.app/vue-games/math-facts/">MathFacts</a></li>
-          <li><a class="dropdown-item" href="https://www.play2learn.app/vue-games/anagram-hunt/">AnagramHunt</a></li>
-          <li><a class="dropdown-item" href="{% url 'scoreboards:scoreboards' %}">LeaderBoards</a></li>
-        </ul>
-      </li>
-      {% if user.is_authenticated %}
-      <!-- Me Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="meDropdown" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Me
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="meDropdown">
-          <li><a class="dropdown-item" href="{% url 'my-account' %}">My Account</a></li>
-          <li><a class="dropdown-item" href="{% url 'scoreboards:my-scores' %}">My Scores</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form method="post" action="{% url 'account_logout' %}">
-              {% csrf_token %}
-              <button class="dropdown-item logout" type="submit">Log out</button>
-            </form>
-          </li>
-        </ul>
-      </li>
-      {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
-      </li>
-      {% endif %}
-    </ul>
-
-    <!-- Search and Theme Toggle -->
-    <form class="d-flex">
-      <input type="search" class="form-control me-2" placeholder="Search" aria-label="Search" name="q" value="{{ request.GET.q }}">
-      <button class="btn btn-outline-success me-3" type="submit">Search</button>
-    </form>
-    <button id="theme-toggle" class="btn btn-outline-secondary ms-1" type="button">
-      <i class="bi bi-sun-fill"></i>
     </button>
-  </div>
-</nav>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'pages:homepage' %}">Home 
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+              role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Games
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://www.play2learn.app/vue-games/math-facts/">MathFacts</a>
+              <a class="dropdown-item" href="https://www.play2learn.app/vue-games/anagram-hunt/">AnagramHunt</a>
+              <a class="dropdown-item" href="{% url 'scoreboards:scoreboards' %}">LeaderBoards</a>
+              <div class="dropdown-divider">
+              </div>
+        </li>
+
+        {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+              role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Me
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'my-account' %}">My Account</a>
+              <a class="dropdown-item" href="{% url 'scoreboards:my-scores' %}">My Scores</a>
+              <div class="dropdown-divider"></div>
+              <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                <button class="btn dropdown-item logout">Log out</button>
+              </form>
+            </div>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+          </li>
+        {% endif %}
+      </ul>
+
+      <form>
+        <input type="search" placeholder="Search" aria-label="Search" name="q" value="{{ request.GET.q }}">
+        <button class="btn btn-outline-success me-5" type="submit">
+          Search
+        </button>
+      </form>
+      <button id="theme-toggle" class="btn btn-outline-secondary ms-1" type="button">
+        <i class="bi bi-sun-fill"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 
 {% block homepage_carousel %}
