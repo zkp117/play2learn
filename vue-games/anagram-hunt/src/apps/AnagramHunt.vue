@@ -2,7 +2,6 @@
   <div class="container" style="width: 500px">
 
 <!-- Modal for Login Prompt -->
-<!-- Modal for Login Prompt -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content rounded-4 shadow">
