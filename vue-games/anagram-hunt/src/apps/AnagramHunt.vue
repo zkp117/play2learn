@@ -1,3 +1,5 @@
+{% load crispy_forms_tags %}
+{% load static %}
 <template>
   <div class="container" style="width: 500px">
 
