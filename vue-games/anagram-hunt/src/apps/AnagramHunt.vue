@@ -1,32 +1,21 @@
 <template>
   <div class="container" style="width: 500px">
 
-<!-- Modal for Login Prompt -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Log in</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-5 pt-0">
-        <form method="post" action="/accounts/login/">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3" id="loginEmail" name="login" placeholder="name@example.com">
-            <label for="loginEmail">Email address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" id="loginPassword" name="password" placeholder="Password">
-            <label for="loginPassword">Password</label>
-          </div>
-          <button type="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary">Log in</button>
-        </form>
-
-        <div class="text-center mt-3">
-          <small class="text-muted">No account?</small>
-          <a href="/accounts/signup/" class="btn btn-outline-secondary w-100 mt-2 rounded-3">Sign up</a>
-        </div>
-      </div>
+<div class="modal fade" id="loginModal" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="dark-container modal-dialog">
+    <div class="modal-content">Log in</div>
+    <div class="modal-header">
+      <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="form-control btn btn-primary mt-3">LOG IN</button>
+      </form>
+    </div>
+    <div class="card-footer">
+      <p class="mb-0">
+        Need an account? <a href="{% url 'account_signup' %}">Register</a>.<br>
+        Lost your password? <a href="{% url 'password_reset' %}">Reset it</a>.
+      </p>
     </div>
   </div>
 </div>
