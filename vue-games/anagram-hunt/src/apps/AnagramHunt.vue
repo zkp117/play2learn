@@ -1,8 +1,8 @@
 <template>
   <div class="container" style="width: 500px">
 
-<!-- Modal for Login Prompt DO NOT TOUCH-->
-<div class="modal fade justify-content-center align-items-center" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<!-- Modal for Login Prompt -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header p-5 pb-4 border-bottom-0">
@@ -19,17 +19,18 @@
             <input type="password" class="form-control rounded-3" id="loginPassword" name="password" placeholder="Password">
             <label for="loginPassword">Password</label>
           </div>
-          <button type="submit" class="btn-primary btn form-control">Log in</button>
+          <button type="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary">Log in</button>
         </form>
 
         <div class="text-center mt-3">
           <small class="text-muted">Don't have an account?</small>
-          <a href="{% url 'account_signup'}" class="btn btn-outline-secondary w-100 mt-2 rounded-3">Sign up</a>
+          <a href="/accounts/signup/" class="btn btn-outline-secondary w-100 mt-2 rounded-3">Sign up</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Start Screen -->
     <div v-if="screen=='start'" class="container">
@@ -102,44 +103,6 @@
     padding: 0.2rem;
   }
 </style>
-
-<script>
-
-  /** this script is for a viewable password field
-   * I had it in my 2nd project and I wanted to 
-   * add it again 
-  */
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const userPswrd = document.querySelector('input[type="password"]');
-    if (userPswrd) {
-      const storagePswrd = document.createElement('div');
-      storagePswrd.style.position = 'relative';
-  
-      const eyePswrd = document.createElement('i');
-      eyePswrd.setAttribute('title', 'Show/Hide Password');
-      eyePswrd.classList.add('fa', 'fa-eye', 'password-toggle-icon');
-      
-      Object.assign(eyePswrd.style,{
-        position: 'absolute',
-        right: '10px',
-        top:'50%',
-        transform: 'translateY(-50%)',
-        cursor: 'pointer',
-      })
-      userPswrd.parentNode.insertBefore(storagePswrd, userPswrd);
-      storagePswrd.appendChild(userPswrd);
-      storagePswrd.appendChild(eyePswrd);
-  
-      eyePswrd.addEventListener('click', function () {
-        const isHidden = userPswrd.type === 'password';
-        userPswrd.type = isHidden ? 'text' : 'password';
-        eyePswrd.classList.toggle('fa-eye-slash', isHidden);
-        eyePswrd.classList.toggle('fa-eye', !isHidden);
-      });
-    }
-  });
-  </script>
 
 <script type="module">
 import anagrams from "@/helpers/anagrams";
