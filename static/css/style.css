@@ -176,9 +176,3 @@ body.dark-mode #theme-toggle:hover {
   margin: 1rem auto;
   text-align: center;
 }
-
-.dark-mode .modal{
-  background-color: #7d9dbd;
-  color: #e7e7e7;
-
-}
