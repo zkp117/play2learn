@@ -1,25 +1,30 @@
 <template>
   <div class="container" style="width: 500px">
 
-<div class="modal fade" id="loginModal" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="dark-container modal-dialog">
-    <div class="modal-content">Log in</div>
-    <div class="modal-header">
-      <form method="post">
+<!-- Modal for Login Prompt -->
+<div class="modal fade justify-content-center align-items-center
+" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class=“modal-dialog text-center“>
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Log in</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+       <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="form-control btn btn-primary mt-3">LOG IN</button>
       </form>
-    </div>
-    <div class="card-footer">
-      <p class="mb-0">
+        <p class="mb-0">
         Need an account? <a href="{% url 'account_signup' %}">Register</a>.<br>
         Lost your password? <a href="{% url 'password_reset' %}">Reset it</a>.
       </p>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
 
     <!-- Start Screen -->
     <div v-if="screen=='start'" class="container">
