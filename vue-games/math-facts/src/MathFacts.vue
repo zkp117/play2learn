@@ -1,4 +1,8 @@
 <template>
+
+{% load crispy_forms_tags %}
+{% load static %}
+
   <div class="container" style="width: 500px">
 
     <!-- Login Required Alert -->
