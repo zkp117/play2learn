@@ -164,6 +164,10 @@ export default {
         this.timeLeft--;
       }, 1000);
     },
+    
+    mounted() {
+      this.checkLogin();
+    },
 
     checkAnswer() {
       const input = this.userInput.toLowerCase();

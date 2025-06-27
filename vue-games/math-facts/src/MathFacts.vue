@@ -202,6 +202,10 @@ export default {
       }, 1000);
     },
 
+    mounted() {
+      this.checkLogin();
+    },
+
     getNewQuestion() {
       let num1 = getRandomInteger(0, this.maxNumber + 1);
       let num2 = getRandomInteger(0, this.maxNumber + 1);
