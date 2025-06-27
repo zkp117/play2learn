@@ -107,8 +107,8 @@
 <script type="module">
 import anagrams from "@/helpers/anagrams";
 import Axios from "axios";
+
 Axios.defaults.withCredentials = true;
-Axios.defaults.baseURL = "https://www.play2learn.app";
 
 export default {
   name: 'AnagramGame',
@@ -132,11 +132,12 @@ export default {
   },
   methods: {
     getCsrfToken() {
-      return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+      const cookieValue = document.cookie.match('(^|;)\\s*csrftoken\\s*=\\s*([^;]+)');
+      return cookieValue ? cookieValue.pop() : '';
     },
     async checkLogin() {
       try {
-        const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
+        const res = await Axios.get('/games/api/is-logged-in/', { withCredentials: true });
         this.loggedIn = res.data.logged_in;
       } catch (e) {
         this.loggedIn = false;
@@ -197,16 +198,16 @@ export default {
         return;
       }
 
-      const chosenList = [...unusedLists[getRandomInteger(0, unusedLists.length)]];
+      const chosenList = [...unusedLists[Math.floor(Math.random() * unusedLists.length)]];
       this.anagramList = chosenList;
       this.usedAnagramLists.push(chosenList);
 
-      this.currentWord = this.anagramList[getRandomInteger(0, this.anagramList.length)];
+      this.currentWord = this.anagramList[Math.floor(Math.random() * this.anagramList.length)];
       this.correctGuesses = [];
     },
     async recordScore() {
       try {
-        await Axios.post('/api/record-score/anagramhunt/', {
+        await Axios.post('/games/api/record-score/anagramhunt/', {
           score: this.score,
           wordLength: this.wordLength,
           timeLeft: this.timeLeft
