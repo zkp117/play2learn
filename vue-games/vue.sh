@@ -15,7 +15,8 @@ build_and_deploy() {
     --delete \
     --acl public-read \
     --exact-timestamps \
-    --cache-control "public, max-age=0, no-cache"
+    --cache-control "no-cache, no-store, must-revalidate"
+
 
   cd ..
 }
