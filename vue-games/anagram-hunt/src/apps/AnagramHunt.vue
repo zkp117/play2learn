@@ -137,10 +137,19 @@ export default {
     },
     async checkLogin() {
       try {
-        const res = await Axios.get('/games/api/is-logged-in/', { withCredentials: true });
-        this.loggedIn = res.data.logged_in;
-      } catch (e) {
+        const res = await Axios.get('/games/api/is-logged-in/', {
+          withCredentials: true
+        });
+        if (!res.data.logged_in) {
+          localStorage.clear();
+          sessionStorage.clear();
+          window.location.href = "/accounts/login/";
+        } else {
+          this.loggedIn = true;
+        }
+      } catch (error) {
         this.loggedIn = false;
+        window.location.href = "/accounts/login/";
       }
     },
     async play() {
