@@ -142,6 +142,7 @@
 <script type="module">
 import { getRandomInteger } from './helpers/helpers';
 import Axios from 'axios';
+
 Axios.defaults.baseURL = "https://www.play2learn.app";
 Axios.defaults.withCredentials = true;
 
@@ -168,6 +169,9 @@ export default {
       timeLeft: 60,
     };
   },
+  mounted() {
+    this.checkLogin();
+  },
   methods: {
     getCsrfToken() {
       return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
@@ -186,8 +190,11 @@ export default {
       await this.checkLogin();
 
       if (!this.loggedIn) {
-        const modal = new bootstrap.Modal(document.getElementById('loginModal'));
-        modal.show();
+        const modalEl = document.getElementById('loginModal');
+        if (modalEl) {
+          const modal = new bootstrap.Modal(modalEl);
+          modal.show();
+        }
         this.loggedInWarningDismissed = false;
         return;
       }
@@ -200,10 +207,6 @@ export default {
       this.interval = setInterval(() => {
         this.timeLeft--;
       }, 1000);
-    },
-
-    mounted() {
-      this.checkLogin();
     },
 
     getNewQuestion() {
@@ -233,8 +236,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': this.getCsrfToken()
-          },
-          withCredentials: true
+          }
         });
         console.log("Score saved successfully");
       } catch (error) {
@@ -242,7 +244,6 @@ export default {
       }
     }
   },
-
   computed: {
     correctAnswer() {
       if (!this.userInput.trim()) return false;
@@ -254,7 +255,6 @@ export default {
       return false;
     }
   },
-
   watch: {
     userInput() {
       if (this.correctAnswer) {
@@ -270,7 +270,6 @@ export default {
         this.timeLeft = 60;
         await this.recordScore();
         this.screen = "end";
-        console.log("Time's up! Score recorded");
       }
     }
   }

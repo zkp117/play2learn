@@ -108,6 +108,7 @@
 import anagrams from "@/helpers/anagrams";
 import Axios from "axios";
 
+Axios.defaults.baseURL = "https://www.play2learn.app";
 Axios.defaults.withCredentials = true;
 
 export default {
@@ -130,6 +131,9 @@ export default {
       usedAnagramLists: [],
     };
   },
+  mounted() {
+    this.checkLogin();
+  },
   methods: {
     getCsrfToken() {
       const cookieValue = document.cookie.match('(^|;)\\s*csrftoken\\s*=\\s*([^;]+)');
@@ -137,46 +141,36 @@ export default {
     },
     async checkLogin() {
       try {
-        const res = await Axios.get('/api/is-logged-in/', {
-          withCredentials: true
-        });
-        if (!res.data.logged_in) {
-          localStorage.clear();
-          sessionStorage.clear();
-          window.location.href = "/accounts/login/";
-        } else {
-          this.loggedIn = true;
-        }
+        const res = await Axios.get('/api/is-logged-in/');
+        this.loggedIn = res.data.logged_in;
       } catch (error) {
         this.loggedIn = false;
-        window.location.href = "/accounts/login/";
       }
     },
     async play() {
       await this.checkLogin();
-      
+
       if (!this.loggedIn) {
-        const modal = new bootstrap.Modal(document.getElementById('loginModal'));
-        modal.show();
+        const modalEl = document.getElementById('loginModal');
+        if (modalEl) {
+          const modal = new bootstrap.Modal(modalEl);
+          modal.show();
+        }
         return;
       }
-      
+
       this.score = 0;
       this.timeLeft = 60;
       this.screen = "play";
       this.correctGuesses = [];
       this.usedAnagramLists = [];
-      
+
       if (this.interval) clearInterval(this.interval);
       this.newAnagramList();
-      
+
       this.interval = setInterval(() => {
         this.timeLeft--;
       }, 1000);
-    },
-    
-    mounted() {
-      this.checkLogin();
     },
 
     checkAnswer() {
@@ -195,6 +189,7 @@ export default {
         }
       }
     },
+
     newAnagramList() {
       const potentialAnagramLists = this.anagrams[this.wordLength] || [];
 
@@ -214,9 +209,10 @@ export default {
       this.currentWord = this.anagramList[Math.floor(Math.random() * this.anagramList.length)];
       this.correctGuesses = [];
     },
+
     async recordScore() {
       try {
-        await Axios.post('/games/api/record-score/anagramhunt/', {
+        await Axios.post('/api/record-score/anagramhunt/', {
           score: this.score,
           wordLength: this.wordLength,
           timeLeft: this.timeLeft
@@ -224,8 +220,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': this.getCsrfToken()
-          },
-          withCredentials: true
+          }
         });
         console.log("Score saved successfully");
       } catch (error) {
