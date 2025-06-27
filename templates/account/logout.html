@@ -9,10 +9,9 @@
   </form>
 
   {% if not user.is_authenticated %}
-    <script>
-      localStorage.clear();
-      sessionStorage.clear();
-      document.cookie = "sessionid=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    </script>
+<script>
+  localStorage.clear();
+  sessionStorage.clear();
+</script>
   {% endif %}
 {% endblock %}

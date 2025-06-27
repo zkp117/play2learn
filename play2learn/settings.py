@@ -236,7 +236,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
 
 CSRF_COOKIE_HTTPONLY = False
-CSRF_TRUSTED_ORIGINS = ['https://www.play2learn.app']
+CSRF_TRUSTED_ORIGINS = ['https://www.play2learn.app',
+                         'https://play2learn.app']
 CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SECURE = True
 
