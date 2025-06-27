@@ -63,6 +63,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # MIDDLEWARE SECTIONS
 MIDDLEWARE = [
+   'corsheaders.middleware.CorsMiddleware',
    'django.middleware.security.SecurityMiddleware',
    'django.contrib.sessions.middleware.SessionMiddleware',
    'django.middleware.common.CommonMiddleware',
@@ -73,7 +74,6 @@ MIDDLEWARE = [
    'django.contrib.admindocs.middleware.XViewMiddleware',
    'django.middleware.cache.CacheMiddleware',
    'allauth.account.middleware.AccountMiddleware',
-   'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'play2learn.urls'
@@ -237,7 +237,7 @@ DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
 
 CSRF_COOKIE_HTTPONLY = False
 CSRF_TRUSTED_ORIGINS = ['https://www.play2learn.app']
-CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SECURE = True
 
 
