@@ -174,7 +174,8 @@ export default {
   },
   methods: {
     getCsrfToken() {
-      return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+      const match = document.cookie.match(/csrftoken=([^;]+)/);
+      return match ? match[1] : '';
     },
 
     async checkLogin() {
