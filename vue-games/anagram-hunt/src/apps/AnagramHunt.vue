@@ -137,7 +137,7 @@ export default {
     },
     async checkLogin() {
       try {
-        const res = await Axios.get('/games/api/is-logged-in/', {
+        const res = await Axios.get('/api/is-logged-in/', {
           withCredentials: true
         });
         if (!res.data.logged_in) {
