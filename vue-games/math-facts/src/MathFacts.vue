@@ -2,11 +2,35 @@
   
   <div class="container" style="width: 500px">
 
-    <!-- Login Required Alert -->
-     <div v-if="!loggedIn && !loggedInWarningDismissed" class="alert alert-warning alert-dismissible fade show login-warning" role="alert">
-      🚫 Please <a href="/accounts/login/" class="alert-link">log in</a> to play this game.
-      <button type="button" class="btn-close" aria-label="Close" @click="loggedInWarningDismissed = true"></button>
+<!-- Modal for Login Prompt -->
+<div class="modal fade justify-content-center align-items-center" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog text-center">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Log in</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form method="post" action="/accounts/login/">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" id="loginEmail" name="login" placeholder="name@example.com">
+            <label for="loginEmail">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-3" id="loginPassword" name="password" placeholder="Password">
+            <label for="loginPassword">Password</label>
+          </div>
+          <button type="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary">Log in</button>
+        </form>
+
+        <div class="text-center mt-3">
+          <small class="text-muted">Don't have an account?</small>
+          <a href="/accounts/signup/" class="btn btn-outline-secondary w-100 mt-2 rounded-3">Sign up</a>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
     <!-- Start Screen -->
     <div v-if="screen=='start'" class="container">
@@ -148,17 +172,22 @@ export default {
     getCsrfToken() {
       return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
     },
+
     async checkLogin() {
       try {
         const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
-        this.loggedIn = res.data.logged_in; } 
-        catch (e) {
-          this.loggedIn = false;
-        }
-      },
+        this.loggedIn = res.data.logged_in;
+      } catch (e) {
+        this.loggedIn = false;
+      }
+    },
+
     async play() {
       await this.checkLogin();
+
       if (!this.loggedIn) {
+        const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+        modal.show();
         this.loggedInWarningDismissed = false;
         return;
       }
@@ -172,6 +201,7 @@ export default {
         this.timeLeft--;
       }, 1000);
     },
+
     getNewQuestion() {
       let num1 = getRandomInteger(0, this.maxNumber + 1);
       let num2 = getRandomInteger(0, this.maxNumber + 1);
@@ -186,6 +216,7 @@ export default {
         this.number2 = num2;
       }
     },
+
     async recordScore() {
       const userData = {
         score: this.score,
@@ -207,6 +238,7 @@ export default {
       }
     }
   },
+
   computed: {
     correctAnswer() {
       if (!this.userInput.trim()) return false;
@@ -218,6 +250,7 @@ export default {
       return false;
     }
   },
+
   watch: {
     userInput() {
       if (this.correctAnswer) {
@@ -226,6 +259,7 @@ export default {
         this.userInput = "";
       }
     },
+
     async timeLeft(newVal) {
       if (newVal === 0) {
         clearInterval(this.interval);
