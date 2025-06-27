@@ -15,7 +15,7 @@ build_and_deploy() {
     --delete \
     --acl public-read \
     --exact-timestamps \
-    --cache-control "public, max-age=31536000"
+    --cache-control "public, max-age=0, no-cache"
 
   cd ..
 }
