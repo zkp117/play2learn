@@ -177,20 +177,18 @@ export default {
       const cookieValue = document.cookie.match('(^|;)\\s*csrftoken\\s*=\\s*([^;]+)');
       return cookieValue ? cookieValue.pop() : '';
     },
-
-  async checkLogin() {
-  try {
-    const res = await Axios.get('/api/is-logged-in/', {
-      withCredentials: true,
-      headers: {
-        'Cache-Control': 'no-store'
-      }
-    });
-    this.loggedIn = res.data.logged_in;
-  } catch (e) {
-    this.loggedIn = false;
-  }
-},
+    
+    async checkLogin() {
+      try {
+        const res = await Axios.get('/api/is-logged-in/', {
+          headers: {
+            'Cache-Control': 'no-store'
+          }});
+          this.loggedIn = res.data.logged_in;
+        } catch (e) {
+          this.loggedIn = false;
+        }
+      },
 
     async play() {
       await this.checkLogin();
@@ -242,7 +240,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': this.getCsrfToken()
-          }
+          },
         });
         console.log("Score saved successfully");
       } catch (error) {
