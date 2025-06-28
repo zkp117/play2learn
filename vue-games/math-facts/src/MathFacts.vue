@@ -174,13 +174,13 @@ export default {
   },
   methods: {
     getCsrfToken() {
-      const match = document.cookie.match(/csrftoken=([^;]+)/);
-      return match ? match[1] : '';
+      const cookieValue = document.cookie.match('(^|;)\\s*csrftoken\\s*=\\s*([^;]+)');
+      return cookieValue ? cookieValue.pop() : '';
     },
 
     async checkLogin() {
       try {
-        const res = await Axios.get('/api/is-logged-in/', { withCredentials: true });
+        const res = await Axios.get('/api/is-logged-in/');
         this.loggedIn = res.data.logged_in;
       } catch (e) {
         this.loggedIn = false;
