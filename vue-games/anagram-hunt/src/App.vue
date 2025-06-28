@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="glitch-edit">Anagram Hunt</h1>
+    <h1 class="glitch-edit text-center">Anagram Hunt</h1>
     <AnagramHunt />
   </div>
 </template>

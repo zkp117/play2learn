@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="glitch-edit">Math Facts</h1>
+    <h1 class="glitch-edit text-center">Math Facts</h1>
     <MathGame />
   </div>
 </template>

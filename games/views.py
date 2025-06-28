@@ -22,11 +22,6 @@ class MathFactsView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["timestamp"] = int(datetime.now().timestamp())
         return context
-    
-    def math_facts_view(request):
-        return render(request, 'vue-templates/math-facts.html', {
-            'timestamp': int(now().timestamp)
-        })
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
