@@ -1,5 +1,5 @@
 import json
-from datetime import timedelta
+from datetime import timedelta, datetime
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.views import View
@@ -13,19 +13,22 @@ from scoreboards.models import (
     AnagramHuntUserScores
 )
 
-# --------------------
-# Redirect Views for Vue Games
-# --------------------
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["timestamp"] = datetime.now().timestamp()
+        return context
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
 
-# --------------------
-# Score Recording APIs
-# --------------------
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["timestamp"] = datetime.now().timestamp()
+        return context
 class EnterMathFactsScore(View):
     def post(self, request):
         try:

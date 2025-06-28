@@ -1,18 +1,21 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
   base: '/vue-games/math-facts/',
   plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  },
   build: {
-    outDir: 'dist',
-    manifest: true, 
     rollupOptions: {
-      input: './src/main.js',
       output: {
-        entryFileNames: 'js/[name].[hash].js',
-        chunkFileNames: 'js/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash][extname]'
+        entryFileNames: `js/app.js`,
+        chunkFileNames: `js/chunk-vendors.js`,
+        assetFileNames: `assets/[name][extname]`
       }
     }
   }
