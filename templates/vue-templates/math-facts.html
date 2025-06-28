@@ -1,7 +1,5 @@
 {% extends "_base_vue.html" %}
-{% load crispy_forms_tags %}
 {% load static %}
-
 
 {% block title %}Math Facts | Play2Learn{% endblock %}
 
@@ -10,6 +8,5 @@
 {% endblock %}
 
 {% block extra_js %}
-{% load static %}
-<script type="module" src="{% static 'vue-games/math-facts/js/app.js' %}" defer></script>
+  <script type="module" src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/{{ mathfacts_js }}"></script>
 {% endblock %}
