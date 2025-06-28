@@ -9,5 +9,5 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script type="module" src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/js/app.js?v={{ timestamp }}"></script>
+<script type="module" src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/math-facts/js/app.js?v={% now 'U'}"></script>
 {% endblock %}
