@@ -78,9 +78,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'play2learn.urls'
 
-SESSION_COOKIE_NAME = 'sessionid' 
+SESSION_COOKIE_NAME = 'sessionid'
 SESSION_COOKIE_PATH = '/'
-SESSION_COOKIE_SAMESITE = 'Lax' 
+SESSION_COOKIE_SAMESITE = 'None' 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = '.play2learn.app'
 
@@ -223,10 +223,9 @@ STORAGES = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-   "http://localhost:8080",  
-   "http://localhost:8000",
-   "https://www.play2learn.app",
-   "https://play2learn.app",
+   'https://www.play2learn.app',
+   'https://play2learn.app',
+   'https://play2learn-bucket.s3.us-east-2.amazonaws.com',
 ]
 
 
@@ -236,10 +235,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
 
-CSRF_COOKIE_HTTPONLY = False
-CSRF_TRUSTED_ORIGINS = ['https://www.play2learn.app',
-                         'https://play2learn.app']
-CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_TRUSTED_ORIGINS = [
+   'https://www.play2learn.app',
+   'https://play2learn.app',
+   'https://play2learn-bucket.s3.us-east-2.amazonaws.com',]
+CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SECURE = True
 
 
