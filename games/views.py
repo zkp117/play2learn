@@ -12,14 +12,13 @@ from scoreboards.models import (
     MathFactsUserScores, 
     AnagramHuntUserScores
 )
-
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["timestamp"] = datetime.now().timestamp()
+        context["timestamp"] = int(datetime.now().timestamp())
         return context
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class AnagramHuntView(TemplateView):
@@ -27,7 +26,7 @@ class AnagramHuntView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["timestamp"] = datetime.now().timestamp()
+        context["timestamp"] = int(datetime.now().timestamp())
         return context
 class EnterMathFactsScore(View):
     def post(self, request):
@@ -58,7 +57,6 @@ class EnterMathFactsScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-
 class EnterAnagramHuntScore(View):
     def post(self, request):
         try:
@@ -85,10 +83,6 @@ class EnterAnagramHuntScore(View):
             return JsonResponse({'status': 'success'})
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-
-# --------------------
-# Utility Endpoint
-# --------------------
 
 def is_logged_in(request):
     if request.user.is_authenticated:
