@@ -245,7 +245,7 @@ CSRF_COOKIE_SECURE = True
 
 try:
    if os.environ.get('ENVIRONMENT') != 'production':
-      from .local_settings import *
+       from .local_settings import *
 except ImportError:
    pass
 # DON'T PUT ANYTHING BELOW THIS
