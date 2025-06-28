@@ -178,14 +178,19 @@ export default {
       return cookieValue ? cookieValue.pop() : '';
     },
 
-    async checkLogin() {
-      try {
-        const res = await Axios.get('/api/is-logged-in/');
-        this.loggedIn = res.data.logged_in;
-      } catch (e) {
-        this.loggedIn = false;
+  async checkLogin() {
+  try {
+    const res = await Axios.get('/api/is-logged-in/', {
+      withCredentials: true,
+      headers: {
+        'Cache-Control': 'no-store'
       }
-    },
+    });
+    this.loggedIn = res.data.logged_in;
+  } catch (e) {
+    this.loggedIn = false;
+  }
+},
 
     async play() {
       await this.checkLogin();
