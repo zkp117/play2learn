@@ -5,6 +5,8 @@ from django.http import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.timezone import now
+from django.shortcuts import render
 
 from scoreboards.models import (
     MathFactsScoreBoard, 
@@ -20,6 +22,11 @@ class MathFactsView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["timestamp"] = int(datetime.now().timestamp())
         return context
+    
+    def math_facts_view(request):
+        return render(request, 'vue-templates/math-facts.html', {
+            'timestamp': int(now().timestamp)
+        })
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
