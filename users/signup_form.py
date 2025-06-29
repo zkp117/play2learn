@@ -1,4 +1,4 @@
-# this page was added so signup form could have custom password setup
+# this page was added so signup form could have custom password setup (password eye)
 
 from django import forms
 from allauth.account.forms import SignupForm

@@ -18,6 +18,7 @@ from scoreboards.models import (
 class MathFactsView(TemplateView):
     template_name = "vue-templates/math-facts.html"
 
+    # for caching
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["timestamp"] = int(datetime.now().timestamp())
@@ -26,6 +27,7 @@ class MathFactsView(TemplateView):
 class AnagramHuntView(TemplateView):
     template_name = "vue-templates/anagram-hunt.html"
 
+    # for caching
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["timestamp"] = int(datetime.now().timestamp())

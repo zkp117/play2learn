@@ -7,6 +7,7 @@
   <div id="app"></div>
 {% endblock %}
 
+<!-- the {% now 'U'} is so the app.js doesn't have to change the name -->
 {% block extra_js %}
 <script type="module" src="https://play2learn-bucket.s3.us-east-2.amazonaws.com/vue-games/anagram-hunt/js/app.js?v={% now 'U' %}"></script>
 {% endblock %}
