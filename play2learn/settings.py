@@ -17,7 +17,6 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "play2learn-lmn4.onrender.com",
-    "play2learn.app",
     "www.play2learn.app",
 ]
 
@@ -63,6 +62,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # MIDDLEWARE SECTIONS
 MIDDLEWARE = [
+   'play2learn.middleware.WwwRedirectMiddleware',
    'corsheaders.middleware.CorsMiddleware',
    'django.middleware.security.SecurityMiddleware',
    'django.contrib.sessions.middleware.SessionMiddleware',
@@ -224,7 +224,11 @@ STORAGES = {
 
 CORS_ALLOWED_ORIGINS = [
    'https://www.play2learn.app',
-   'https://play2learn.app',
+   'https://play2learn-bucket.s3.us-east-2.amazonaws.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+   'https://www.play2learn.app',
    'https://play2learn-bucket.s3.us-east-2.amazonaws.com',
 ]
 
@@ -235,10 +239,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
 
-CSRF_TRUSTED_ORIGINS = [
-   'https://www.play2learn.app',
-   'https://play2learn.app',
-   'https://play2learn-bucket.s3.us-east-2.amazonaws.com',]
 CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SECURE = True
 
