@@ -3,13 +3,13 @@ from django.conf import settings
 class StaticStorage(S3Boto3Storage):
     location = 'static'
     default_acl = 'public-read'
-    custom_domain = 'd247zk0j19bbkg.cloudfront.net'
+   # custom_domain = 'd247zk0j19bbkg.cloudfront.net'
     file_overwrite = False
 class PublicMediaStorage(S3Boto3Storage):
     location = 'media/public'
     default_acl = 'public-read'
     file_overwrite = False
-    custom_domain = settings.AWS_S3_CUSTOM_DOMAIN
+    custom_domain = settings.AWS_S3_CUSTOM_DOMAIN 
     object_parameters = {
         'CacheControl': 'no-cache, no-store, must-revalidate'
     } # avatar doesn't update without this
