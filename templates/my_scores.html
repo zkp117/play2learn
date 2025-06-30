@@ -4,6 +4,27 @@
 
 {% block main %}
 
+<h2>🔍 Debug: MathFactsUserScores</h2>
+<ul>
+  {% for score in mathfacts_userscores %}
+    <li>User: {{ score.user.username }} | Score: {{ score.score }}</li>
+  {% empty %}
+    <li>No MathFacts scores found</li>
+  {% endfor %}
+</ul>
+
+<h2>🔍 Debug: AnagramHuntUserScores</h2>
+<ul>
+  {% for score in anagramhunt_userscores %}
+    <li>User: {{ score.user.username }} | Score: {{ score.score }}</li>
+  {% empty %}
+    <li>No AnagramHunt scores found</li>
+  {% endfor %}
+</ul>
+
+
+<!--   -->
+
 <h1 class="text-center glitch-edit">My Scores</h1> 
 
 <br>
