@@ -1,3 +1,4 @@
+from django.views.decorators.cache import never_cache
 import json
 from datetime import timedelta, datetime
 from django.views.generic import TemplateView
@@ -5,8 +6,6 @@ from django.http import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.utils.timezone import now
-from django.shortcuts import render
 
 from scoreboards.models import (
     MathFactsScoreBoard, 
@@ -88,6 +87,7 @@ class EnterAnagramHuntScore(View):
         except (json.JSONDecodeError, ValueError, TypeError) as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
+@never_cache
 def is_logged_in(request):
     if request.user.is_authenticated:
         return JsonResponse({'logged_in': True, 'username': request.user.username})
