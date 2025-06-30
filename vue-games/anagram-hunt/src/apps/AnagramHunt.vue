@@ -233,6 +233,12 @@ export default {
       }
     }
   },
+  computed: {
+    guessesLeft() {
+      if (!this.anagramList || this.anagramList.length === 0) return 0;
+      return this.anagramList.length - 1 - this.correctGuesses.length;
+    }
+  },
   watch: {
     userInput() {
       this.checkAnswer();
