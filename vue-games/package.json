@@ -1,4 +1,11 @@
 {
+  "name": "anagram-hunt",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
   "devDependencies": {
     "@types/estree": "^1.0.8",
     "@types/json-schema": "^7.0.15"
