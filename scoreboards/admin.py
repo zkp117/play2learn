@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models import ( MathFactsScoreBoard, 
                      AnagramHuntScoreBoard,
-                     MathFactsUserScores,
-                     AnagramHuntUserScores)
+                     )
 
 @admin.register(MathFactsScoreBoard)
 class MathFactsScoreBoardAdmin(admin.ModelAdmin):
