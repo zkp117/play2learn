@@ -7,12 +7,8 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "@types/estree": "^1.0.8",
-    "@types/json-schema": "^7.0.15",
-    "vite": "^7.0.0"
-  },
-  "dependencies": {
-    "vue-axios": "^3.5.2",
-    "vue-router": "^4.5.1"
+    "vite": "^4.0.0",
+    "vue": "^3.2.0",
+    "@vitejs/plugin-vue": "^4.0.0"
   }
 }
