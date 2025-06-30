@@ -180,6 +180,7 @@ export default {
     async checkLogin() {
       try {
         const res = await Axios.get('/api/is-logged-in/', {
+          withCredentials: true,
           headers: {
             'Cache-Control': 'no-store'
           }});
