@@ -1,4 +1,5 @@
 #!/bin/bash
+# uploading & saving vue games to aws3
 # index.html is excluded 
 set -e
 

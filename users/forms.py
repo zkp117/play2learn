@@ -21,6 +21,8 @@ class CustomUserChangeForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if 'avatar' in self.fields:
             self.fields['avatar'].widget.attrs.update({'class': 'form-control'})
+
+# this is part of the password eye
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         max_length=150,

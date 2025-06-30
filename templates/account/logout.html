@@ -8,6 +8,8 @@
       <button type="submit" class="btn btn-primary">Log Out</button>
   </form>
 
+  <!-- the local storage and session storage is helping clear the cache -->
+
   {% if not user.is_authenticated %}
 <script>
   localStorage.clear();

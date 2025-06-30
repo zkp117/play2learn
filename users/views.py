@@ -75,6 +75,8 @@ def clear_avatar(request):
         user.avatar = None             
         user.save()                    
     return redirect('my-account')
+
+# custom login & signup views for the password eye
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
     authentication_form = CustomAuthenticationForm

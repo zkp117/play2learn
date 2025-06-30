@@ -44,7 +44,7 @@ class MathFactsUserScores(models.Model):
     max_number = models.IntegerField() 
     time_left = models.DurationField()
     date_added = models.DateTimeField(('date added'), default=timezone.now)
-
+    
     @property
     def seconds_left(self):
         return int(self.time_left.total_seconds())

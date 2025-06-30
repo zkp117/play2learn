@@ -10,3 +10,5 @@ class WwwRedirectMiddleware:
             new_url = 'https://www.play2learn.app' + request.get_full_path()
             return HttpResponsePermanentRedirect(new_url)
         return self.get_response(request)
+
+# helps redirect with the middleware
